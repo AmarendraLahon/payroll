@@ -118,15 +118,16 @@ Confirms all 38 concept sections are covered.
 | 07 | Increment, Fixation & MACP | ✅ Done |
 | 08 | Arrears | ✅ Done |
 | 09 | Leave Management | ✅ Done |
-| 10 | Attendance & Holiday Calendar | ☐ Not started |
-| 11 | Claims & Reimbursements | ☐ Not started |
-| 12 | Loans & Advances | ☐ Not started |
-| 13 | Salary Bill, Treasury & Budget Heads | ☐ Not started |
-| 14 | Payroll Period & Reconciliation | ☐ Not started |
-| 15 | Statutory & Compliance | ☐ Not started |
-| 16 | Pension, DR & Retirement Settlement | ☐ Not started |
-| 17 | Master Data & Reports | ☐ Not started |
-| 18 | Edge Cases & Special Handling | ☐ Not started |
-| 19 | Platform — ESS, RBAC & Migration | ☐ Not started |
+| 10 | Attendance & Holiday Calendar | ✅ Done |
+| 11 | Claims & Reimbursements | ✅ Done |
+| 12 | Loans & Advances | ✅ Done |
+| 13 | Salary Bill, Treasury & Budget Heads | ✅ Done |
+| 14 | Payroll Period & Reconciliation | ✅ Done |
+| 15 | Statutory & Compliance | ✅ Done |
+| 16 | Pension, DR & Retirement Settlement | ✅ Done |
+| 17 | Master Data & Reports | ✅ Done |
+| 18 | Edge Cases & Special Handling | ✅ Done |
+| 19 | Platform — ESS, RBAC & Migration | ✅ Done |
 
-Update Status to ✅ Done as each section doc is completed.
+**All 19 sections complete.** The full Indian/Assam govt university payroll &
+leave domain is documented end-to-end in `learning/01`–`19`.
