@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raise Service Event — Dealing Assistant — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Dealing Assistant</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Dealing Assistant</span>
+  <a href="index.html">Work Queue</a>
+  <a href="bill-prepare.html">Bill Prep</a>
+  <a href="service-event.html" class="active">Service Event</a>
+  <a href="leave-process.html">Leave</a>
+  <a href="claim-process.html">Claims</a>
+  <a href="arrear-draft.html">Arrears</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Work Queue</a> › Raise Service Event</div>
+  <h1 class="page-title">Raise Service Event <span class="tag">§02 / §07</span></h1>
+  <p class="page-sub">The Service Book is append-only. You add an event with an order reference — never edit Basic/Level directly. The Employee Master is re-derived from events.</p>
+
+  <div class="wf-note">Wireframe — fields are mock. A real save would emit an append-only ServiceEvent and re-project the master.</div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>New event</h2>
+      <div class="form-row"><label>Employee</label>
+        <select><option>Mr. A. Das (AGU-NT-0421)</option><option>Dr. R. Sharma (AGU-TC-0107)</option><option>Mr. P. Roy (AGU-NT-0033)</option></select>
+      </div>
+      <div class="form-row"><label>Event type</label>
+        <select><option>INCREMENT</option><option>PROMOTION</option><option>MACP</option><option>PAY_FIXATION</option><option>LEAVE_SPELL (EOL)</option><option>CONFIRMATION</option><option>TRANSFER</option><option>SUSPENSION</option></select>
+      </div>
+      <div class="form-row"><label>Effective date</label><input type="date" value="2026-07-01"></div>
+      <div class="form-row"><label>Order no.</label><input type="text" placeholder="EST/2026/..."></div>
+      <div class="form-row"><label>Order date</label><input type="date"></div>
+      <div class="form-row"><label>Old value</label><input type="text" value="Level 4 · Cell 3 · ₹25,500" readonly></div>
+      <div class="form-row"><label>New value</label><input type="text" placeholder="Level 4 · Cell 4 · ₹26,300"></div>
+      <div class="form-row"><label>Remarks</label><textarea rows="2" placeholder="Optional"></textarea></div>
+      <div class="wf-actions">
+        <button class="btn ghost" type="button">Cancel</button>
+        <button class="btn" type="button">Record event (append)</button>
+      </div>
+      <p class="note" style="margin-top:10px">Back-dated events automatically queue an arrear run (§08). A correction is a new reversing event, never an edit.</p>
+    </div>
+
+    <div class="card">
+      <h2>Service Book — Mr. A. Das (recent)</h2>
+      <ul class="timeline">
+        <li><div class="date">01-Aug-2023</div><div class="ev">PROMOTION → Level 4 + PAY_FIXATION ₹25,500</div><div class="meta">Order EST/2023/088</div></li>
+        <li><div class="date">01-Jan-2022</div><div class="ev">INCREMENT — Level 2/3 ₹21,100 (delayed by EOL)</div><div class="meta">—</div></li>
+        <li><div class="date">15-Mar-2021</div><div class="ev">LEAVE_SPELL — EOL 30 days (dies-non)</div><div class="meta">Shifts increment + cuts qualifying service</div></li>
+        <li><div class="date">01-Jul-2020</div><div class="ev">CONFIRMATION</div><div class="meta">—</div></li>
+        <li><div class="date">01-Jul-2018</div><div class="ev">JOINING — Level 2/1 ₹19,900</div><div class="meta">Order EST/2018/214</div></li>
+      </ul>
+      <p class="note">Full record on the <a href="../employee.html">Employee &amp; Service Book</a> screen.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

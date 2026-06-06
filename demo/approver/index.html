@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approver — Approval Inbox — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Approver</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Approver / Registrar</span>
+  <a href="index.html" class="active">Approval Inbox</a>
+  <a href="approve-bill.html">Bills</a>
+  <a href="approve-leave.html">Leave</a>
+  <a href="establishment.html">Establishment</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="../login.html">Login</a> › Approver · Inbox</div>
+  <h1 class="page-title">Approval Inbox <span class="tag">University-wide</span></h1>
+  <p class="page-sub">Final approval of verified bills and establishment decisions; top of the leave-approval chain (Employee → HOD → Registrar).</p>
+
+  <div class="wf-note">Wireframe — mock data. Approve / return actions mimic the workflow only.</div>
+
+  <div class="task-hub" style="margin-bottom:22px">
+    <div class="task-card"><h3>Bills to approve</h3><div class="cnt">2</div><div class="note">verified by DDO</div><a href="approve-bill.html">Open →</a></div>
+    <div class="task-card" style="border-left-color:var(--green)"><h3>Leave to approve</h3><div class="cnt">3</div><div class="note">cleared by HOD</div><a href="approve-leave.html">Open →</a></div>
+    <div class="task-card" style="border-left-color:var(--saffron)"><h3>Establishment</h3><div class="cnt">2</div><div class="note">promotion / MACP fixation</div><a href="establishment.html">Open →</a></div>
+  </div>
+
+  <div class="card">
+    <h2>All pending (mock)</h2>
+    <div class="filter-bar">
+      <label for="inbox-filter">Filter:</label>
+      <input type="text" id="inbox-filter" data-filter="inbox-table" placeholder="Filter inbox…">
+    </div>
+    <div class="scroll-x">
+    <table class="data" id="inbox-table">
+      <thead><tr><th>Item</th><th>Type</th><th>From</th><th class="num">Value</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Salary Bill AGU/SAL/2026-27/03</td><td>Bill</td><td>DDO</td><td class="num">₹1,84,897</td><td><a href="approve-bill.html">Review</a></td></tr>
+        <tr><td>Arrear Bill AGU/ARR/2026-27/02</td><td>Bill</td><td>DDO</td><td class="num">₹7,167</td><td><a href="approve-bill.html">Review</a></td></tr>
+        <tr><td>EL 5d · Mr. A. Das</td><td>Leave</td><td>HOD</td><td class="num">5 days</td><td><a href="approve-leave.html">Review</a></td></tr>
+        <tr><td>HPL 4d · Dr. R. Sharma</td><td>Leave</td><td>HOD</td><td class="num">4 days</td><td><a href="approve-leave.html">Review</a></td></tr>
+        <tr><td>EOL 2d · Mr. P. Roy</td><td>Leave</td><td>HOD</td><td class="num">2 days</td><td><a href="approve-leave.html">Review</a></td></tr>
+        <tr><td>1st MACP fixation · Mr. P. Roy</td><td>Establishment</td><td>Dealing Asst</td><td class="num">refix</td><td><a href="establishment.html">Review</a></td></tr>
+        <tr><td>Promotion fixation · Mr. A. Das</td><td>Establishment</td><td>Dealing Asst</td><td class="num">L4</td><td><a href="establishment.html">Review</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

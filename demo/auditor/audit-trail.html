@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Trail — Auditor — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Auditor</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Auditor · read-only</span>
+  <a href="index.html">Oversight</a>
+  <a href="audit-trail.html" class="active">Audit Trail</a>
+  <a href="reconciliation.html">Reconciliation</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Oversight</a> › Audit Trail</div>
+  <h1 class="page-title">Audit Trail <span class="tag">§30 / §38</span></h1>
+  <p class="page-sub">Every Service Book, pay, leave and master-data change is logged with who / when / old → new. Read-only.</p>
+
+  <div class="card">
+    <h2>Change log</h2>
+    <div class="filter-bar">
+      <label for="a-filter">Filter:</label>
+      <input type="text" id="a-filter" data-filter="a-table" placeholder="Filter by user, action, employee…">
+    </div>
+    <div class="scroll-x">
+    <table class="data" id="a-table">
+      <thead><tr><th>Timestamp</th><th>User (role)</th><th>Resource</th><th>Action</th><th>Old → New</th></tr></thead>
+      <tbody>
+        <tr><td>02-Jun-2026 11:40</td><td>ddo.reg (DDO)</td><td>Bill AGU/SAL/2026-27/03</td><td>Verify</td><td>Draft → Verified</td></tr>
+        <tr><td>02-Jun-2026 11:30</td><td>da.estab (Dealing Asst)</td><td>Service event · Das</td><td>Insert INCREMENT</td><td>— → L4/C3 (01-Jul-2024)</td></tr>
+        <tr><td>02-Jun-2026 10:05</td><td>da.estab (Dealing Asst)</td><td>Claim CEA · Das</td><td>Verify ceiling</td><td>claimed 23,000 → admissible 23,000</td></tr>
+        <tr><td>01-Jun-2026 09:15</td><td>sysadmin (Admin)</td><td>DA Rate Table</td><td>Insert row</td><td>50% → 53% (eff 01-Jan-2026)</td></tr>
+        <tr><td>31-May-2026 17:00</td><td>sysadmin (Admin)</td><td>Migration batch</td><td>Seed opening loan · Das</td><td>— → outstanding 1,44,000 / 48</td></tr>
+        <tr><td>01-Aug-2023 09:05</td><td>da.estab (Dealing Asst)</td><td>Pay fixation · Das</td><td>Insert PAY_FIXATION</td><td>L2/C3 ₹21,100 → L4 ₹25,500</td></tr>
+        <tr><td>15-Mar-2021 16:22</td><td>da.estab (Dealing Asst)</td><td>Leave spell · Das</td><td>Insert EOL</td><td>— → 30 days dies-non</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Append-only — entries are never edited or deleted. A correction is a new event referencing the rectification order.</p>
+  </div>
+
+  <div class="callout">RBAC + audit are a pair: the role decides who <i>may</i> act; the trail records who <i>did</i>. Together they make every rupee and every Service Book entry defensible.</div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

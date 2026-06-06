@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify &amp; Sanction — DDO — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">DDO</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">DDO</span>
+  <a href="index.html">Verification Queue</a>
+  <a href="verify.html" class="active">Verify &amp; Sanction</a>
+  <a href="treasury.html">Treasury &amp; Disburse</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Verification Queue</a> › Verify &amp; Sanction</div>
+  <h1 class="page-title">Verify &amp; Sanction <span class="tag">§13 / §14</span></h1>
+  <p class="page-sub">Bill AGU/SAL/2026-27/03 · June 2026 · from Dealing Assistant. Verify reconciliation and budget, then sanction to the Registrar for approval.</p>
+
+  <div class="stepper">
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Received</div></div>
+    <div class="stp cur"><div class="dot">2</div><div class="lbl">Verify checks</div></div>
+    <div class="stp"><div class="dot">3</div><div class="lbl">Sanction</div></div>
+    <div class="stp"><div class="dot">4</div><div class="lbl">To Registrar</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Verification checklist</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Check</th><th>Result</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>3-way reconciliation (gross − deduct = net = Σ net)</td><td>2,25,690 − 40,793 = 1,84,897</td><td><span class="badge ok">Tied out ✓</span></td></tr>
+        <tr><td>Schedule tie-out (GPF/NPS/GIS/IT = bill deductions)</td><td>40,793 matches schedules</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Pay drawn only for sanctioned + filled posts</td><td>3 / 3 filled</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Head-wise expenditure ≤ budget allotment</td><td>all object heads within</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>NPS schedule carries both legs (10% + 14%)</td><td>employer 14% = ₹24,300</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Mid-month retiree proration (Mr. Roy)</td><td>full June (retires 30-Jun)</td><td><span class="badge ok">✓</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Sanction</h2>
+      <dl class="kv">
+        <dt>DDO</dt><dd>Registrar (AGU-DDO-01)</dd>
+        <dt>Treasury code</dt><dd>GHY-TR-014</dd>
+        <dt>Bill no.</dt><dd>AGU/SAL/2026-27/03</dd>
+        <dt>Net claim</dt><dd>₹1,84,897</dd>
+      </dl>
+      <div class="wf-actions">
+        <button class="btn maroon" type="button">Return for correction</button>
+        <a href="../approver/index.html" class="btn">Sanction → send to Registrar</a>
+      </div>
+      <p class="note">Returning loops the bill back to the Dealing Assistant at Draft/Verified with a reason (treasury return loop, §26).</p>
+    </div>
+
+    <div class="card">
+      <h2>Lifecycle</h2>
+      <div class="flow">
+        <span class="step done">Draft</span><span class="arr">→</span>
+        <span class="step cur">Verified (DDO)</span><span class="arr">→</span>
+        <span class="step">Approved</span><span class="arr">→</span>
+        <span class="step">Submitted</span><span class="arr">→</span>
+        <span class="step">Passed</span><span class="arr">→</span>
+        <span class="step">Disbursed</span><span class="arr">→</span>
+        <span class="step">Locked</span>
+      </div>
+      <div class="callout">You verify &amp; sanction. Final approval is the Registrar's; you then present the approved bill at treasury (next screen).</div>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

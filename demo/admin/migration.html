@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Migration — Admin — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Admin</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Admin</span>
+  <a href="index.html">Console</a>
+  <a href="rate-tables.html">Rate Tables</a>
+  <a href="users-roles.html">Users &amp; Roles</a>
+  <a href="migration.html" class="active">Data Migration</a>
+  <a href="../admin.html">RBAC Matrix</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Console</a> › Data Migration</div>
+  <h1 class="page-title">Go-Live Data Migration <span class="tag">§19</span></h1>
+  <p class="page-sub">One-time onboarding — seed opening balances as the initial ledgers, reconcile against legacy, and parallel-run before the first live period.</p>
+
+  <div class="stepper">
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Load batch</div></div>
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Reconcile + provenance</div></div>
+    <div class="stp cur"><div class="dot">3</div><div class="lbl">Parallel run</div></div>
+    <div class="stp"><div class="dot">4</div><div class="lbl">Sign-off go-live</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Seeded opening state — Mr. A. Das (as on 31-May, go-live 1-Jun)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Opening balance</th><th>Seeded value</th><th>Source ref</th><th>Reconciled</th></tr></thead>
+      <tbody>
+        <tr><td>Leave (EL / HPL / CL)</td><td>45 / 20 / 6</td><td>legacy service book</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Scheme / PRAN</td><td>NPS · 1100-xxxx-4821</td><td>NSDL record</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Loan outstanding</td><td><b>₹1,44,000 · 48 installments left</b></td><td>loan register p.112</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Pay position</td><td>Level 4 · Cell 3 · ₹25,500</td><td>last fixation order</td><td><span class="badge ok">✓</span></td></tr>
+        <tr><td>Last increment date</td><td>01-Jul-2024</td><td>service book</td><td><span class="badge ok">✓</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="callout warn">Seed the <b>outstanding</b> (₹1,44,000 / 48), not the original sanction (₹1,80,000 / 60) — else the system over-recovers for 12 extra months. One wrong field = real loss; hence reconcile + audit every value.</div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Parallel run (validation gate)</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Recompute month</td><td>May 2026 (known)</td></tr>
+          <tr><td class="head">System net</td><td class="num">₹38,797</td></tr>
+          <tr><td class="head">Legacy paid net</td><td class="num">₹38,797</td></tr>
+          <tr><td class="head">Variance</td><td><span class="badge ok">₹0 — within tolerance</span></td></tr>
+        </tbody>
+      </table>
+      <div class="wf-actions"><button class="btn" type="button">Sign off go-live →</button></div>
+      <p class="note">A known past month must recompute to the legacy-paid figure before the first live period is allowed.</p>
+    </div>
+
+    <div class="card">
+      <h2>Batch status</h2>
+      <table class="data">
+        <thead><tr><th>Group</th><th class="num">Records</th><th>Reconciled</th></tr></thead>
+        <tbody>
+          <tr><td>Non-teaching</td><td class="num">244</td><td><span class="badge ok">244 ✓</span></td></tr>
+          <tr><td>Teaching</td><td class="num">168</td><td><span class="badge warn">166 / 168</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Go-live gated on all records reconciled + parallel run passing. Phased (college-by-college) rollout supported.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

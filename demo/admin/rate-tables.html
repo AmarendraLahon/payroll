@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Tables — Admin — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Admin</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Admin</span>
+  <a href="index.html">Console</a>
+  <a href="rate-tables.html" class="active">Rate Tables</a>
+  <a href="users-roles.html">Users &amp; Roles</a>
+  <a href="migration.html">Data Migration</a>
+  <a href="../admin.html">RBAC Matrix</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Console</a> › Rate Tables</div>
+  <h1 class="page-title">Effective-Dated Rate Tables <span class="tag">§17</span></h1>
+  <p class="page-sub">Every rate change is a <b>new row</b> (insert-not-update). History is retained forever — that is what powers arrears, pension averages and audit.</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>DA Rate Table</h2>
+      <table class="data">
+        <thead><tr><th class="num">DA%</th><th>Effective from</th><th>Effective to</th><th>Order ref</th></tr></thead>
+        <tbody>
+          <tr><td class="num">46%</td><td>01-Jan-2025</td><td>01-Jul-2025</td><td>DA/2024/41</td></tr>
+          <tr><td class="num">50%</td><td>01-Jul-2025</td><td>01-Jan-2026</td><td>DA/2025/12</td></tr>
+          <tr><td class="num">53%</td><td>01-Jan-2026</td><td>— (current)</td><td>DA/2025/77</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="border-left:5px solid var(--saffron)">
+      <h2>Insert new rate row</h2>
+      <div class="form-row"><label>Table</label><select><option>DA Rate</option><option>HRA Rate</option><option>TA Slab</option><option>PT Slab</option><option>IT Slab</option><option>GIS Rate</option><option>Pay Matrix</option></select></div>
+      <div class="form-row"><label>New value</label><input type="text" placeholder="e.g. 55%"></div>
+      <div class="form-row"><label>Effective from</label><input type="date" value="2026-07-01"></div>
+      <div class="form-row"><label>Order ref</label><input type="text" placeholder="DA/2026/.."></div>
+      <div class="wf-actions"><button class="btn" type="button">Insert row</button></div>
+      <div class="callout warn">A back-dated insert (effective_from &lt; current month) auto-triggers an arrear run (§08). The prior row's effective_to is closed — its value is never edited.</div>
+    </div>
+  </div>
+
+  <div class="grid cols-3">
+    <div class="card">
+      <h2>HRA Rate</h2>
+      <table class="data">
+        <thead><tr><th>Class</th><th class="num">%</th><th>From</th></tr></thead>
+        <tbody><tr><td>X</td><td class="num">24</td><td>01-Jan-24</td></tr><tr><td>Y</td><td class="num">16</td><td>01-Jan-24</td></tr><tr><td>Z</td><td class="num">8</td><td>01-Jan-24</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>PT Slab (Assam)</h2>
+      <table class="data">
+        <thead><tr><th>Band</th><th class="num">₹/mo</th></tr></thead>
+        <tbody><tr><td>≤ 15,000</td><td class="num">0</td></tr><tr><td>15k–25k</td><td class="num">150</td></tr><tr><td>25k+</td><td class="num">208</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>NPS / GPF params</h2>
+      <table class="data">
+        <tbody><tr><td class="head">NPS employee</td><td>10%</td></tr><tr><td class="head">NPS employer</td><td>14%</td></tr><tr><td class="head">Cut-off date</td><td>configurable</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout">All other tables share the same effective-dated shape: TA slabs, IT slabs (old/new per AY), GIS, leave accrual config, holiday calendar, loan/claim ceilings, accounting heads, pay matrix versions. One generic <code>rate_in_force(table, date)</code> lookup serves every module.</div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

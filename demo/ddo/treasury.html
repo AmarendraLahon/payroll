@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treasury &amp; Disburse — DDO — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">DDO</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">DDO</span>
+  <a href="index.html">Verification Queue</a>
+  <a href="verify.html">Verify &amp; Sanction</a>
+  <a href="treasury.html" class="active">Treasury &amp; Disburse</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Verification Queue</a> › Treasury &amp; Disburse</div>
+  <h1 class="page-title">Treasury &amp; Disburse <span class="tag">§19 / §26</span></h1>
+  <p class="page-sub">Present the approved bill at treasury, capture identifiers, disburse and lock. Once disbursed the period is read-only — corrections become arrears.</p>
+
+  <div class="stepper">
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Approved</div></div>
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Submitted (token)</div></div>
+    <div class="stp cur"><div class="dot">3</div><div class="lbl">Passed (voucher)</div></div>
+    <div class="stp"><div class="dot">4</div><div class="lbl">Disbursed</div></div>
+    <div class="stp"><div class="dot">5</div><div class="lbl">Period locked</div></div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Treasury identifiers</h2>
+      <dl class="kv">
+        <dt>Bill no.</dt><dd>AGU/SAL/2026-27/03 <span class="badge muted">at generation</span></dd>
+        <dt>Token no.</dt><dd>TKN-2026-0619 <span class="badge ok">on presentation</span></dd>
+        <dt>Voucher no.</dt><dd>VCH-…… <span class="badge warn">on passing</span></dd>
+        <dt>Treasury</dt><dd>GHY-TR-014</dd>
+        <dt>Net to disburse</dt><dd>₹1,84,897</dd>
+      </dl>
+      <div class="wf-actions">
+        <button class="btn" type="button">Mark passed (assign voucher)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>On disbursement</h2>
+      <ul>
+        <li>Post expenditure to object heads (budget consumed)</li>
+        <li>Release schedules → NSDL / GPF / GIS / IT</li>
+        <li>Emit bank payout file for net</li>
+        <li><b>Lock the period</b> — June becomes read-only</li>
+      </ul>
+      <div class="wf-actions">
+        <button class="btn ghost" type="button">Disburse</button>
+        <button class="btn maroon" type="button">Lock period 🔒</button>
+      </div>
+      <div class="callout warn">After lock, any error in July is an <b>arrear</b> (§08) or supplementary bill — never an edit to June.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Bank return handling (§27)</h2>
+    <p class="note">A failed/rejected credit is held and reissued — it does not reopen the locked period. Under-recovery carries to the next period (suspense / recovery carry).</p>
+    <table class="data">
+      <thead><tr><th>Employee</th><th class="num">Net</th><th>Bank status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td class="num">₹38,797</td><td><span class="badge ok">Credited</span></td><td>—</td></tr>
+        <tr><td>Dr. R. Sharma</td><td class="num">₹1,05,600</td><td><span class="badge ok">Credited</span></td><td>—</td></tr>
+        <tr><td>Mr. P. Roy</td><td class="num">₹40,500</td><td><span class="badge bad">Returned (IFSC)</span></td><td><button class="btn ghost" type="button">Hold &amp; reissue</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

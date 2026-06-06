@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process Leave — Dealing Assistant — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Dealing Assistant</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Dealing Assistant</span>
+  <a href="index.html">Work Queue</a>
+  <a href="bill-prepare.html">Bill Prep</a>
+  <a href="service-event.html">Service Event</a>
+  <a href="leave-process.html" class="active">Leave</a>
+  <a href="claim-process.html">Claims</a>
+  <a href="arrear-draft.html">Arrears</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Work Queue</a> › Process Leave</div>
+  <h1 class="page-title">Process Leave <span class="tag">§09</span></h1>
+  <p class="page-sub">Record approved leave to the ledger and emit the pay instruction the salary engine consumes (full / half / 80% / nil).</p>
+
+  <div class="card">
+    <h2>Approved leave awaiting ledger debit</h2>
+    <div class="wf-note">Wireframe — "Record" would debit the leave ledger and generate a pay instruction for the affected month.</div>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th>Type</th><th>Period</th><th class="num">Days</th><th>Pay class</th><th>Approval</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td>EL</td><td>20–24 Apr</td><td class="num">5</td><td><span class="badge ok">Full pay</span></td><td>Registrar ✓</td><td><button class="btn ghost" type="button">Record</button></td></tr>
+        <tr><td>Mr. A. Das</td><td>CL</td><td>10–11 Jun</td><td class="num">2</td><td><span class="badge ok">Full pay</span></td><td>Registrar ✓</td><td><span class="badge ok">Recorded</span></td></tr>
+        <tr><td>Dr. R. Sharma</td><td>HPL</td><td>03–06 Jun</td><td class="num">4</td><td><span class="badge warn">Half pay</span></td><td>Registrar ✓</td><td><button class="btn ghost" type="button">Record</button></td></tr>
+        <tr><td>Mr. P. Roy</td><td>EOL</td><td>12–13 Jun</td><td class="num">2</td><td><span class="badge bad">Nil (dies-non)</span></td><td>Registrar ✓</td><td><button class="btn ghost" type="button">Record</button></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Pay-instruction preview — HPL (Dr. Sharma)</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Leave type</td><td>HPL · 4 days</td></tr>
+          <tr><td class="head">Pay class</td><td>Half basic + DA on half</td></tr>
+          <tr><td class="head">Per-day basic (₹1,31,400 / 30)</td><td class="num">₹4,380</td></tr>
+          <tr><td class="head">Half-pay reduction (4 × ₹2,190)</td><td class="num">₹8,760</td></tr>
+          <tr><td class="head">Service credit</td><td>Counts as service ✓</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Had it been EOL: full loss 4 × ₹4,380 = ₹17,520 + 4 dies-non days (increment §07, pension §16).</p>
+    </div>
+
+    <div class="card">
+      <h2>Leave balance check — Mr. A. Das</h2>
+      <table class="data">
+        <thead><tr><th>Type</th><th class="num">Balance</th><th class="num">Requested</th><th>OK?</th></tr></thead>
+        <tbody>
+          <tr><td>EL</td><td class="num">45</td><td class="num">5</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td>CL</td><td class="num">6</td><td class="num">2</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td>HPL</td><td class="num">20</td><td class="num">0</td><td><span class="badge muted">—</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Balance debits only on Record. The ledger is append-only; balance is a projection. Approval chain: Employee → HOD → Registrar.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

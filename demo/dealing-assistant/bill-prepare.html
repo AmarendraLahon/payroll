@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prepare Salary Bill — Dealing Assistant — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Dealing Assistant</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Dealing Assistant</span>
+  <a href="index.html">Work Queue</a>
+  <a href="bill-prepare.html" class="active">Bill Prep</a>
+  <a href="service-event.html">Service Event</a>
+  <a href="leave-process.html">Leave</a>
+  <a href="claim-process.html">Claims</a>
+  <a href="arrear-draft.html">Arrears</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Work Queue</a> › Prepare Salary Bill</div>
+  <h1 class="page-title">Prepare Salary Bill <span class="tag">§13</span></h1>
+  <p class="page-sub">Bill No. AGU/SAL/2026-27/03 · Registrar's Establishment · June 2026 · status <span class="badge muted">Draft</span></p>
+
+  <div class="stepper">
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Period &amp; unit</div></div>
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Employee list</div></div>
+    <div class="stp cur"><div class="dot">3</div><div class="lbl">Compute &amp; verify</div></div>
+    <div class="stp"><div class="dot">4</div><div class="lbl">Schedules &amp; heads</div></div>
+    <div class="stp"><div class="dot">5</div><div class="lbl">Submit to DDO</div></div>
+  </div>
+
+  <div class="grid cols-3" style="margin-bottom:18px">
+    <div class="card" style="margin:0">
+      <h3 style="margin-top:0">Step 1 — Period &amp; unit ✓</h3>
+      <dl class="kv"><dt>Period</dt><dd>June 2026</dd><dt>FY</dt><dd>2026–27</dd><dt>Unit / DDO</dt><dd>Registrar's Est.</dd></dl>
+    </div>
+    <div class="card" style="margin:0">
+      <h3 style="margin-top:0">Step 2 — Employee list ✓</h3>
+      <dl class="kv"><dt>Sanctioned</dt><dd>3 filled posts</dd><dt>Excluded</dt><dd>0 (vacant)</dd><dt>On LWP</dt><dd>0</dd></dl>
+      <p class="note">Pay drawn only for sanctioned + filled posts (§13).</p>
+    </div>
+    <div class="card" style="margin:0;border-left:5px solid var(--navy)">
+      <h3 style="margin-top:0">Step 3 — Compute &amp; verify</h3>
+      <dl class="kv"><dt>Engine run</dt><dd><span class="badge ok">Computed</span></dd><dt>Reconciliation</dt><dd><span class="badge ok">Tied out ✓</span></dd></dl>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Step 3 — Computed bill lines (review)</h2>
+    <div class="wf-note">Lines computed by the salary engine (§05–06). Review for leave/loan/claim adjustments before generating schedules.</div>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th>Scheme</th><th class="num">Basic</th><th class="num">DA</th><th class="num">HRA</th><th class="num">TA</th><th class="num">Gross</th><th class="num">Deduct.</th><th class="num">Net</th><th>Flag</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td><span class="scheme-pill nps">NPS</span></td><td class="num">25,500</td><td class="num">12,750</td><td class="num">2,040</td><td class="num">5,400</td><td class="num">45,690</td><td class="num">6,893</td><td class="num">38,797</td><td><span class="badge ok">OK</span></td></tr>
+        <tr><td>Dr. R. Sharma</td><td><span class="scheme-pill nps">NPS</span></td><td class="num">1,31,400</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1,28,000</td><td class="num">22,400</td><td class="num">1,05,600</td><td><span class="badge ok">OK</span></td></tr>
+        <tr><td>Mr. P. Roy</td><td><span class="scheme-pill ops">OPS</span></td><td class="num">56,100</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">52,000</td><td class="num">11,500</td><td class="num">40,500</td><td><span class="badge warn">Retiring 30-Jun</span></td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="6">Bill total</td><td class="num">2,25,690</td><td class="num">40,793</td><td class="num">1,84,897</td><td></td></tr></tfoot>
+    </table>
+    </div>
+    <div class="callout"><b>3-way reconciliation:</b> 2,25,690 − 40,793 = 1,84,897 = Σ net ✓ — required before submit (§14).</div>
+
+    <div class="wf-actions">
+      <a href="index.html" class="btn ghost">← Back</a>
+      <button class="btn ghost" type="button">Save draft</button>
+      <a href="#step4" class="btn">Next: Generate schedules →</a>
+    </div>
+  </div>
+
+  <div class="card" id="step4">
+    <h2>Step 4 — Schedules &amp; budget heads <span class="badge muted">preview</span></h2>
+    <div class="grid cols-2">
+      <div>
+        <h3>Schedules (generated from deduction lines)</h3>
+        <table class="data">
+          <thead><tr><th>Schedule</th><th>Routes</th></tr></thead>
+          <tbody>
+            <tr><td>NPS</td><td>Das + Sharma · 10% + 14% legs, PRAN-wise → NSDL</td></tr>
+            <tr><td>GPF</td><td>Roy · subscription → GPF a/c</td></tr>
+            <tr><td>GIS</td><td>all three → GIS fund</td></tr>
+            <tr><td>Income Tax</td><td>TDS → IT dept (24Q)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Head-wise abstract vs allotment</h3>
+        <table class="data">
+          <thead><tr><th>Object head</th><th class="num">Amount</th><th>Budget</th></tr></thead>
+          <tbody>
+            <tr><td>Salaries (Basic)</td><td class="num">1,37,000</td><td><span class="badge ok">Within</span></td></tr>
+            <tr><td>DA</td><td class="num">52,690</td><td><span class="badge ok">Within</span></td></tr>
+            <tr><td>HRA + TA</td><td class="num">36,000</td><td><span class="badge ok">Within</span></td></tr>
+            <tr><td>Employer NPS 14%</td><td class="num">24,300</td><td><span class="badge ok">Within</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Step 5 — Submit to DDO</h2>
+    <p class="note">On submit, the bill moves Draft → <b>Verified (DDO)</b> queue. You cannot verify, sanction or lock it (separation of duties).</p>
+    <div class="flow">
+      <span class="step cur">Draft</span><span class="arr">→</span>
+      <span class="step">Verified (DDO)</span><span class="arr">→</span>
+      <span class="step">Approved</span><span class="arr">→</span>
+      <span class="step">Submitted</span><span class="arr">→</span>
+      <span class="step">Passed</span><span class="arr">→</span>
+      <span class="step">Disbursed</span><span class="arr">→</span>
+      <span class="step">Locked</span>
+    </div>
+    <div class="wf-actions">
+      <button class="btn ghost" type="button">Save draft</button>
+      <a href="../ddo/index.html" class="btn maroon">Submit to DDO →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

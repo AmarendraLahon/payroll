@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Console — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Admin</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Admin</span>
+  <a href="index.html" class="active">Console</a>
+  <a href="rate-tables.html">Rate Tables</a>
+  <a href="users-roles.html">Users &amp; Roles</a>
+  <a href="migration.html">Data Migration</a>
+  <a href="../admin.html">RBAC Matrix</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="../login.html">Login</a> › Admin · Console</div>
+  <h1 class="page-title">Admin Console <span class="tag">§17 / §19</span></h1>
+  <p class="page-sub">Manages master data, users/roles and go-live migration. Does <b>not</b> sanction bills — config only (separation of duties).</p>
+
+  <div class="wf-note">Wireframe — mock data. Edits mimic insert-not-update; nothing is saved.</div>
+
+  <div class="task-hub" style="margin-bottom:22px">
+    <div class="task-card"><h3>Rate tables</h3><div class="cnt">13</div><div class="note">DA, HRA, TA, PT, IT, GIS, matrix…</div><a href="rate-tables.html">Manage →</a></div>
+    <div class="task-card" style="border-left-color:var(--saffron)"><h3>Pending rate inserts</h3><div class="cnt">1</div><div class="note">DA 53% back-dated → arrear</div><a href="rate-tables.html">Review →</a></div>
+    <div class="task-card" style="border-left-color:var(--green)"><h3>Users</h3><div class="cnt">28</div><div class="note">across 6 roles</div><a href="users-roles.html">Manage →</a></div>
+    <div class="task-card" style="border-left-color:var(--navy)"><h3>Roles</h3><div class="cnt">6</div><div class="note">scoped permissions</div><a href="users-roles.html">Manage →</a></div>
+    <div class="task-card" style="border-left-color:var(--maroon)"><h3>Migration batches</h3><div class="cnt">1</div><div class="note">go-live · parallel run pending</div><a href="migration.html">Open →</a></div>
+    <div class="task-card" style="border-left-color:var(--muted)"><h3>Audit log</h3><div class="cnt">∞</div><div class="note">every master change logged</div><a href="../auditor/index.html">View →</a></div>
+  </div>
+
+  <div class="card">
+    <h2>System configuration</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Parameter</th><th>Value</th><th>Effective</th></tr></thead>
+      <tbody>
+        <tr><td>NPS scheme cut-off date</td><td>configurable (State Finance Dept)</td><td>—</td></tr>
+        <tr><td>Superannuation age (non-teaching)</td><td>60</td><td>current</td></tr>
+        <tr><td>Superannuation age (teaching)</td><td>65</td><td>current</td></tr>
+        <tr><td>EL accumulation cap</td><td>300 days</td><td>current</td></tr>
+        <tr><td>Financial year</td><td>April – March</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave Management — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Leave Management</div>
+  <h1 class="page-title">Leave Management <span class="tag">§09</span></h1>
+  <p class="page-sub">Mr. A. Das · Leave year 2026. Balances, ledger and ESS apply form. Each approved leave emits a pay instruction to the salary engine.</p>
+
+  <div class="card">
+    <h2>Leave balances</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Type</th><th class="num">Entitlement</th><th class="num">Availed</th><th class="num">Balance</th><th>Pay effect</th><th>Counts as service</th></tr></thead>
+      <tbody>
+        <tr><td>Earned Leave (EL)</td><td class="num">30 / yr</td><td class="num">15</td><td class="num">45</td><td><span class="badge ok">Full pay</span></td><td>Yes</td></tr>
+        <tr><td>Casual Leave (CL)</td><td class="num">12 / yr</td><td class="num">6</td><td class="num">6</td><td><span class="badge ok">Full pay</span></td><td>Yes</td></tr>
+        <tr><td>Half Pay Leave (HPL)</td><td class="num">20 / yr</td><td class="num">0</td><td class="num">20</td><td><span class="badge warn">Half pay</span></td><td>Yes</td></tr>
+        <tr><td>Commuted Leave</td><td class="num">from HPL</td><td class="num">0</td><td class="num">—</td><td><span class="badge ok">Full pay (2× HPL debit)</span></td><td>Yes</td></tr>
+        <tr><td>Extraordinary Leave (EOL)</td><td class="num">sanctioned</td><td class="num">30 (2021)</td><td class="num">—</td><td><span class="badge bad">No pay (dies-non)</span></td><td>No</td></tr>
+        <tr><td>Restricted Holiday (RH)</td><td class="num">2 / yr</td><td class="num">1</td><td class="num">1</td><td><span class="badge muted">Holiday</span></td><td>n/a</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">EL credited in advance, half-yearly (15 on 1 Jan + 15 on 1 Jul), capped at 300 days. CL lapses at year-end. Teaching staff (vacation dept) get reduced EL.</p>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Apply for leave <span class="badge info">ESS · §19</span></h2>
+      <form id="leave-form">
+        <div class="form-row"><label for="lv-type">Leave type</label>
+          <select id="lv-type">
+            <option>Casual Leave (CL)</option>
+            <option>Earned Leave (EL)</option>
+            <option>Half Pay Leave (HPL)</option>
+            <option>Commuted Leave</option>
+            <option>Restricted Holiday (RH)</option>
+            <option>Extraordinary Leave (EOL)</option>
+          </select>
+        </div>
+        <div class="form-row"><label for="lv-from">From</label><input type="date" id="lv-from"></div>
+        <div class="form-row"><label for="lv-to">To</label><input type="date" id="lv-to"></div>
+        <div class="form-row"><label for="lv-days">Days</label><input type="number" id="lv-days" min="1" value="2"></div>
+        <div class="form-row"><label for="lv-reason">Reason</label><textarea id="lv-reason" rows="2" placeholder="Optional"></textarea></div>
+        <button type="submit" class="btn">Submit application</button>
+      </form>
+      <div class="callout" id="leave-msg" style="display:none"></div>
+      <p class="note" style="margin-top:12px">Approval workflow: Employee → HOD → Registrar → Approval. ESS feeds the existing flow (never auto-grants).</p>
+    </div>
+
+    <div class="card">
+      <h2>Applications &amp; status</h2>
+      <table class="data" id="leave-applied">
+        <thead><tr><th>Period</th><th>Type</th><th class="num">Days</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>10-Jun-2026 to 11-Jun-2026</td><td>Casual Leave (CL)</td><td class="num">2</td><td><span class="badge ok">Approved · Registrar</span></td></tr>
+          <tr><td>02-May-2026</td><td>Restricted Holiday (RH)</td><td class="num">1</td><td><span class="badge ok">Approved · HOD</span></td></tr>
+          <tr><td>20-Apr-2026 to 24-Apr-2026</td><td>Earned Leave (EL)</td><td class="num">5</td><td><span class="badge warn">Pending · Registrar</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Submit the form to add a mock pending application here.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Leave ledger (append-only)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Date</th><th>Type</th><th>Action</th><th class="num">Days</th><th class="num">Balance after</th><th>Pay instruction</th></tr></thead>
+      <tbody>
+        <tr><td>01-Jan-2026</td><td>EL</td><td>CREDIT (advance)</td><td class="num">+15</td><td class="num">45</td><td>—</td></tr>
+        <tr><td>01-Jan-2026</td><td>HPL</td><td>CREDIT</td><td class="num">+10</td><td class="num">20</td><td>—</td></tr>
+        <tr><td>20–24 Apr 2026</td><td>EL</td><td>DEBIT</td><td class="num">−5</td><td class="num">40 → 45*</td><td>Full pay</td></tr>
+        <tr><td>10–11 Jun 2026</td><td>CL</td><td>DEBIT</td><td class="num">−2</td><td class="num">6</td><td>Full pay</td></tr>
+        <tr><td>01-Jul-2026</td><td>EL</td><td>CREDIT (advance)</td><td class="num">+15</td><td class="num">scheduled</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">*EL application still pending approval; balance debits only on sanction. The ledger is the source of truth — balance is a projection.</p>
+  </div>
+
+  <div class="callout warn">
+    <b>Leave → payslip (worked example):</b> 4 days HPL in a 30-day month at Basic ₹25,500 → per-day ₹850 → half-pay loss ≈ 4 × ₹425 = ₹1,700 reduction. Had it been EOL instead, full loss 4 × ₹850 = ₹3,400 <i>and</i> 4 dies-non days (hits increment §07 and pension §16).
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

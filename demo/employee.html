@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee &amp; Service Book — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Employee &amp; Service Book</div>
+  <h1 class="page-title">Employee Master &amp; Service Book <span class="tag">§02</span></h1>
+  <p class="page-sub">Employee Master = current snapshot (read by each salary run). Service Book = append-only history (basis for pension &amp; arrears).</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Profile — Mr. A. Das <span class="scheme-pill nps">NPS</span></h2>
+      <dl class="kv">
+        <dt>Employee Code</dt><dd>AGU-NT-0421</dd>
+        <dt>Designation</dt><dd>Junior Assistant → Assistant (promoted)</dd>
+        <dt>Category</dt><dd>Non-teaching (State Pay Matrix)</dd>
+        <dt>Department / Unit</dt><dd>Registrar's Establishment</dd>
+        <dt>Date of Joining</dt><dd>01-Jul-2018</dd>
+        <dt>Date of Retirement</dt><dd>31-Mar-2050 <span class="badge muted">derived: DOB + 60 yrs</span></dd>
+        <dt>Pay Authority</dt><dd>Assam ROP 2017</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2>Pay position &amp; scheme</h2>
+      <dl class="kv">
+        <dt>Pay Level</dt><dd>Level 4</dd>
+        <dt>Cell / Index</dt><dd>Cell 3</dd>
+        <dt>Basic Pay</dt><dd>₹25,500 <span class="badge info">derived from matrix (§03)</span></dd>
+        <dt>Increment cycle</dt><dd>July</dd>
+        <dt>Next increment</dt><dd>01-Jul-2026</dd>
+        <dt>Pension Scheme</dt><dd>NPS (Tier-I) · PRAN 1100-xxxx-4821</dd>
+        <dt>GIS Group</dt><dd>Group C</dd>
+        <dt>Bank A/C</dt><dd>SBI ••••3092 · IFSC SBIN0005932</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Service-event timeline (append-only ledger)</h2>
+    <ul class="timeline">
+      <li><div class="date">01-Jul-2018</div><div class="ev">JOINING — Level 2, Cell 1, Basic ₹19,900</div><div class="meta">Direct recruit at entry pay · Order EST/2018/214</div></li>
+      <li><div class="date">01-Jul-2018</div><div class="ev">PROBATION (2 years)</div><div class="meta">On probation</div></li>
+      <li><div class="date">01-Jul-2019</div><div class="ev">INCREMENT — Level 2, Cell 2, Basic ₹20,500</div><div class="meta">Annual increment (cell +1)</div></li>
+      <li><div class="date">01-Jul-2020</div><div class="ev">CONFIRMATION</div><div class="meta">Made permanent after probation</div></li>
+      <li><div class="date">15-Mar-2021</div><div class="ev">LEAVE SPELL — EOL 30 days (dies-non)</div><div class="meta">Shifts next increment date · reduces qualifying service for pension (§16)</div></li>
+      <li><div class="date">01-Jan-2022</div><div class="ev">INCREMENT (delayed by EOL) — Level 2, Cell 3, Basic ₹21,100</div><div class="meta">Next increment date shifted from Jul-2021 → Jan-2022</div></li>
+      <li><div class="date">01-Aug-2023</div><div class="ev">PROMOTION → Level 4 + PAY FIXATION — Basic refixed ₹25,500</div><div class="meta">One notional increment then placed in Level 4 · option form filed · Order EST/2023/088</div></li>
+      <li><div class="date">01-Jul-2024</div><div class="ev">INCREMENT — Level 4, Cell 3 (current)</div><div class="meta">Current Employee Master state = replay of all events above</div></li>
+    </ul>
+    <div class="callout">The 2021 EOL is recorded once here and consumed by three modules across the career: leave pay (§09), increment date (§07), and qualifying service at retirement (§16).</div>
+  </div>
+
+  <div class="card">
+    <h2>Other staff on file</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Code</th><th>Name</th><th>Category</th><th>Level</th><th class="num">Basic</th><th>Scheme</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>AGU-NT-0421</td><td>Mr. A. Das</td><td>Non-teaching · Assistant</td><td>Level 4</td><td class="num">₹25,500</td><td><span class="scheme-pill nps">NPS</span></td><td><span class="badge ok">Active</span></td></tr>
+        <tr><td>AGU-TC-0107</td><td>Dr. R. Sharma</td><td>Teaching · Associate Professor</td><td>Acad. Level 13A</td><td class="num">₹1,31,400</td><td><span class="scheme-pill nps">NPS</span></td><td><span class="badge ok">Active</span></td></tr>
+        <tr><td>AGU-NT-0033</td><td>Mr. P. Roy</td><td>Non-teaching · Superintendent</td><td>Level 10</td><td class="num">₹56,100</td><td><span class="scheme-pill ops">OPS</span></td><td><span class="badge warn">Retiring 30-Jun-2026</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Teaching staff (Dr. Sharma) follow the UGC Academic Pay Levels and CAS; non-teaching staff follow the State Pay Matrix and MACP (§01/§03/§07).</p>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

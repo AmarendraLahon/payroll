@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approve Bill — Approver — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Approver</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Approver / Registrar</span>
+  <a href="index.html">Approval Inbox</a>
+  <a href="approve-bill.html" class="active">Bills</a>
+  <a href="approve-leave.html">Leave</a>
+  <a href="establishment.html">Establishment</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Inbox</a> › Approve Bill</div>
+  <h1 class="page-title">Approve Bill <span class="tag">§13</span></h1>
+  <p class="page-sub">Bill AGU/SAL/2026-27/03 · June 2026 · verified by DDO. Final approval moves it to treasury submission.</p>
+
+  <div class="flow" style="margin-bottom:18px">
+    <span class="step done">Draft</span><span class="arr">→</span>
+    <span class="step done">Verified (DDO)</span><span class="arr">→</span>
+    <span class="step cur">Approved</span><span class="arr">→</span>
+    <span class="step">Submitted</span><span class="arr">→</span>
+    <span class="step">Passed</span><span class="arr">→</span>
+    <span class="step">Disbursed</span><span class="arr">→</span>
+    <span class="step">Locked</span>
+  </div>
+
+  <div class="card">
+    <h2>Bill summary</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th class="num">Gross</th><th class="num">Deductions</th><th class="num">Net</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td class="num">45,690</td><td class="num">6,893</td><td class="num">38,797</td></tr>
+        <tr><td>Dr. R. Sharma</td><td class="num">1,28,000</td><td class="num">22,400</td><td class="num">1,05,600</td></tr>
+        <tr><td>Mr. P. Roy</td><td class="num">52,000</td><td class="num">11,500</td><td class="num">40,500</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="num">2,25,690</td><td class="num">40,793</td><td class="num">1,84,897</td></tr></tfoot>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>DDO verification trail</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">3-way reconciliation</td><td><span class="badge ok">Tied out ✓</span></td></tr>
+          <tr><td class="head">Schedule tie-out</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td class="head">Budget vs allotment</td><td><span class="badge ok">Within ✓</span></td></tr>
+          <tr><td class="head">Verified by</td><td>DDO · 02-Jun 11:40</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Decision</h2>
+      <p class="note">Approve to advance to treasury submission, or return to the DDO with a reason.</p>
+      <div class="form-row"><label>Remarks</label><textarea rows="2" placeholder="Optional"></textarea></div>
+      <div class="wf-actions">
+        <button class="btn maroon" type="button">Return to DDO</button>
+        <a href="../ddo/treasury.html" class="btn">Approve →</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Establishment — Approver — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Approver</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Approver / Registrar</span>
+  <a href="index.html">Approval Inbox</a>
+  <a href="approve-bill.html">Bills</a>
+  <a href="approve-leave.html">Leave</a>
+  <a href="establishment.html" class="active">Establishment</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Inbox</a> › Establishment</div>
+  <h1 class="page-title">Establishment Decisions <span class="tag">§07 / §37</span></h1>
+  <p class="page-sub">Approve promotions, MACP financial upgradations and pay fixations. Approval emits a Service Event; a back-dated effect triggers an arrear run (§08).</p>
+
+  <div class="card">
+    <h2>Pending fixations</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th>Event</th><th>Effective</th><th>From → To</th><th class="num">New Basic</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. P. Roy</td><td>1st MACP (10 yrs)</td><td>01-Jul-2026</td><td>L9 → L10</td><td class="num">refixed</td><td><button class="btn ghost" type="button">Approve</button></td></tr>
+        <tr><td>Mr. A. Das</td><td>Promotion fixation</td><td>01-Aug-2023</td><td>L2/3 → L4</td><td class="num">₹25,500</td><td><span class="badge ok">Approved</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Fixation statement — Mr. Das (reference)</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Current</td><td>L2 / C3 = ₹21,100</td></tr>
+          <tr><td class="head">Notional increment</td><td>L2 / C4 = ₹21,700</td></tr>
+          <tr><td class="head">Placed in L4 (≥ ₹21,700)</td><td>₹25,500</td></tr>
+          <tr><td class="head">Option</td><td>fixation on promotion date</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Detailed flow on <a href="../increment-macp.html">Increment / MACP</a>.</p>
+    </div>
+
+    <div class="card">
+      <h2>Sanctioned posts &amp; vacancy (§37)</h2>
+      <table class="data">
+        <thead><tr><th>Cadre</th><th class="num">Sanctioned</th><th class="num">Filled</th><th class="num">Vacant</th></tr></thead>
+        <tbody>
+          <tr><td>Non-teaching</td><td class="num">260</td><td class="num">244</td><td class="num">16</td></tr>
+          <tr><td>Teaching</td><td class="num">190</td><td class="num">168</td><td class="num">22</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="num">450</td><td class="num">412</td><td class="num">38</td></tr></tfoot>
+      </table>
+      <p class="note">Pay is drawn only for sanctioned + filled posts.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

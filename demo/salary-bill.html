@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary Bill &amp; Treasury — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Salary Bill &amp; Treasury</div>
+  <h1 class="page-title">Salary Bill, Treasury &amp; Budget Heads <span class="tag">§13</span></h1>
+  <p class="page-sub">Per-employee payslips roll into a unit/DDO bill. Bill No. AGU/SAL/2026-27/03 · Registrar's Establishment · June 2026.</p>
+
+  <div class="card">
+    <h2>Bill lifecycle (§26)</h2>
+    <div class="flow">
+      <span class="step done">Draft</span><span class="arr">→</span>
+      <span class="step cur">Verified (DDO)</span><span class="arr">→</span>
+      <span class="step">Approved</span><span class="arr">→</span>
+      <span class="step">Submitted (Treasury)</span><span class="arr">→</span>
+      <span class="step">Passed</span><span class="arr">→</span>
+      <span class="step">Disbursed</span><span class="arr">→</span>
+      <span class="step">Locked</span>
+    </div>
+    <dl class="kv" style="margin-top:14px">
+      <dt>DDO</dt><dd>Registrar (AGU-DDO-01)</dd>
+      <dt>Treasury Code</dt><dd>GHY-TR-014</dd>
+      <dt>Bill No.</dt><dd>AGU/SAL/2026-27/03 (assigned at Draft)</dd>
+      <dt>Token No.</dt><dd>— (assigned on presentation)</dd>
+      <dt>Voucher No.</dt><dd>— (assigned when passed)</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <h2>Unit bill — multi-employee roll-up</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th>Scheme</th><th class="num">Gross</th><th class="num">Deductions</th><th class="num">Net</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td><span class="scheme-pill nps">NPS</span></td><td class="num">₹45,690</td><td class="num">₹6,893</td><td class="num">₹38,797</td></tr>
+        <tr><td>Dr. R. Sharma</td><td><span class="scheme-pill nps">NPS</span></td><td class="num">₹1,28,000</td><td class="num">₹22,400</td><td class="num">₹1,05,600</td></tr>
+        <tr><td>Mr. P. Roy</td><td><span class="scheme-pill ops">OPS</span></td><td class="num">₹52,000</td><td class="num">₹11,500</td><td class="num">₹40,500</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">Bill total</td><td class="num">₹2,25,690</td><td class="num">₹40,793</td><td class="num">₹1,84,897</td></tr></tfoot>
+    </table>
+    </div>
+    <div class="callout"><b>3-way reconciliation:</b> Gross ₹2,25,690 − Deductions ₹40,793 = Net ₹1,84,897 = Σ employee net. Must hold to the rupee (§14).</div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Schedules (deductions routed out)</h2>
+      <table class="data">
+        <thead><tr><th>Schedule</th><th>Routes</th><th>Destination</th></tr></thead>
+        <tbody>
+          <tr><td>NPS Schedule</td><td>Das + Sharma — employee 10% <b>and</b> employer 14%, PRAN-wise</td><td>NSDL / CRA</td></tr>
+          <tr><td>GPF Schedule</td><td>Roy — subscription + advance refund</td><td>GPF account</td></tr>
+          <tr><td>GIS Schedule</td><td>all three — premium</td><td>GIS fund</td></tr>
+          <tr><td>Income Tax Schedule</td><td>TDS deducted</td><td>IT dept (→ 24Q, §15)</td></tr>
+        </tbody>
+      </table>
+      <p class="note">The NPS schedule carries both legs even though employer 14% is not an employee deduction — it is funded as expenditure under its own object head.</p>
+    </div>
+
+    <div class="card">
+      <h2>Head-wise Abstract (budget view §37)</h2>
+      <table class="data">
+        <thead><tr><th>Object Head</th><th class="num">Amount</th><th class="num">Allotment</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Salaries (Basic)</td><td class="num">₹1,37,000</td><td class="num">₹1,60,000</td><td><span class="badge ok">Within</span></td></tr>
+          <tr><td>Dearness Allowance</td><td class="num">₹52,690</td><td class="num">₹60,000</td><td><span class="badge ok">Within</span></td></tr>
+          <tr><td>House Rent Allowance</td><td class="num">₹18,400</td><td class="num">₹22,000</td><td><span class="badge ok">Within</span></td></tr>
+          <tr><td>Transport Allowance</td><td class="num">₹17,600</td><td class="num">₹20,000</td><td><span class="badge ok">Within</span></td></tr>
+          <tr><td>Employer NPS (14%)</td><td class="num">₹24,300</td><td class="num">₹28,000</td><td><span class="badge ok">Within</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Every component carries an accounting head; expenditure is checked against allotment before Approval. Object heads under Major → Minor → Sub → Object classification.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>The four bill documents (§18)</h2>
+    <div class="tiles">
+      <a class="tile" href="reports.html"><div class="ico">📑</div><div class="t">Salary Bill</div><div class="d">Consolidated treasury claim</div></a>
+      <a class="tile" href="reports.html"><div class="ico">📋</div><div class="t">Salary Register</div><div class="d">Employee-wise grid</div></a>
+      <a class="tile" href="payslip.html"><div class="ico">🧾</div><div class="t">Payslip</div><div class="d">One employee's statement</div></a>
+      <a class="tile" href="reports.html"><div class="ico">📊</div><div class="t">Abstract Report</div><div class="d">Head-wise summary</div></a>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

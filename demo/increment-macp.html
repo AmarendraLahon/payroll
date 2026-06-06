@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Increment, Fixation &amp; MACP — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Increment, Fixation &amp; MACP</div>
+  <h1 class="page-title">Increment, Fixation &amp; MACP <span class="tag">§07</span></h1>
+  <p class="page-sub">Increment = column move (cell+1). Promotion / MACP = row jump + re-fixation. Each emits a Service Event and re-derives Basic.</p>
+
+  <div class="card">
+    <h2>Career pay-movement — Mr. A. Das (JUL increment cycle)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Date</th><th>Event</th><th>Level / Cell</th><th class="num">Basic</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>01-Jul-2018</td><td>Join (entry)</td><td>2 / 1</td><td class="num">₹19,900</td><td>increment cycle = JUL</td></tr>
+        <tr><td>01-Jul-2019</td><td>Increment</td><td>2 / 2</td><td class="num">₹20,500</td><td>cell +1</td></tr>
+        <tr><td>15-Mar-2021</td><td>EOL 30 days</td><td>2 / —</td><td class="num">—</td><td>next increment date shifts</td></tr>
+        <tr><td>01-Jan-2022</td><td>Increment (shifted)</td><td>2 / 3</td><td class="num">₹21,100</td><td>delayed by EOL</td></tr>
+        <tr><td>01-Aug-2023</td><td><b>Promotion → Level 4 + fixation</b></td><td>4 / 3</td><td class="num">₹25,500</td><td>option form filed</td></tr>
+        <tr><td>01-Jul-2024</td><td>Increment</td><td>4 / 3 (current)</td><td class="num">₹25,500</td><td>current Master state</td></tr>
+        <tr><td>01-Jul-2028</td><td>1st MACP (10 yrs) — projected</td><td>5 / fixed</td><td class="num">refixed</td><td>stagnation relief, +1 Level</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Basic is always re-derived from the resulting (Level, Cell) against the matrix version effective that month. A back-dated order also generates arrears (§08).</p>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Pay fixation example (promotion, Aug-2023)</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">1. Current position</td><td>Level 2, Cell 3 = ₹21,100</td></tr>
+          <tr><td class="head">2. One notional increment</td><td>Level 2, Cell 4 = ₹21,700</td></tr>
+          <tr><td class="head">3. Place in new Level 4</td><td>first cell ≥ ₹21,700 → <b>₹25,500</b></td></tr>
+          <tr><td class="head">4. New Basic</td><td>₹25,500 at Level 4</td></tr>
+          <tr><td class="head">5. Option form</td><td>fixation on promotion date (vs next-increment date) — recorded</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">The option choice changes the next-increment date in the new level and the long-term pay trajectory, so both scenarios are computed before the employee opts.</div>
+    </div>
+
+    <div class="card">
+      <h2>Increment &amp; MACP rules (7th CPC)</h2>
+      <h3>Annual Increment</h3>
+      <ul>
+        <li>Two increment dates: <b>1 January</b> and <b>1 July</b>.</li>
+        <li>Minimum 6 months service in the level on the increment date.</li>
+        <li>Normal increment = next cell (≈3%, baked into the matrix).</li>
+        <li>EOL / dies-non can defer the next increment date.</li>
+      </ul>
+      <h3>MACP (non-teaching)</h3>
+      <ul>
+        <li>Financial upgradation at <b>10, 20, 30 years</b> of service.</li>
+        <li>Moves to the next Pay Level (same duties, higher pay).</li>
+        <li>Max 3 upgradations — promotions count against the quota.</li>
+      </ul>
+      <p class="note">Teaching staff progress by <b>CAS</b> (UGC Regulations 2018), not MACP — separate eligibility, same fixation mechanics.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

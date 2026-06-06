@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft Arrear Bill — Dealing Assistant — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Dealing Assistant</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Dealing Assistant</span>
+  <a href="index.html">Work Queue</a>
+  <a href="bill-prepare.html">Bill Prep</a>
+  <a href="service-event.html">Service Event</a>
+  <a href="leave-process.html">Leave</a>
+  <a href="claim-process.html">Claims</a>
+  <a href="arrear-draft.html" class="active">Arrears</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Work Queue</a> › Draft Arrear Bill</div>
+  <h1 class="page-title">Draft Arrear Bill <span class="tag">§08</span></h1>
+  <p class="page-sub">A back-dated rate / promotion / revision auto-queues an arrear run. Recompute each affected month with the revised rule, diff against PayslipHistory, output a month-wise statement.</p>
+
+  <div class="stepper">
+    <div class="stp done"><div class="dot">✓</div><div class="lbl">Trigger</div></div>
+    <div class="stp cur"><div class="dot">2</div><div class="lbl">Preview difference</div></div>
+    <div class="stp"><div class="dot">3</div><div class="lbl">Schedule top-ups</div></div>
+    <div class="stp"><div class="dot">4</div><div class="lbl">Submit to DDO</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Step 1 — Trigger ✓</h2>
+    <dl class="kv">
+      <dt>Trigger type</dt><dd>DA revision</dd>
+      <dt>Change</dt><dd>DA 50% → 53%</dd>
+      <dt>Effective from</dt><dd>01-Jul-2025</dd>
+      <dt>Ordered on</dt><dd>01-Oct-2025</dd>
+      <dt>Affected employees</dt><dd>all 3 (Jul–Sep underpaid)</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <h2>Step 2 — Month-wise difference (Mr. A. Das · Basic ₹25,500)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Month</th><th class="num">Old DA 50%</th><th class="num">New DA 53%</th><th class="num">DA diff</th><th class="num">TA-DA diff</th><th class="num">Gross arrear</th></tr></thead>
+      <tbody>
+        <tr><td>Jul 2025</td><td class="num">12,750</td><td class="num">13,515</td><td class="num">765</td><td class="num">108</td><td class="num">873</td></tr>
+        <tr><td>Aug 2025</td><td class="num">12,750</td><td class="num">13,515</td><td class="num">765</td><td class="num">108</td><td class="num">873</td></tr>
+        <tr><td>Sep 2025</td><td class="num">12,750</td><td class="num">13,515</td><td class="num">765</td><td class="num">108</td><td class="num">873</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="5">Total gross arrear</td><td class="num">2,619</td></tr></tfoot>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Step 3 — Schedule top-up &amp; net</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Gross arrear</td><td class="num">₹2,619</td></tr>
+          <tr><td class="head">NPS top-up (10% × DA diff)</td><td class="num">−₹230</td></tr>
+          <tr><td class="head">Net payable</td><td class="num"><b>≈ ₹2,389</b></td></tr>
+        </tbody>
+      </table>
+      <p class="note">₹230 topped into the NPS schedule for Jul–Sep. Arrears reuse the salary engine with the revised rule — never a separate formula.</p>
+    </div>
+
+    <div class="card">
+      <h2>Step 4 — Submit</h2>
+      <p class="note">Drafts an Arrear Bill with the month-wise statement + schedule top-ups + year-wise breakup for IT §89(1) (Form 10E). Routes to DDO verification.</p>
+      <div class="callout warn">Idempotent: re-running the same trigger must not double-pay. Already-settled arrears are tracked.</div>
+      <div class="wf-actions">
+        <a href="index.html" class="btn ghost">← Back</a>
+        <a href="../ddo/index.html" class="btn maroon">Submit arrear bill to DDO →</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dealing Assistant — Work Queue — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Dealing Assistant</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Dealing Assistant</span>
+  <a href="index.html" class="active">Work Queue</a>
+  <a href="bill-prepare.html">Bill Prep</a>
+  <a href="service-event.html">Service Event</a>
+  <a href="leave-process.html">Leave</a>
+  <a href="claim-process.html">Claims</a>
+  <a href="arrear-draft.html">Arrears</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="../login.html">Login</a> › Dealing Assistant · Work Queue</div>
+  <h1 class="page-title">Work Queue <span class="tag">Registrar's Establishment · unit scope</span></h1>
+  <p class="page-sub">June 2026 (FY 2026–27). You prepare; the DDO verifies and the Registrar approves — you cannot sanction or lock.</p>
+
+  <div class="wf-note">Wireframe — all data is mock. Buttons mimic the workflow; nothing is saved.</div>
+
+  <div class="task-hub" style="margin-bottom:22px">
+    <div class="task-card"><h3>Salary bill</h3><div class="cnt">Draft</div><div class="note">June bill not yet generated</div><a href="bill-prepare.html">Prepare bill →</a></div>
+    <div class="task-card" style="border-left-color:var(--saffron)"><h3>Service events pending</h3><div class="cnt">3</div><div class="note">1 promotion · 2 increments</div><a href="service-event.html">Enter events →</a></div>
+    <div class="task-card" style="border-left-color:var(--green)"><h3>Leave to record</h3><div class="cnt">5</div><div class="note">approved, awaiting ledger debit</div><a href="leave-process.html">Process leave →</a></div>
+    <div class="task-card"><h3>Claims to verify</h3><div class="cnt">4</div><div class="note">CEA · Tour · Medical</div><a href="claim-process.html">Verify claims →</a></div>
+    <div class="task-card" style="border-left-color:var(--maroon)"><h3>Arrear runs</h3><div class="cnt">1</div><div class="note">DA 50%→53% back-dated</div><a href="arrear-draft.html">Draft arrear →</a></div>
+    <div class="task-card" style="border-left-color:var(--muted)"><h3>Returned by DDO</h3><div class="cnt">0</div><div class="note">no bills returned for correction</div><a href="bill-prepare.html">Review →</a></div>
+  </div>
+
+  <div class="card">
+    <h2>Recent activity (mock)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>When</th><th>Item</th><th>Action</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>02-Jun 11:30</td><td>Service event · Mr. Das increment</td><td>Recorded</td><td><span class="badge ok">Saved</span></td></tr>
+        <tr><td>02-Jun 10:05</td><td>Claim · CEA Mr. Das</td><td>Verified ceiling</td><td><span class="badge warn">To sanction</span></td></tr>
+        <tr><td>01-Jun 16:40</td><td>Leave · EL 5d Mr. Das</td><td>Routed to Registrar</td><td><span class="badge warn">Pending</span></td></tr>
+        <tr><td>01-Jun 09:15</td><td>DA rate insert 53%</td><td>Flagged arrear run</td><td><span class="badge info">Queued</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

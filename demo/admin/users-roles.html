@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Users &amp; Roles — Admin — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Admin</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Admin</span>
+  <a href="index.html">Console</a>
+  <a href="rate-tables.html">Rate Tables</a>
+  <a href="users-roles.html" class="active">Users &amp; Roles</a>
+  <a href="migration.html">Data Migration</a>
+  <a href="../admin.html">RBAC Matrix</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Console</a> › Users &amp; Roles</div>
+  <h1 class="page-title">Users &amp; Roles <span class="tag">§19</span></h1>
+  <p class="page-sub">Permission = role × scope (own / unit-college / university) × action. Every privileged action checks a scoped grant and writes the audit trail.</p>
+
+  <div class="card">
+    <h2>Users</h2>
+    <div class="filter-bar">
+      <label for="u-filter">Filter:</label>
+      <input type="text" id="u-filter" data-filter="u-table" placeholder="Filter users…">
+      <button class="btn" type="button" style="margin-left:auto">+ Add user</button>
+    </div>
+    <div class="scroll-x">
+    <table class="data" id="u-table">
+      <thead><tr><th>User</th><th>Linked employee</th><th>Role</th><th>Scope</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>a.das</td><td>AGU-NT-0421</td><td>Employee</td><td>Own</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+        <tr><td>r.sharma</td><td>AGU-TC-0107</td><td>Employee</td><td>Own</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+        <tr><td>da.estab</td><td>AGU-NT-0210</td><td>Dealing Assistant</td><td>Unit · Registrar Est.</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+        <tr><td>ddo.reg</td><td>AGU-OF-0002</td><td>DDO</td><td>University</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+        <tr><td>registrar</td><td>AGU-OF-0001</td><td>Approver</td><td>University</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+        <tr><td>auditor1</td><td>—</td><td>Auditor</td><td>University</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+        <tr><td>sysadmin</td><td>—</td><td>Admin</td><td>University</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" type="button">Edit</button></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Edit grant (mock)</h2>
+      <div class="form-row"><label>User</label><input type="text" value="da.estab" readonly></div>
+      <div class="form-row"><label>Role</label><select><option>Dealing Assistant</option><option>Employee</option><option>DDO</option><option>Approver</option><option>Auditor</option><option>Admin</option></select></div>
+      <div class="form-row"><label>Scope</label><select><option>Unit / college</option><option>Own</option><option>University</option></select></div>
+      <div class="form-row"><label>Resource × action</label><input type="text" value="BILL: WRITE · LEAVE: WRITE" readonly></div>
+      <div class="wf-actions"><button class="btn ghost" type="button">Cancel</button><button class="btn" type="button">Save grant</button></div>
+    </div>
+
+    <div class="card">
+      <h2>Separation-of-duties guardrails</h2>
+      <ul>
+        <li>Preparer ≠ sanctioner ≠ auditor — enforced by role.</li>
+        <li>DDO cannot self-approve own data entry.</li>
+        <li>Admin manages config &amp; users — cannot sanction bills.</li>
+        <li>Auditor is read-only everywhere.</li>
+      </ul>
+      <p class="note">Full matrix on the <a href="../admin.html">RBAC &amp; Master Data</a> screen.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

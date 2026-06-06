@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditor — Oversight — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Auditor</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Auditor · read-only</span>
+  <a href="index.html" class="active">Oversight</a>
+  <a href="audit-trail.html">Audit Trail</a>
+  <a href="reconciliation.html">Reconciliation</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="../login.html">Login</a> › Auditor · Oversight</div>
+  <h1 class="page-title">Auditor Oversight <span class="tag">read-only</span></h1>
+  <p class="page-sub">Reads everything, changes nothing. RBAC (who may act) + audit trail (who did act) together make the system defensible.</p>
+
+  <div class="callout">🔒 All actions on this role are <b>read-only</b>. No buttons mutate data.</div>
+
+  <div class="task-hub" style="margin-bottom:22px">
+    <div class="task-card" style="border-left-color:var(--muted)"><h3>Audit trail</h3><div class="cnt">all</div><div class="note">who changed what · old → new</div><a href="audit-trail.html">Browse →</a></div>
+    <div class="task-card" style="border-left-color:var(--green)"><h3>Reconciliation</h3><div class="cnt">✓</div><div class="note">3-way + schedule tie-outs</div><a href="reconciliation.html">Verify →</a></div>
+    <div class="task-card"><h3>Locked periods</h3><div class="cnt">May 2026</div><div class="note">read-only frozen bills</div><a href="../salary-bill.html">Inspect →</a></div>
+  </div>
+
+  <div class="card">
+    <h2>Read-only drill-through</h2>
+    <div class="tiles">
+      <a class="tile" href="../salary-bill.html"><div class="ico">📑</div><div class="t">Bills &amp; Schedules</div><div class="d">All units &amp; periods</div></a>
+      <a class="tile" href="../reports.html"><div class="ico">📂</div><div class="t">Registers &amp; Form 16</div><div class="d">Pay / deduction / leave</div></a>
+      <a class="tile" href="../employee.html"><div class="ico">👤</div><div class="t">Service Books</div><div class="d">Event ledgers</div></a>
+      <a class="tile" href="../arrears.html"><div class="ico">↩️</div><div class="t">Arrear statements</div><div class="d">Month-wise diffs</div></a>
+      <a class="tile" href="../pension.html"><div class="ico">👴</div><div class="t">Settlements</div><div class="d">OPS / NPS exits</div></a>
+      <a class="tile" href="../admin.html"><div class="ico">⚙️</div><div class="t">Rate-table history</div><div class="d">Effective-dated rows</div></a>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

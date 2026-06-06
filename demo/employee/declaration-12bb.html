@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form 12BB — Employee — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Employee · ESS</span>
+  <a href="index.html">My Home</a>
+  <a href="apply-leave.html">Apply Leave</a>
+  <a href="declaration-12bb.html" class="active">Form 12BB</a>
+  <a href="documents.html">My Documents</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">My Home</a> › Form 12BB</div>
+  <h1 class="page-title">Form 12BB — Investment Declaration <span class="tag">§15 / §28</span></h1>
+  <p class="page-sub">Drives the monthly TDS projection. On submit, the system recomputes your projected annual tax and the monthly deduction for remaining FY months.</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Declaration — FY 2026-27</h2>
+      <div class="form-row"><label>Tax regime</label><select><option>New regime</option><option>Old regime</option></select></div>
+      <div class="form-row"><label>80C (LIC/PPF/ELSS)</label><input type="text" placeholder="₹"></div>
+      <div class="form-row"><label>80CCD(1B) NPS</label><input type="text" placeholder="₹ up to 50,000"></div>
+      <div class="form-row"><label>HRA — rent paid</label><input type="text" placeholder="₹ / year"></div>
+      <div class="form-row"><label>Home loan interest</label><input type="text" placeholder="₹"></div>
+      <div class="form-row"><label>Proof upload</label><input type="file"></div>
+      <div class="wf-actions">
+        <button class="btn ghost" type="button">Save draft</button>
+        <button class="btn" type="button">Submit declaration</button>
+      </div>
+      <p class="note">Wireframe — submission would feed the §15 TDS projection; nothing is saved.</p>
+    </div>
+
+    <div class="card">
+      <h2>Projected TDS impact (mock)</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Projected annual tax (before declaration)</td><td class="num">₹26,400</td></tr>
+          <tr><td class="head">After 80C + 80CCD(1B)</td><td class="num">₹18,000</td></tr>
+          <tr><td class="head">Remaining FY months</td><td class="num">9</td></tr>
+          <tr><td class="head">Revised monthly TDS</td><td class="num">₹1,500</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Monthly TDS = projected annual tax ÷ remaining months. Recomputed whenever the declaration or pay changes. Feeds Form 16 / 24Q at year-end.</div>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

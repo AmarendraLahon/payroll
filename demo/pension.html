@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pension &amp; Retirement — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Pension &amp; Retirement</div>
+  <h1 class="page-title">Pension, Gratuity &amp; Retirement Settlement <span class="tag">§16</span></h1>
+  <p class="page-sub">The terminal payoff. The scheme decided at joining (§04) routes the entire settlement: OPS defined-benefit vs NPS corpus.</p>
+
+  <div class="tabs">
+    <button class="active" data-tab="pane-ops" data-group="pen">OPS — Mr. P. Roy</button>
+    <button data-tab="pane-nps" data-group="pen">NPS — Mr. A. Das</button>
+  </div>
+
+  <div class="tabpane active" id="pane-ops" data-group="pen">
+    <div class="card">
+      <h2>OPS settlement — Mr. P. Roy <span class="scheme-pill ops">OPS</span></h2>
+      <dl class="kv">
+        <dt>Exit type</dt><dd>Superannuation · 30-Jun-2026</dd>
+        <dt>Last Basic</dt><dd>₹56,100 · DA 53%</dd>
+        <dt>Emoluments (Basic+DA)</dt><dd>₹85,833 (for encashment)</dd>
+        <dt>Qualifying service</dt><dd>33 years (after a small EOL deduction)</dd>
+        <dt>EL balance</dt><dd>300 days (capped)</dd>
+        <dt>Outstanding loan</dt><dd>₹40,000 (vehicle)</dd>
+      </dl>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <h2>Monthly pension</h2>
+        <table class="data">
+          <tbody>
+            <tr><td class="head">Basic pension (½ × last Basic)</td><td class="num">≈ ₹28,050 / mo</td></tr>
+            <tr><td class="head">Commute 40% → reduced pension</td><td class="num">₹16,830 / mo</td></tr>
+            <tr><td class="head">+ Dearness Relief (DR)</td><td class="num">on basic pension</td></tr>
+            <tr><td class="head">Restoration after ~15 yrs</td><td class="num">back to ₹28,050 + DR</td></tr>
+          </tbody>
+        </table>
+        <p class="note">PensionerAccount runs as an ongoing mini-payroll: basic pension + DR (shared cadence with serving-staff DA). On death → Family Pension (enhanced then normal).</p>
+      </div>
+
+      <div class="card">
+        <h2>One-time terminal payout (illustrative)</h2>
+        <table class="data">
+          <tbody>
+            <tr><td class="head">Leave encashment — 300 × 85,833 / 30</td><td class="num">₹8,58,330</td></tr>
+            <tr><td class="head">Commutation lump sum (40%, factor ≈ 8.371)</td><td class="num">≈ ₹11,27,000</td></tr>
+            <tr><td class="head">Gratuity (DCRG, capped)</td><td class="num">≈ ₹11,50,000</td></tr>
+            <tr><td class="head">GPF final balance</td><td class="num">≈ ₹9,00,000</td></tr>
+            <tr><td class="head">Less: outstanding loan (§12)</td><td class="num">−₹40,000</td></tr>
+          </tbody>
+          <tfoot><tr><td>Net one-time payout</td><td class="num">≈ ₹39,95,330</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabpane" id="pane-nps" data-group="pen">
+    <div class="card">
+      <h2>NPS exit — Mr. A. Das <span class="scheme-pill nps">NPS</span></h2>
+      <p class="note">No defined benefit. The corpus lives with NSDL/CRA — the system initiates the exit/withdrawal request and reconciles, it does not compute a defined pension.</p>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">NPS corpus (10% + 14% + returns, from CRA)</td><td class="num">read from CRA</td></tr>
+          <tr><td class="head">Lump sum (allowed %)</td><td class="num">up to 60% of corpus</td></tr>
+          <tr><td class="head">Mandatory annuity (rest)</td><td class="num">≥ 40% → annuity provider</td></tr>
+          <tr><td class="head">Leave encashment — min(EL,300) × (Basic+DA)/30</td><td class="num">common to both schemes</td></tr>
+          <tr><td class="head">Less: outstanding dues (§12/§06)</td><td class="num">netted from benefits</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Same engine shell, two entirely different retirements — the §04 fork. Below a small corpus threshold, full lump-sum withdrawal is allowed.</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>Qualifying service echo:</b> Mr. Das's 30-day EOL in 2021 (recorded once in the Service Book §02, shifted his increment §07) lands here — it shaves ~1 month off qualifying service. One event, three consumers across a career.
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

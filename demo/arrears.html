@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrears — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Arrears</div>
+  <h1 class="page-title">Arrears <span class="tag">§08</span></h1>
+  <p class="page-sub">Arrear = Σ over affected months of (recomputed amount − actually-paid amount). Worked example: DA revised 50% → 53%, effective 1-Jul, ordered in October.</p>
+
+  <div class="card">
+    <h2>DA Arrear — Mr. A. Das · Basic ₹25,500</h2>
+    <p class="note">Per-month DA diff = (53% − 50%) × ₹25,500 = ₹765. Higher DA also raises DA-on-TA: 3% × ₹3,600 = ₹108. Gross diff/month = ₹873.</p>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Month</th><th class="num">Old DA (50%)</th><th class="num">New DA (53%)</th><th class="num">DA diff</th><th class="num">TA-DA diff</th><th class="num">Gross arrear</th></tr></thead>
+      <tbody>
+        <tr><td>Jul 2025</td><td class="num">₹12,750</td><td class="num">₹13,515</td><td class="num">₹765</td><td class="num">₹108</td><td class="num">₹873</td></tr>
+        <tr><td>Aug 2025</td><td class="num">₹12,750</td><td class="num">₹13,515</td><td class="num">₹765</td><td class="num">₹108</td><td class="num">₹873</td></tr>
+        <tr><td>Sep 2025</td><td class="num">₹12,750</td><td class="num">₹13,515</td><td class="num">₹765</td><td class="num">₹108</td><td class="num">₹873</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="5">Total gross arrear</td><td class="num">₹2,619</td></tr></tfoot>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Net arrear (deduction top-up)</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Gross arrear (Jul–Sep)</td><td class="num">₹2,619</td></tr>
+          <tr><td class="head">Less: NPS top-up</td><td class="num">−₹230</td></tr>
+          <tr><td class="head">Net DA arrear payable</td><td class="num"><b>≈ ₹2,389</b></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Extra NPS = 10% × DA diff ₹765 ≈ ₹76.5/month → ~₹230 over three months. This is deducted from the arrear and added to the NPS schedule for Jul–Sep. Paid in October's arrear bill.</p>
+    </div>
+
+    <div class="card">
+      <h2>Arrear trigger types</h2>
+      <table class="data">
+        <thead><tr><th>Trigger</th><th>What changes</th></tr></thead>
+        <tbody>
+          <tr><td>DA Arrear</td><td>DA% raised with back-date (most common)</td></tr>
+          <tr><td>Promotion / MACP Arrear</td><td>Basic re-fixed → DA/HRA/TA/NPS all differ</td></tr>
+          <tr><td>Pay Revision Arrear</td><td>Whole matrix replaced (fitment factor)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Arrears reuse the ordinary salary engine pointed at month M with the revised rule — they are never a separate "arrear formula". Possible only because every rate is effective-dated (§17).</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>Cascade note:</b> a back-dated <i>promotion</i> arrear is far larger — Basic itself differs each month, so DA, HRA, TA, NPS/GPF and tax all change, and schedule top-ups span every contribution. Arrears are taxable in the year of receipt (§89(1) relief via Form 10E, §15).
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

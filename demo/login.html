@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — AGU Payroll &amp; Leave Management System</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div>
+      <h1>Assam Government University</h1>
+      <div class="sub">Payroll &amp; Leave Management System</div>
+    </div>
+  </div>
+</header>
+
+<div class="login-wrap">
+  <div class="login-card">
+    <h2>Sign in</h2>
+    <p class="lead">Integrated Payroll, Leave, Treasury &amp; Pension portal. <b>Static demo</b> — any credentials work.</p>
+
+    <form id="login-form">
+      <div class="field">
+        <label for="username">Username / Employee Code</label>
+        <input type="text" id="username" placeholder="e.g. AGU-NT-0421" value="AGU-NT-0421">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" value="demo">
+      </div>
+      <div class="field">
+        <label for="role">Login as (Role-Based Access Control — §19)</label>
+        <select id="role">
+          <option value="Employee">Employee — self-service (own data)</option>
+          <option value="Dealing Assistant">Dealing Assistant — data entry / bill prep</option>
+          <option value="DDO">DDO — verify &amp; sanction bills</option>
+          <option value="Approver">Approver / Registrar — final approval</option>
+          <option value="Auditor">Auditor — read-only</option>
+          <option value="Admin">Admin — master data &amp; user management</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <div class="login-foot">
+      Mock data only · No real authentication · Works fully offline<br>
+      Sample employees: Mr. Das (non-teaching, NPS) · Dr. Sharma (teaching)
+    </div>
+  </div>
+</div>
+
+<footer class="gov-foot">
+  Demo build · Assam Government University Payroll &amp; Leave Management System · Not a live system
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

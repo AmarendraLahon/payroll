@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Reports</div>
+  <h1 class="page-title">Reports <span class="tag">§17 / §20</span></h1>
+  <p class="page-sub">Reports are queries over transactional data (with master data for labels) — they read, they don't compute, and each ties out to its source bill/ledger.</p>
+
+  <div class="card">
+    <h2>Report catalogue</h2>
+    <div class="filter-bar">
+      <label for="rep-filter">Filter:</label>
+      <input type="text" id="rep-filter" data-filter="rep-table" placeholder="Type to filter reports…">
+    </div>
+    <div class="scroll-x">
+    <table class="data" id="rep-table">
+      <thead><tr><th>Report</th><th>Group</th><th>Scope / period</th><th>For</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Pay Bill</td><td><span class="badge info">Payroll</span></td><td>June 2026 · unit</td><td>Treasury / audit</td><td><a href="salary-bill.html">Open</a></td></tr>
+        <tr><td>Salary Register</td><td><span class="badge info">Payroll</span></td><td>June 2026 · employee-wise</td><td>Establishment</td><td><a href="#sr">View below</a></td></tr>
+        <tr><td>Payslip</td><td><span class="badge info">Payroll</span></td><td>June 2026 · per employee</td><td>Employee</td><td><a href="payslip.html">Open</a></td></tr>
+        <tr><td>Deduction Register</td><td><span class="badge info">Payroll</span></td><td>June 2026</td><td>Audit</td><td><a href="#dr">View below</a></td></tr>
+        <tr><td>Leave Balance Report</td><td><span class="badge ok">Leave</span></td><td>2026</td><td>Establishment</td><td><a href="leave.html">Open</a></td></tr>
+        <tr><td>Leave Ledger</td><td><span class="badge ok">Leave</span></td><td>2026 · per employee</td><td>Employee</td><td><a href="leave.html">Open</a></td></tr>
+        <tr><td>Service Book / Increment Report</td><td><span class="badge warn">Service</span></td><td>full history</td><td>Audit / pension</td><td><a href="employee.html">Open</a></td></tr>
+        <tr><td>NPS Report</td><td><span class="badge bad">Finance</span></td><td>June 2026 · PRAN-wise</td><td>NSDL / CRA</td><td><a href="salary-bill.html">Open</a></td></tr>
+        <tr><td>GPF Report</td><td><span class="badge bad">Finance</span></td><td>FY 2026-27</td><td>GPF fund</td><td><a href="salary-bill.html">Open</a></td></tr>
+        <tr><td>Form 16 (Annual TDS certificate)</td><td><span class="badge bad">Finance</span></td><td>FY 2025-26</td><td>Employee / IT dept</td><td><a href="#f16">View below</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card" id="sr">
+    <h2>Salary Register — June 2026 (mock)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Code</th><th>Name</th><th class="num">Basic</th><th class="num">DA</th><th class="num">HRA</th><th class="num">TA</th><th class="num">Gross</th><th class="num">Deduct.</th><th class="num">Net</th></tr></thead>
+      <tbody>
+        <tr><td>AGU-NT-0421</td><td>Mr. A. Das</td><td class="num">25,500</td><td class="num">12,750</td><td class="num">2,040</td><td class="num">5,400</td><td class="num">45,690</td><td class="num">6,893</td><td class="num">38,797</td></tr>
+        <tr><td>AGU-TC-0107</td><td>Dr. R. Sharma</td><td class="num">1,31,400</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1,28,000</td><td class="num">22,400</td><td class="num">1,05,600</td></tr>
+        <tr><td>AGU-NT-0033</td><td>Mr. P. Roy</td><td class="num">56,100</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">52,000</td><td class="num">11,500</td><td class="num">40,500</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="6">Totals</td><td class="num">2,25,690</td><td class="num">40,793</td><td class="num">1,84,897</td></tr></tfoot>
+    </table>
+    </div>
+    <p class="note">Ties out to Salary Bill AGU/SAL/2026-27/03.</p>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card" id="dr">
+      <h2>Deduction Register — June 2026 (mock)</h2>
+      <table class="data">
+        <thead><tr><th>Deduction</th><th class="num">Das</th><th class="num">Sharma</th><th class="num">Roy</th></tr></thead>
+        <tbody>
+          <tr><td>NPS / GPF</td><td class="num">3,825</td><td class="num">12,800</td><td class="num">6,500</td></tr>
+          <tr><td>GIS</td><td class="num">360</td><td class="num">480</td><td class="num">480</td></tr>
+          <tr><td>Professional Tax</td><td class="num">208</td><td class="num">208</td><td class="num">208</td></tr>
+          <tr><td>Income Tax (TDS)</td><td class="num">1,500</td><td class="num">8,912</td><td class="num">3,312</td></tr>
+          <tr><td>Loan recovery</td><td class="num">1,000</td><td class="num">0</td><td class="num">1,000</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="num">6,893</td><td class="num">22,400</td><td class="num">11,500</td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="card" id="f16">
+      <h2>Form 16 — FY 2025-26 (mock extract)</h2>
+      <dl class="kv">
+        <dt>Employee</dt><dd>Mr. A. Das · PAN ABCPD••••K</dd>
+        <dt>Gross salary</dt><dd>₹5,48,280</dd>
+        <dt>Exemptions (HRA/CEA etc.)</dt><dd>₹47,000</dd>
+        <dt>Ch. VI-A (80C / 80CCD)</dt><dd>₹1,50,000</dd>
+        <dt>Taxable income</dt><dd>₹3,51,280</dd>
+        <dt>TDS deducted (24Q)</dt><dd>₹18,000</dd>
+        <dt>Regime</dt><dd>New regime</dd>
+      </dl>
+      <p class="note">Annual TDS certificate to the employee; the quarterly 24Q return feeds TRACES (§28).</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

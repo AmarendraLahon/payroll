@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify Claims — Dealing Assistant — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Dealing Assistant</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Dealing Assistant</span>
+  <a href="index.html">Work Queue</a>
+  <a href="bill-prepare.html">Bill Prep</a>
+  <a href="service-event.html">Service Event</a>
+  <a href="leave-process.html">Leave</a>
+  <a href="claim-process.html" class="active">Claims</a>
+  <a href="arrear-draft.html">Arrears</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Work Queue</a> › Verify Claims</div>
+  <h1 class="page-title">Verify Claims <span class="tag">§11</span></h1>
+  <p class="page-sub">Apply the ceiling / rate, check eligibility (max-2-children, block-year, grade), set the admissible amount, route to sanction. Claims go on a separate claim bill.</p>
+
+  <div class="card">
+    <h2>Submitted claims</h2>
+    <div class="wf-note">Wireframe — "Verify" applies the ceiling rule and marks admissible; sanction is the Approver's step.</div>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th>Claim</th><th>Shape</th><th class="num">Claimed</th><th class="num">Ceiling</th><th class="num">Admissible</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td>CEA (2 children)</td><td>Reimbursement</td><td class="num">23,000</td><td class="num">27,000/child</td><td class="num">23,000</td><td><span class="badge warn">Submitted</span></td><td><button class="btn ghost" type="button">Verify</button></td></tr>
+        <tr><td>Mr. A. Das</td><td>Tour TA/DA (3 days)</td><td>Entitlement</td><td class="num">7,000</td><td class="num">by level</td><td class="num">7,000</td><td><span class="badge ok">Verified</span></td><td><span class="badge ok">Done</span></td></tr>
+        <tr><td>Mr. A. Das</td><td>Medical</td><td>Reimbursement</td><td class="num">4,500</td><td class="num">actuals</td><td class="num">4,500</td><td><span class="badge warn">Submitted</span></td><td><button class="btn ghost" type="button">Verify</button></td></tr>
+        <tr><td>Dr. R. Sharma</td><td>LTC (Home Town)</td><td>Claim (fare)</td><td class="num">46,000</td><td class="num">advance 40,000</td><td class="num">6,000 bal</td><td><span class="badge warn">Adjust advance</span></td><td><button class="btn ghost" type="button">Verify</button></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>CEA ceiling check — Mr. A. Das</h2>
+      <table class="data">
+        <thead><tr><th>Child</th><th class="num">Fees</th><th class="num">Cap</th><th class="num">Admissible</th></tr></thead>
+        <tbody>
+          <tr><td>Child 1</td><td class="num">14,000</td><td class="num">27,000</td><td class="num">14,000</td></tr>
+          <tr><td>Child 2</td><td class="num">9,000</td><td class="num">27,000</td><td class="num">9,000</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="3">Admissible (taxable ₹0)</td><td class="num">23,000</td></tr></tfoot>
+      </table>
+      <p class="note">Reimbursement = min(actual, ceiling), max 2 children. School proof attached.</p>
+    </div>
+
+    <div class="card">
+      <h2>LTC advance adjustment — Dr. Sharma</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Claimed fare</td><td class="num">₹46,000</td></tr>
+          <tr><td class="head">Advance drawn</td><td class="num">₹40,000</td></tr>
+          <tr><td class="head">Balance payable</td><td class="num">₹6,000</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">If the claim were under the advance, the excess becomes a recovery (§06). Advance and final claim must be linked — settlement is mandatory.</div>
+      <div class="wf-actions"><button class="btn" type="button">Mark admissible &amp; route to sanction →</button></div>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Documents — Employee — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Employee · ESS</span>
+  <a href="index.html">My Home</a>
+  <a href="apply-leave.html">Apply Leave</a>
+  <a href="declaration-12bb.html">Form 12BB</a>
+  <a href="documents.html" class="active">My Documents</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">My Home</a> › My Documents</div>
+  <h1 class="page-title">My Documents <span class="tag">§13 / §15</span></h1>
+  <p class="page-sub">Read-only downloads of your own records. (Wireframe — links open the demo screens.)</p>
+
+  <div class="card">
+    <h2>Payslips</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Month</th><th class="num">Gross</th><th class="num">Net</th><th>Download</th></tr></thead>
+      <tbody>
+        <tr><td>June 2026</td><td class="num">₹45,690</td><td class="num">₹38,797</td><td><a href="../payslip.html">View / PDF</a></td></tr>
+        <tr><td>May 2026</td><td class="num">₹45,690</td><td class="num">₹38,797</td><td><a href="../payslip.html">View / PDF</a></td></tr>
+        <tr><td>April 2026</td><td class="num">₹43,990</td><td class="num">₹37,097</td><td><a href="../payslip.html">View / PDF</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-3">
+    <div class="card"><h2>Form 16</h2><p class="note">Annual TDS certificate (FY 2025-26).</p><a class="btn ghost" href="../reports.html">Download</a></div>
+    <div class="card"><h2>NPS statement</h2><p class="note">PRAN-wise transaction record from CRA.</p><a class="btn ghost" href="../salary-bill.html">View</a></div>
+    <div class="card"><h2>Service Book</h2><p class="note">Profile + event history.</p><a class="btn ghost" href="../employee.html">View</a></div>
+    <div class="card"><h2>Leave ledger</h2><p class="note">Credit / debit history.</p><a class="btn ghost" href="../leave.html">View</a></div>
+    <div class="card"><h2>Claim statements</h2><p class="note">CEA / Tour / LTC.</p><a class="btn ghost" href="../claims.html">View</a></div>
+    <div class="card"><h2>Arrear statement</h2><p class="note">Month-wise DA arrear.</p><a class="btn ghost" href="../arrears.html">View</a></div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

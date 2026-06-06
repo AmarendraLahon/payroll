@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDO — Verification Queue — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">DDO</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">DDO</span>
+  <a href="index.html" class="active">Verification Queue</a>
+  <a href="verify.html">Verify &amp; Sanction</a>
+  <a href="treasury.html">Treasury &amp; Disburse</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="../login.html">Login</a> › DDO · Verification Queue</div>
+  <h1 class="page-title">Verification Queue <span class="tag">Drawing &amp; Disbursing Officer</span></h1>
+  <p class="page-sub">Bills the Dealing Assistant submitted. You verify, sanction, draw on treasury and lock — but cannot self-approve own data entry (segregation).</p>
+
+  <div class="wf-note">Wireframe — mock data. Actions mimic the bill lifecycle; nothing is saved.</div>
+
+  <div class="task-hub" style="margin-bottom:22px">
+    <div class="task-card"><h3>Awaiting verification</h3><div class="cnt">2</div><div class="note">1 salary · 1 arrear</div><a href="verify.html">Open queue →</a></div>
+    <div class="task-card" style="border-left-color:var(--saffron)"><h3>Verified, awaiting approval</h3><div class="cnt">1</div><div class="note">with Registrar</div><a href="../approver/index.html">View →</a></div>
+    <div class="task-card" style="border-left-color:var(--green)"><h3>Ready for treasury</h3><div class="cnt">1</div><div class="note">approved · present for token</div><a href="treasury.html">Draw →</a></div>
+  </div>
+
+  <div class="card">
+    <h2>Bills in queue</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Bill no.</th><th>Type</th><th>Period</th><th class="num">Net</th><th>From</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>AGU/SAL/2026-27/03</td><td>Salary</td><td>Jun 2026</td><td class="num">₹1,84,897</td><td>Dealing Asst</td><td><span class="badge warn">Submitted</span></td><td><a href="verify.html">Verify</a></td></tr>
+        <tr><td>AGU/ARR/2026-27/02</td><td>Arrear (DA)</td><td>Jul–Sep 2025</td><td class="num">₹7,167</td><td>Dealing Asst</td><td><span class="badge warn">Submitted</span></td><td><a href="verify.html">Verify</a></td></tr>
+        <tr><td>AGU/SAL/2026-27/02</td><td>Salary</td><td>May 2026</td><td class="num">₹1,82,440</td><td>Dealing Asst</td><td><span class="badge ok">Disbursed · Locked</span></td><td><span class="badge muted">Closed</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

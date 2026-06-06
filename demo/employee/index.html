@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Self-Service — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Employee · ESS</span>
+  <a href="index.html" class="active">My Home</a>
+  <a href="apply-leave.html">Apply Leave</a>
+  <a href="declaration-12bb.html">Form 12BB</a>
+  <a href="documents.html">My Documents</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="../login.html">Login</a> › Employee · Self-Service</div>
+  <h1 class="page-title">My Self-Service <span class="tag">scope: own data</span></h1>
+  <p class="page-sub">Mr. A. Das (AGU-NT-0421) · Assistant · Level 4 · NPS. ESS feeds the existing approval flows — it never auto-grants.</p>
+
+  <div class="grid cols-4" style="margin-bottom:20px">
+    <div class="widget"><div class="label">June net pay</div><div class="value">₹38,797</div><div class="sub">credited 30-Jun</div></div>
+    <div class="widget green"><div class="label">EL balance</div><div class="value">45</div><div class="sub">+15 due 1-Jul</div></div>
+    <div class="widget saffron"><div class="label">CL balance</div><div class="value">6</div><div class="sub">lapses 31-Dec</div></div>
+    <div class="widget maroon"><div class="label">NPS (PRAN)</div><div class="value">…4821</div><div class="sub">10% + 14% to CRA</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Quick actions</h2>
+    <div class="tiles">
+      <a class="tile" href="apply-leave.html"><div class="ico">📅</div><div class="t">Apply for leave</div><div class="d">→ HOD → Registrar</div></a>
+      <a class="tile" href="documents.html"><div class="ico">🧾</div><div class="t">Payslip / Form 16</div><div class="d">View &amp; download</div></a>
+      <a class="tile" href="declaration-12bb.html"><div class="ico">📝</div><div class="t">Submit Form 12BB</div><div class="d">Investment declaration</div></a>
+      <a class="tile" href="../employee.html"><div class="ico">👤</div><div class="t">My Service Book</div><div class="d">Profile + history</div></a>
+      <a class="tile" href="../leave.html"><div class="ico">📊</div><div class="t">Leave balances</div><div class="d">Ledger</div></a>
+      <a class="tile" href="../claims.html"><div class="ico">📨</div><div class="t">My claims</div><div class="d">CEA, Tour, LTC</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>My recent requests</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Date</th><th>Request</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>01-Jun-2026</td><td>EL 5 days (20–24 Apr)</td><td><span class="badge warn">Pending · Registrar</span></td></tr>
+        <tr><td>02-May-2026</td><td>Restricted Holiday (1)</td><td><span class="badge ok">Approved · HOD</span></td></tr>
+        <tr><td>15-Apr-2026</td><td>CEA claim ₹23,000</td><td><span class="badge warn">Verifying</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approve Leave — Approver — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Approver</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Approver / Registrar</span>
+  <a href="index.html">Approval Inbox</a>
+  <a href="approve-bill.html">Bills</a>
+  <a href="approve-leave.html" class="active">Leave</a>
+  <a href="establishment.html">Establishment</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Inbox</a> › Approve Leave</div>
+  <h1 class="page-title">Approve Leave <span class="tag">§09</span></h1>
+  <p class="page-sub">Registrar step of the chain: Employee → HOD → <b>Registrar</b>. On approval the Dealing Assistant records the ledger debit + pay instruction.</p>
+
+  <div class="card">
+    <h2>HOD-cleared applications</h2>
+    <div class="wf-note">Wireframe — Approve / Reject mimic the chain; the pay effect is shown for context.</div>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Employee</th><th>Type</th><th>Period</th><th class="num">Days</th><th class="num">Balance</th><th>Pay effect</th><th>HOD</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Mr. A. Das</td><td>EL</td><td>20–24 Apr</td><td class="num">5</td><td class="num">45 ✓</td><td><span class="badge ok">Full pay</span></td><td>✓</td><td><button class="btn ghost" type="button">Approve</button></td></tr>
+        <tr><td>Dr. R. Sharma</td><td>HPL</td><td>03–06 Jun</td><td class="num">4</td><td class="num">20 ✓</td><td><span class="badge warn">Half pay −₹8,760</span></td><td>✓</td><td><button class="btn ghost" type="button">Approve</button></td></tr>
+        <tr><td>Mr. P. Roy</td><td>EOL</td><td>12–13 Jun</td><td class="num">2</td><td class="num">n/a</td><td><span class="badge bad">Nil · dies-non</span></td><td>✓</td><td><button class="btn ghost" type="button">Approve</button></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="callout">EOL carries a downstream cost beyond pay: 2 dies-non days shift the increment date (§07) and cut qualifying service (§16). The approver sees the effect before granting.</div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin / RBAC &amp; Master Data — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Admin / RBAC &amp; Master Data</div>
+  <h1 class="page-title">RBAC &amp; Master Data <span class="tag">§17 / §19</span></h1>
+  <p class="page-sub">Role-permission matrix (separation of duties) and effective-dated rate tables. Rate changes are inserts, never in-place edits — old rows stay for arrears &amp; audit.</p>
+
+  <div class="card">
+    <h2>Role–permission matrix (separation of duties)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Role</th><th>Self data</th><th>Data entry / bill prep</th><th>Verify &amp; sanction</th><th>Final approval</th><th>Lock period</th><th>Read all + audit</th><th>Master data / users</th></tr></thead>
+      <tbody>
+        <tr><td><b>Employee</b></td><td><span class="badge ok">✓ own</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><b>Dealing Assistant</b></td><td>—</td><td><span class="badge ok">✓ unit</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><b>DDO</b></td><td>—</td><td>—</td><td><span class="badge ok">✓</span></td><td>—</td><td><span class="badge ok">✓</span></td><td>—</td><td>—</td></tr>
+        <tr><td><b>Approver / Registrar</b></td><td>—</td><td>—</td><td><span class="badge ok">✓</span></td><td><span class="badge ok">✓</span></td><td><span class="badge ok">✓</span></td><td>—</td><td>—</td></tr>
+        <tr><td><b>Auditor</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge ok">✓ read-only</span></td><td>—</td></tr>
+        <tr><td><b>Admin</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge ok">✓</span></td><td><span class="badge ok">✓ rate tables, roles, config</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="callout"><b>Principle:</b> the PREPARER ≠ the SANCTIONER ≠ the AUDITOR. Every privileged action checks a scoped permission (role × scope × action) <b>and</b> writes the audit trail. Scope: own / unit-college / university.</div>
+  </div>
+
+  <div class="grid cols-3">
+    <div class="card">
+      <h2>DA Rate Table</h2>
+      <table class="data">
+        <thead><tr><th class="num">DA%</th><th>Effective from</th><th>Effective to</th></tr></thead>
+        <tbody>
+          <tr><td class="num">46%</td><td>01-Jan-2025</td><td>01-Jul-2025</td></tr>
+          <tr><td class="num">50%</td><td>01-Jul-2025</td><td>01-Jan-2026</td></tr>
+          <tr><td class="num">53%</td><td>01-Jan-2026</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p class="note">History retained → recompute any past month; back-dated insert triggers an arrear run (§08).</p>
+    </div>
+
+    <div class="card">
+      <h2>HRA Rate Table</h2>
+      <table class="data">
+        <thead><tr><th>City class</th><th class="num">HRA%</th><th>Effective from</th></tr></thead>
+        <tbody>
+          <tr><td>X (metro)</td><td class="num">24%</td><td>01-Jan-2024</td></tr>
+          <tr><td>Y (Guwahati)</td><td class="num">16%</td><td>01-Jan-2024</td></tr>
+          <tr><td>Z (district towns)</td><td class="num">8%</td><td>01-Jan-2024</td></tr>
+        </tbody>
+      </table>
+      <p class="note">0% if a govt quarter is occupied (licence fee recovered instead). Mr. Das = Z (8%).</p>
+    </div>
+
+    <div class="card">
+      <h2>Professional Tax slabs</h2>
+      <table class="data">
+        <thead><tr><th>Monthly salary</th><th class="num">PT / month</th></tr></thead>
+        <tbody>
+          <tr><td>Up to ₹15,000</td><td class="num">₹0</td></tr>
+          <tr><td>₹15,001 – ₹25,000</td><td class="num">₹150</td></tr>
+          <tr><td>₹25,001 +</td><td class="num">₹208</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Assam-specific statutory slab; annual ceiling applies (illustrative figures).</p>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>NPS / GPF parameters</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">NPS employee contribution</td><td>10% of (Basic + DA)</td></tr>
+          <tr><td class="head">NPS employer contribution</td><td>14% of (Basic + DA)</td></tr>
+          <tr><td class="head">Scheme cut-off date</td><td>configurable (State Finance Dept) — DOJ vs cut-off → OPS/NPS</td></tr>
+          <tr><td class="head">GPF interest</td><td>set quarterly by government</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Leave accrual config</h2>
+      <table class="data">
+        <thead><tr><th>Type</th><th class="num">Entitlement</th><th>Credit</th><th class="num">Cap</th></tr></thead>
+        <tbody>
+          <tr><td>EL (non-teaching)</td><td class="num">30 / yr</td><td>15 + 15 advance</td><td class="num">300</td></tr>
+          <tr><td>HPL</td><td class="num">20 / yr</td><td>10 + 10</td><td class="num">—</td></tr>
+          <tr><td>CL</td><td class="num">12 / yr</td><td>yearly, no carry-fwd</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+      <p class="note">All values are effective-dated master data, not hard-coded. Vacation-dept teachers get reduced EL.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

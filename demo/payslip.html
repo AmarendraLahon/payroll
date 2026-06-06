@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payslip — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Payslip</div>
+  <h1 class="page-title">Monthly Payslip <span class="tag">§05–06</span></h1>
+  <p class="page-sub">June 2026 · Mr. A. Das · Worked example: Basic ₹25,500 → Gross ₹45,690 → Net ₹38,797.</p>
+
+  <div class="card">
+    <h2>Pay slip — June 2026</h2>
+    <dl class="kv">
+      <dt>Employee</dt><dd>Mr. A. Das (AGU-NT-0421)</dd>
+      <dt>Designation / Level</dt><dd>Assistant · Level 4, Cell 3</dd>
+      <dt>Scheme</dt><dd>NPS (Tier-I) · PRAN 1100-xxxx-4821</dd>
+      <dt>Posting city class</dt><dd>Z (HRA 8%) · No govt quarter</dd>
+      <dt>Paid days</dt><dd>30 / 30</dd>
+    </dl>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Earnings</h2>
+      <table class="data">
+        <thead><tr><th>Component</th><th>Basis</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Basic Pay</td><td>Matrix L4/C3</td><td class="num">₹25,500</td></tr>
+          <tr><td>Dearness Allowance (DA)</td><td>Basic × 50%</td><td class="num">₹12,750</td></tr>
+          <tr><td>House Rent Allowance (HRA)</td><td>Basic × 8% (Z)</td><td class="num">₹2,040</td></tr>
+          <tr><td>Transport Allowance (TA)</td><td>3,600 + DA on TA (50%)</td><td class="num">₹5,400</td></tr>
+          <tr><td>Special / Academic</td><td>—</td><td class="num">₹0</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Gross Salary</td><td class="num">₹45,690</td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Deductions</h2>
+      <table class="data">
+        <thead><tr><th>Component</th><th>Basis</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>NPS (Tier-I)</td><td>10% of (Basic+DA = 38,250)</td><td class="num">₹3,825</td></tr>
+          <tr><td>GIS</td><td>Group C slab</td><td class="num">₹360</td></tr>
+          <tr><td>Professional Tax (PT)</td><td>Assam slab</td><td class="num">₹208</td></tr>
+          <tr><td>Income Tax (TDS)</td><td>Monthly projection (§15)</td><td class="num">₹1,500</td></tr>
+          <tr><td>Loan recovery (Festival adv.)</td><td>EMI</td><td class="num">₹1,000</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Total Deductions</td><td class="num">₹6,893</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:5px solid var(--green)">
+    <h2 style="border:none;margin-bottom:6px">Net Salary</h2>
+    <div style="font-size:30px;font-weight:700;color:var(--green)">₹38,797</div>
+    <p class="note">Net = Gross ₹45,690 − Total Deductions ₹6,893. Credited to SBI ••••3092.</p>
+  </div>
+
+  <div class="callout warn">
+    <b>Scheme fork (§04/§06):</b> Mr. Das is NPS, so the deduction set uses NPS 10%. Had he been OPS he would instead carry a GPF subscription (e.g. ₹6,000) and no NPS line — same gross, different net (₹36,622).
+  </div>
+
+  <div class="card">
+    <h2>Comparison — same gross, OPS vs NPS</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Item</th><th class="num">NPS (Mr. Das)</th><th class="num">OPS (if pre-cutoff)</th></tr></thead>
+      <tbody>
+        <tr><td>Gross</td><td class="num">₹45,690</td><td class="num">₹45,690</td></tr>
+        <tr><td>Scheme deduction</td><td class="num">NPS ₹3,825</td><td class="num">GPF ₹6,000</td></tr>
+        <tr><td>GIS</td><td class="num">₹360</td><td class="num">₹360</td></tr>
+        <tr><td>Professional Tax</td><td class="num">₹208</td><td class="num">₹208</td></tr>
+        <tr><td>Income Tax (TDS)</td><td class="num">₹1,500</td><td class="num">₹1,500</td></tr>
+        <tr><td>Loan EMI</td><td class="num">₹1,000</td><td class="num">₹1,000</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Net Salary</td><td class="num">₹38,797</td><td class="num">₹36,622</td></tr>
+      </tfoot>
+    </table>
+    </div>
+    <p class="note">OPS net is lower only because GPF is the employee's own savings (returned with interest at exit), unlike NPS where 10% is mandated.</p>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

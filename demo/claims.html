@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claims &amp; Reimbursements — AGU Payroll</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Claims &amp; Reimbursements</div>
+  <h1 class="page-title">Claims &amp; Reimbursements <span class="tag">§11</span></h1>
+  <p class="page-sub">Event-driven, claim-based money — paid on submission of a bill/proof, on a separate claim bill. Claims never inflate the monthly Basic-driven salary.</p>
+
+  <div class="card">
+    <h2>Claim register — Mr. A. Das</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Claim</th><th>Shape</th><th>Detail</th><th class="num">Claimed</th><th class="num">Admissible</th><th>Pay via</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>CEA (2 children)</td><td>Reimbursement</td><td>min(actual, ₹27,000/child)</td><td class="num">₹23,000</td><td class="num">₹23,000</td><td>Separate bill</td><td><span class="badge ok">Sanctioned</span></td></tr>
+        <tr><td>Tour TA/DA</td><td>Entitlement</td><td>3-day official tour</td><td class="num">₹7,000</td><td class="num">₹7,000</td><td>Separate bill</td><td><span class="badge ok">Paid</span></td></tr>
+        <tr><td>Medical Reimbursement</td><td>Reimbursement</td><td>actual vs Medical Allowance</td><td class="num">₹4,500</td><td class="num">₹4,500</td><td>Separate bill</td><td><span class="badge warn">Verifying</span></td></tr>
+        <tr><td>LTC (Home Town)</td><td>Claim (fare)</td><td>block-year, advance ₹0</td><td class="num">—</td><td class="num">—</td><td>Separate bill</td><td><span class="badge muted">Not claimed</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>CEA — worked example</h2>
+      <table class="data">
+        <thead><tr><th>Child</th><th class="num">Fees</th><th class="num">Cap</th><th class="num">Admissible</th></tr></thead>
+        <tbody>
+          <tr><td>Child 1</td><td class="num">₹14,000</td><td class="num">₹27,000</td><td class="num">₹14,000</td></tr>
+          <tr><td>Child 2</td><td class="num">₹9,000</td><td class="num">₹27,000</td><td class="num">₹9,000</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="3">CEA admissible (within IT exemption → taxable ₹0)</td><td class="num">₹23,000</td></tr></tfoot>
+      </table>
+      <p class="note">Reimbursement = min(actual spent, ceiling), per child, up to 2 children. School proof required.</p>
+    </div>
+
+    <div class="card">
+      <h2>Tour TA/DA — worked example</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Fare</td><td class="num">₹2,200</td></tr>
+          <tr><td class="head">Daily Allowance (₹600 × 3 days)</td><td class="num">₹1,800</td></tr>
+          <tr><td class="head">Lodging min(actual ₹3,000, ceiling ₹3,600)</td><td class="num">₹3,000</td></tr>
+        </tbody>
+        <tfoot><tr><td>Tour claim total</td><td class="num">₹7,000</td></tr></tfoot>
+      </table>
+      <p class="note">Entitlement = rate × units graded by pay level. Distinct from the monthly Transport Allowance on the payslip.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Claim lifecycle:</b> Submit (+ proof) → Verify (eligibility, ceiling, block-year) → Sanction → Pay (separate claim bill) → Post taxable portion to pay record (§15). CEA ₹23,000 + Tour ₹7,000 = <b>₹30,000</b> disbursed on a separate bill; the monthly salary (§05) is untouched.
+  </div>
+
+  <div class="callout warn">
+    <b>External payee (§35):</b> an exam invigilator or guest faculty has no Employee Master row — paid via the <i>Payee</i> abstraction from a remuneration master with non-salary TDS, through the same claim engine.
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

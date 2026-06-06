@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconciliation — Auditor — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Auditor</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Auditor · read-only</span>
+  <a href="index.html">Oversight</a>
+  <a href="audit-trail.html">Audit Trail</a>
+  <a href="reconciliation.html" class="active">Reconciliation</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">Oversight</a> › Reconciliation</div>
+  <h1 class="page-title">Reconciliation &amp; Tie-Out <span class="tag">§14</span></h1>
+  <p class="page-sub">Bill AGU/SAL/2026-27/03 · June 2026. Verify the 3-way reconciliation and that schedule totals equal bill deductions to the rupee.</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>3-way reconciliation</h2>
+      <table class="data">
+        <tbody>
+          <tr><td class="head">Σ Gross</td><td class="num">₹2,25,690</td></tr>
+          <tr><td class="head">− Σ Deductions</td><td class="num">₹40,793</td></tr>
+          <tr><td class="head">= Net</td><td class="num">₹1,84,897</td></tr>
+          <tr><td class="head">Σ employee net</td><td class="num">₹1,84,897</td></tr>
+        </tbody>
+        <tfoot><tr><td>Result</td><td class="num"><span class="badge ok">Tied out ✓</span></td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Schedule tie-out</h2>
+      <table class="data">
+        <thead><tr><th>Schedule</th><th class="num">Schedule total</th><th class="num">Bill deduction</th><th>Match</th></tr></thead>
+        <tbody>
+          <tr><td>NPS (employee leg)</td><td class="num">16,625</td><td class="num">16,625</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td>GPF</td><td class="num">6,500</td><td class="num">6,500</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td>GIS</td><td class="num">1,320</td><td class="num">1,320</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td>Income Tax</td><td class="num">13,724</td><td class="num">13,724</td><td><span class="badge ok">✓</span></td></tr>
+          <tr><td>PT</td><td class="num">624</td><td class="num">624</td><td><span class="badge ok">✓</span></td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="num">38,793</td><td class="num">38,793</td><td><span class="badge ok">✓</span></td></tr></tfoot>
+      </table>
+      <p class="note">Loan recovery (₹2,000) routes to the loan ledger, not a statutory schedule — total deductions ₹40,793.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Post-disbursement checks (§27)</h2>
+    <div class="scroll-x">
+    <table class="data">
+      <thead><tr><th>Check</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td>Bank returns handled (hold + reissue)</td><td><span class="badge warn">1 reissue pending (Roy)</span></td></tr>
+        <tr><td>NPS upload to NSDL/CRA confirmed</td><td><span class="badge ok">SCF posted</span></td></tr>
+        <tr><td>Schedule vs bill tie-out</td><td><span class="badge ok">Matched</span></td></tr>
+        <tr><td>Suspense / recovery carry</td><td><span class="badge ok">Nil</span></td></tr>
+        <tr><td>Period lock integrity</td><td><span class="badge ok">May locked · no edits</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>

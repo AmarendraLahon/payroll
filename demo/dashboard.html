@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — AGU Payroll &amp; Leave</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div>
+      <h1>Assam Government University</h1>
+      <div class="sub">Payroll &amp; Leave Management System</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="who">Logged in as<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="topnav" id="topnav"></nav>
+
+<main>
+  <h1 class="page-title">Dashboard</h1>
+  <p class="page-sub">Establishment overview for June 2026 (FY 2026–27). Mock figures.</p>
+
+  <!-- Summary widgets -->
+  <div class="grid cols-4" style="margin-bottom:22px">
+    <div class="widget">
+      <div class="label">Headcount</div>
+      <div class="value">412</div>
+      <div class="sub">Teaching 168 · Non-teaching 244</div>
+    </div>
+    <div class="widget maroon">
+      <div class="label">This month's bill (net)</div>
+      <div class="value">₹1.84 Cr</div>
+      <div class="sub">Gross ₹2.31 Cr · Deductions ₹0.47 Cr</div>
+    </div>
+    <div class="widget saffron">
+      <div class="label">Pending leave approvals</div>
+      <div class="value">23</div>
+      <div class="sub">7 with HOD · 16 with Registrar</div>
+    </div>
+    <div class="widget green">
+      <div class="label">Bill status (June)</div>
+      <div class="value">Verified</div>
+      <div class="sub">DDO verified · awaiting approval</div>
+    </div>
+  </div>
+
+  <div class="grid cols-3" style="margin-bottom:8px">
+    <div class="widget">
+      <div class="label">NPS staff</div>
+      <div class="value">301</div>
+      <div class="sub">Post-cutoff joiners (§04)</div>
+    </div>
+    <div class="widget">
+      <div class="label">OPS / GPF staff</div>
+      <div class="value">111</div>
+      <div class="sub">Pre-cutoff joiners (§04)</div>
+    </div>
+    <div class="widget">
+      <div class="label">Sanctioned strength</div>
+      <div class="value">450</div>
+      <div class="sub">38 vacancies (§13)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Modules</h2>
+    <div class="tiles">
+      <a class="tile" href="employee.html"><div class="ico">👤</div><div class="t">Employee &amp; Service Book</div><div class="d">Master, pay position, service timeline (§02)</div></a>
+      <a class="tile" href="payslip.html"><div class="ico">🧾</div><div class="t">Payslip</div><div class="d">Monthly earnings &amp; deductions (§05–06)</div></a>
+      <a class="tile" href="pay-matrix.html"><div class="ico">📊</div><div class="t">Pay Matrix</div><div class="d">7th CPC Levels × Cells (§03)</div></a>
+      <a class="tile" href="leave.html"><div class="ico">📅</div><div class="t">Leave Management</div><div class="d">Balances, ledger, apply leave (§09)</div></a>
+      <a class="tile" href="increment-macp.html"><div class="ico">📈</div><div class="t">Increment &amp; MACP</div><div class="d">Pay movement &amp; fixation (§07)</div></a>
+      <a class="tile" href="arrears.html"><div class="ico">↩️</div><div class="t">Arrears</div><div class="d">DA / promotion difference (§08)</div></a>
+      <a class="tile" href="loans.html"><div class="ico">🏦</div><div class="t">Loans &amp; Advances</div><div class="d">Principal, interest, recovery (§12)</div></a>
+      <a class="tile" href="claims.html"><div class="ico">📨</div><div class="t">Claims</div><div class="d">CEA, Tour TA/DA, LTC (§11)</div></a>
+      <a class="tile" href="salary-bill.html"><div class="ico">📑</div><div class="t">Salary Bill &amp; Treasury</div><div class="d">Bill, schedules, budget heads (§13)</div></a>
+      <a class="tile" href="pension.html"><div class="ico">👴</div><div class="t">Pension &amp; Retirement</div><div class="d">OPS settlement vs NPS exit (§16)</div></a>
+      <a class="tile" href="reports.html"><div class="ico">📂</div><div class="t">Reports</div><div class="d">Pay bill, registers, Form 16 (§17/20)</div></a>
+      <a class="tile" href="admin.html"><div class="ico">⚙️</div><div class="t">Admin / RBAC</div><div class="d">Roles &amp; rate tables (§17/19)</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Payroll period &amp; processing state (§26)</h2>
+    <div class="flow">
+      <span class="step done">Draft</span><span class="arr">→</span>
+      <span class="step cur">Verified (DDO)</span><span class="arr">→</span>
+      <span class="step">Approved</span><span class="arr">→</span>
+      <span class="step">Bill Submitted (Treasury)</span><span class="arr">→</span>
+      <span class="step">Passed</span><span class="arr">→</span>
+      <span class="step">Disbursed</span><span class="arr">→</span>
+      <span class="step">Period Locked</span>
+    </div>
+    <p class="note">Once disbursed, the month is read-only — corrections go to a Supplementary/Arrear bill, never a silent edit.</p>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply for Leave — Employee — AGU Payroll</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="gov-header">
+  <div class="inner">
+    <div class="emblem">AGU</div>
+    <div><h1>Assam Government University</h1><div class="sub">Payroll &amp; Leave Management System</div></div>
+    <div class="spacer"></div>
+    <div class="who">Role<b id="who-role">Employee</b></div>
+  </div>
+</header>
+<nav class="rolenav"><div class="inner">
+  <span class="roletag">Employee · ESS</span>
+  <a href="index.html">My Home</a>
+  <a href="apply-leave.html" class="active">Apply Leave</a>
+  <a href="declaration-12bb.html">Form 12BB</a>
+  <a href="documents.html">My Documents</a>
+  <a href="../dashboard.html">All Modules</a>
+  <a href="../login.html" class="logout">Logout</a>
+</div></nav>
+
+<main>
+  <div class="breadcrumb"><a href="index.html">My Home</a> › Apply for Leave</div>
+  <h1 class="page-title">Apply for Leave <span class="tag">§09 · ESS</span></h1>
+  <p class="page-sub">Your application routes through the same chain a clerk-entered one would: Employee → HOD → Registrar. You cannot self-approve.</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>New application</h2>
+      <form id="leave-form">
+        <div class="form-row"><label for="lv-type">Leave type</label>
+          <select id="lv-type">
+            <option>Casual Leave (CL)</option>
+            <option>Earned Leave (EL)</option>
+            <option>Half Pay Leave (HPL)</option>
+            <option>Commuted Leave</option>
+            <option>Restricted Holiday (RH)</option>
+            <option>Extraordinary Leave (EOL)</option>
+          </select>
+        </div>
+        <div class="form-row"><label for="lv-from">From</label><input type="date" id="lv-from"></div>
+        <div class="form-row"><label for="lv-to">To</label><input type="date" id="lv-to"></div>
+        <div class="form-row"><label for="lv-days">Days</label><input type="number" id="lv-days" min="1" value="2"></div>
+        <div class="form-row"><label for="lv-reason">Reason</label><textarea id="lv-reason" rows="2" placeholder="Optional"></textarea></div>
+        <button type="submit" class="btn">Submit application</button>
+      </form>
+      <div class="callout" id="leave-msg" style="display:none"></div>
+    </div>
+
+    <div class="card">
+      <h2>My balances</h2>
+      <table class="data">
+        <thead><tr><th>Type</th><th class="num">Balance</th><th>Pay effect</th></tr></thead>
+        <tbody>
+          <tr><td>EL</td><td class="num">45</td><td><span class="badge ok">Full</span></td></tr>
+          <tr><td>CL</td><td class="num">6</td><td><span class="badge ok">Full</span></td></tr>
+          <tr><td>HPL</td><td class="num">20</td><td><span class="badge warn">Half</span></td></tr>
+          <tr><td>RH</td><td class="num">1</td><td><span class="badge muted">Holiday</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>My applications</h3>
+      <table class="data" id="leave-applied">
+        <thead><tr><th>Period</th><th>Type</th><th class="num">Days</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>20-Apr to 24-Apr</td><td>Earned Leave (EL)</td><td class="num">5</td><td><span class="badge warn">Pending — Registrar</span></td></tr>
+          <tr><td>02-May</td><td>Restricted Holiday (RH)</td><td class="num">1</td><td><span class="badge ok">Approved — HOD</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Submit the form to add a mock pending application.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="gov-foot">Static demo · Assam Government University Payroll &amp; Leave Management System</footer>
+<script src="../app.js"></script>
+</body>
+</html>
