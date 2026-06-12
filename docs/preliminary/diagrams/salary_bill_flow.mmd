@@ -1,0 +1,16 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'15px','primaryColor':'#e6f4ea','primaryBorderColor':'#137333','lineColor':'#5f6368'}}}%%
+flowchart LR
+  S1["Attendance /<br/>Leave freeze"] --> S2["Salary Calc<br/>(formula + masters)"]
+  S2 --> S3["Deductions applied<br/>(GPF/NPS/GIS/Tax/Loan)"]
+  S3 --> S4["Payslip generated<br/>(dynamic heads)"]
+  S4 --> S5["Bill generated<br/>+ PDF upload"]
+  S5 -->|forward| S6["Accounts<br/>verify + bill"]
+  S6 -->|forward| S7["DDO"]
+  S7 -->|forward| S8["Budget<br/>(fund check)"]
+  S8 --> S9["Funds transferred<br/>to Accounts"]
+  S9 --> S10["Cashier<br/>releases funds"]
+  S10 --> S11(["Salary credited<br/>to Bank"])
+
+  R1["Retirement marked"] -.->|handoff| R2["Pension Dept"]
+  S2 -. correction batch .-> S2
+  S8 -. returned bill + reason .-> S6

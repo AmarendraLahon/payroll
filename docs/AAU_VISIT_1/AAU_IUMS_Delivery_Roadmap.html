@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAU IUMS — Module Delivery Roadmap (Effort Basis for Costing)</title>
+<style>
+  :root{
+    --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+    --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+    --blue:#1565c0; --blue-soft:#e3f2fd;
+    --have:#2e7d32; --have-soft:#e8f5e9; --have-bd:#a5d6a7;
+    --enh:#0d47a1; --enh-soft:#e3f2fd; --enh-bd:#90caf9;
+    --need:#e65100; --need-soft:#fff3e0; --need-bd:#ffcc80;
+    --grey:#607d8b; --grey-soft:#eceff1; --grey-bd:#b0bec5;
+    --lowc:#c62828; --medc:#ef6c00; --highc:#2e7d32;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:"Segoe UI",Helvetica,Arial,sans-serif; color:var(--ink);
+    background:#fafdfa; padding:30px 26px 60px; line-height:1.45; }
+  .page{ max-width:1180px; margin:0 auto; }
+
+  header.top{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .kicker{ color:#b8860b; font-weight:700; letter-spacing:2px; font-size:11px; text-transform:uppercase; }
+  h1{ color:var(--green); font-size:27px; margin:.15em 0 .12em; letter-spacing:-.5px; }
+  .sub{ color:#5a6a5a; font-size:13.5px; margin:0; }
+  .meta{ font-size:12px; color:#6a7a6a; margin-top:8px; }
+  .meta b{ color:var(--green); }
+
+  h2{ color:var(--green); font-size:18px; border-bottom:2px solid #e0ece0; padding-bottom:5px;
+    margin:30px 0 12px; }
+  h3{ color:var(--green2); font-size:15px; margin:18px 0 8px; }
+  p{ font-size:13px; }
+  ul,ol{ font-size:13px; margin:8px 0 8px 0; padding-left:22px; }
+  li{ margin:3px 0; }
+
+  .callout{ background:var(--soft); border-left:5px solid var(--green); border-radius:6px;
+    padding:11px 14px; font-size:12.5px; margin:12px 0; }
+  .callout.accent{ border-left-color:var(--accent); background:#fffdf5; }
+  .callout.warn{ border-left-color:var(--lowc); background:#fff5f5; }
+  .callout b{ color:var(--green); }
+
+  table{ border-collapse:collapse; width:100%; font-size:12px; margin:10px 0 4px; }
+  th{ background:var(--green); color:#fff; text-align:left; padding:7px 9px; font-weight:600;
+    font-size:11.5px; }
+  td{ padding:6px 9px; border-bottom:1px solid #dde8dd; vertical-align:top; }
+  tr:nth-child(even) td{ background:#f6faf6; }
+  td.num,th.num{ text-align:right; font-variant-numeric:tabular-nums; }
+  tr.total td{ background:#e8f5e9 !important; font-weight:700; color:var(--green); border-top:2px solid var(--have-bd); }
+  tr.grand td{ background:var(--green) !important; color:#fff; font-weight:700; }
+
+  .tag{ display:inline-block; padding:1px 8px; border-radius:11px; font-size:10px; font-weight:700;
+    letter-spacing:.2px; white-space:nowrap; }
+  .t-reuse{ background:var(--have-soft); color:var(--have); border:1px solid var(--have-bd); }
+  .t-enh{ background:var(--enh-soft); color:var(--enh); border:1px solid var(--enh-bd); }
+  .t-build{ background:var(--need-soft); color:var(--need); border:1px solid var(--need-bd); }
+  .c-h{ color:var(--highc); font-weight:700; }
+  .c-m{ color:var(--medc); font-weight:700; }
+  .c-l{ color:var(--lowc); font-weight:700; }
+
+  .modcard{ border:1px solid #d9e4d9; border-radius:10px; padding:0 0 12px; margin:16px 0;
+    overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .modhead{ background:linear-gradient(135deg,var(--green) 0%,var(--green2) 100%); color:#fff;
+    padding:10px 14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .modhead .nm{ font-size:15px; font-weight:700; }
+  .modhead .nm .tag{ margin-left:8px; }
+  .modhead .tot{ font-size:12px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3);
+    border-radius:8px; padding:4px 10px; font-weight:600; }
+  .modbody{ padding:4px 14px 0; }
+  .modbody .dep{ font-size:11.5px; color:#5a6a5a; margin:8px 0 2px; }
+  .modbody .dep b{ color:var(--green); }
+  .modbody table{ font-size:11.5px; }
+  .modbody th{ background:var(--green2); font-size:11px; }
+
+  .legendbar{ display:flex; gap:18px; flex-wrap:wrap; font-size:11.5px; color:#5a6a5a;
+    background:var(--soft); border:1px solid #dfeadf; border-radius:8px; padding:9px 14px; margin:8px 0; }
+  .legendbar b{ color:var(--green); }
+
+  .phasestrip{ display:grid; grid-template-columns:repeat(5,1fr); gap:9px; margin:10px 0; }
+  .pbox{ background:#fff; border:1.5px solid #cfd8dc; border-top:5px solid var(--green); border-radius:8px;
+    padding:9px 11px; }
+  .pbox .pn{ font-size:11px; font-weight:800; color:var(--accent); letter-spacing:.5px; }
+  .pbox .pt{ font-size:12.5px; font-weight:700; color:var(--green); margin:2px 0 4px; }
+  .pbox .pd{ font-size:10.5px; color:#607d8b; }
+  .pbox .pe{ font-size:11px; color:var(--green2); font-weight:700; margin-top:5px; }
+
+  footer{ text-align:center; color:#8a9a8a; font-size:11px; margin-top:34px;
+    border-top:1px solid #e0ece0; padding-top:12px; }
+
+  @media print{
+    body{ background:#fff; padding:0; }
+    .modcard,.callout,table{ break-inside:avoid; }
+    h2{ break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <div class="kicker">Internal Working Document · Effort Basis for Cost Estimation</div>
+  <h1>Module Delivery Roadmap — Integrated University Management System</h1>
+  <p class="sub">Assam Agricultural University (AAU) · Per-module requirement collection, build &amp; delivery effort</p>
+  <p class="meta">
+    <b>Prepared by:</b> Pallab Handique &nbsp;|&nbsp;
+    <b>For:</b> BSPL Management (cost-estimation input) &nbsp;|&nbsp;
+    <b>Version:</b> 0.1 (Draft) &nbsp;|&nbsp;
+    <b>Date:</b> 11 June 2026 &nbsp;|&nbsp;
+    <b>Baseline:</b> Visit Closure Document v1.0 + HLD (8–9 June 2026 study)
+  </p>
+</header>
+
+<div class="callout accent">
+  <b>How to read this document.</b> This is an <b>effort roadmap</b>, not a price. It sizes every module in
+  <b>person-days</b> across four work types — <b>Req</b> (requirement collection), <b>Des</b> (design),
+  <b>Dev</b> (development), <b>Tst</b> (test/QA) — and orders them by delivery phase and dependency.
+  Management applies day-rates, overheads, margin and contingency on top to produce the formal estimate.
+</div>
+
+<div class="callout warn">
+  <b>Confidence basis.</b> Numbers are <b>indicative, pre-BRD</b>. They assume the working assumptions in the
+  Closure Document hold. Items flagged <span class="c-l">Low</span> confidence depend directly on the open points
+  in Closure §6 (fund-source flow, module reality, formula governance, scope boundaries) and on securing the
+  incumbent vendor's legacy code (Closure §7.2). Resolving those can move effort up or down materially.
+</div>
+
+<!-- =================== 1. APPROACH / LEGEND =================== -->
+<h2>1. Roadmap Approach &amp; Legend</h2>
+<ul>
+  <li><b>Unit:</b> one person-day = one developer/analyst working day. Effort is build effort only — it excludes
+      day-rate, leave, ramp-up and management margin (management adds those).</li>
+  <li><b>Work types per module:</b> <b>Req</b> = requirement collection &amp; analysis · <b>Des</b> = solution/data-model design ·
+      <b>Dev</b> = development · <b>Tst</b> = test, QA &amp; defect fix.</li>
+  <li><b>Granularity:</b> each module is broken into sub-features; sub-feature lines carry the Dev estimate;
+      Req/Des/Tst are summed at module level.</li>
+  <li><b>Sequencing:</b> phases follow the HLD dependency order. Foundation (Phase 0) gates everything; masters &amp;
+      EFMS must exist before payroll/finance workflows run.</li>
+</ul>
+
+<div class="legendbar">
+  <span><b>Build state:</b></span>
+  <span><span class="tag t-reuse">REUSE</span> existing AAU system — integrate, light effort</span>
+  <span><span class="tag t-enh">ENHANCE</span> exists but extended/wrapped</span>
+  <span><span class="tag t-build">BUILD</span> new module</span>
+  <span style="margin-left:auto;"><b>Confidence:</b> <span class="c-h">High</span> · <span class="c-m">Med</span> · <span class="c-l">Low</span></span>
+</div>
+
+<!-- =================== 2. PHASE MAP =================== -->
+<h2>2. Delivery Phase Map</h2>
+<p>Five delivery waves. Foundation first because every later workflow depends on masters, the file rail and audit.
+   Active employees go live before pensioners / inactive records.</p>
+<div class="phasestrip">
+  <div class="pbox"><div class="pn">PHASE 0</div><div class="pt">Foundation</div>
+    <div class="pd">RBAC, EFMS file rail, Masters &amp; Rule Engine, Audit Ledger, Notifications</div>
+    <div class="pe">~134 pd</div></div>
+  <div class="pbox"><div class="pn">PHASE 1</div><div class="pt">HRMS + Establishment</div>
+    <div class="pd">Employee master integration (PAN), transfer/promotion/appraisal, JSON reuse</div>
+    <div class="pe">~61 pd</div></div>
+  <div class="pbox"><div class="pn">PHASE 2</div><div class="pt">Payroll + Leave + GPF</div>
+    <div class="pd">Salary engine, deductions, corrections, increments, bill; parallel run</div>
+    <div class="pe">~118 pd</div></div>
+  <div class="pbox"><div class="pn">PHASE 3</div><div class="pt">Finance + FOC + Bill</div>
+    <div class="pd">Fund control, budget, disbursement chain, treasury posting</div>
+    <div class="pe">~113 pd</div></div>
+  <div class="pbox"><div class="pn">PHASE 4</div><div class="pt">Pension + Store/Asset + ESS + Analytics</div>
+    <div class="pd">Pension lifecycle, store, asset, portal, claims, loans, warehouse</div>
+    <div class="pe">~193 pd</div></div>
+</div>
+
+<!-- =================== 3. SUMMARY ROLL-UP =================== -->
+<h2>3. Effort Summary (Roll-Up)</h2>
+<p class="meta">Module build effort only. Program-level effort (PM, migration, integration, UAT, deployment, training) is in §6 and added separately.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Phase / Module</th><th>State</th>
+      <th class="num">Req</th><th class="num">Des</th><th class="num">Dev</th><th class="num">Tst</th>
+      <th class="num">Total</th><th>Conf.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><b>P0</b> · User Mgmt / RBAC</td><td><span class="tag t-enh">ENHANCE</span></td><td class="num">3</td><td class="num">4</td><td class="num">10</td><td class="num">4</td><td class="num">21</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P0</b> · EFMS file rail</td><td><span class="tag t-build">BUILD</span></td><td class="num">5</td><td class="num">6</td><td class="num">18</td><td class="num">6</td><td class="num">35</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P0</b> · Masters &amp; Rule Engine</td><td><span class="tag t-build">BUILD</span></td><td class="num">8</td><td class="num">10</td><td class="num">25</td><td class="num">8</td><td class="num">51</td><td><span class="c-l">Low</span></td></tr>
+    <tr><td><b>P0</b> · Audit Ledger</td><td><span class="tag t-build">BUILD</span></td><td class="num">2</td><td class="num">3</td><td class="num">8</td><td class="num">3</td><td class="num">16</td><td><span class="c-h">High</span></td></tr>
+    <tr><td><b>P0</b> · Notification service</td><td><span class="tag t-build">BUILD</span></td><td class="num">1</td><td class="num">2</td><td class="num">6</td><td class="num">2</td><td class="num">11</td><td><span class="c-h">High</span></td></tr>
+    <tr class="total"><td>Phase 0 subtotal</td><td>Foundation</td><td class="num">19</td><td class="num">25</td><td class="num">67</td><td class="num">23</td><td class="num">134</td><td></td></tr>
+
+    <tr><td><b>P1</b> · HRMS integration</td><td><span class="tag t-reuse">REUSE</span></td><td class="num">5</td><td class="num">5</td><td class="num">14</td><td class="num">5</td><td class="num">29</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P1</b> · Establishment</td><td><span class="tag t-build">BUILD</span></td><td class="num">5</td><td class="num">5</td><td class="num">16</td><td class="num">6</td><td class="num">32</td><td><span class="c-m">Med</span></td></tr>
+    <tr class="total"><td>Phase 1 subtotal</td><td>HRMS + Estab.</td><td class="num">10</td><td class="num">10</td><td class="num">30</td><td class="num">11</td><td class="num">61</td><td></td></tr>
+
+    <tr><td><b>P2</b> · Payroll</td><td><span class="tag t-build">BUILD</span></td><td class="num">12</td><td class="num">12</td><td class="num">35</td><td class="num">14</td><td class="num">73</td><td><span class="c-l">Low</span></td></tr>
+    <tr><td><b>P2</b> · Leave</td><td><span class="tag t-build">BUILD</span></td><td class="num">3</td><td class="num">3</td><td class="num">10</td><td class="num">4</td><td class="num">20</td><td><span class="c-h">High</span></td></tr>
+    <tr><td><b>P2</b> · GPF</td><td><span class="tag t-build">BUILD</span></td><td class="num">4</td><td class="num">4</td><td class="num">12</td><td class="num">5</td><td class="num">25</td><td><span class="c-m">Med</span></td></tr>
+    <tr class="total"><td>Phase 2 subtotal</td><td>Payroll core</td><td class="num">19</td><td class="num">19</td><td class="num">57</td><td class="num">23</td><td class="num">118</td><td></td></tr>
+
+    <tr><td><b>P3</b> · Finance &amp; Accounts</td><td><span class="tag t-build">BUILD</span></td><td class="num">8</td><td class="num">8</td><td class="num">24</td><td class="num">9</td><td class="num">49</td><td><span class="c-l">Low</span></td></tr>
+    <tr><td><b>P3</b> · FOC / Budget</td><td><span class="tag t-build">BUILD</span></td><td class="num">7</td><td class="num">7</td><td class="num">18</td><td class="num">7</td><td class="num">39</td><td><span class="c-l">Low</span></td></tr>
+    <tr><td><b>P3</b> · Bill Tracking</td><td><span class="tag t-build">BUILD</span></td><td class="num">4</td><td class="num">4</td><td class="num">12</td><td class="num">5</td><td class="num">25</td><td><span class="c-m">Med</span></td></tr>
+    <tr class="total"><td>Phase 3 subtotal</td><td>Finance + Fund</td><td class="num">19</td><td class="num">19</td><td class="num">54</td><td class="num">21</td><td class="num">113</td><td></td></tr>
+
+    <tr><td><b>P4</b> · Pension</td><td><span class="tag t-build">BUILD</span></td><td class="num">6</td><td class="num">6</td><td class="num">18</td><td class="num">7</td><td class="num">37</td><td><span class="c-l">Low</span></td></tr>
+    <tr><td><b>P4</b> · Store &amp; Purchase</td><td><span class="tag t-build">BUILD</span></td><td class="num">5</td><td class="num">5</td><td class="num">16</td><td class="num">6</td><td class="num">32</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P4</b> · Asset &amp; Estate</td><td><span class="tag t-build">BUILD</span></td><td class="num">4</td><td class="num">4</td><td class="num">12</td><td class="num">5</td><td class="num">25</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P4</b> · Employee Portal (ESS)</td><td><span class="tag t-enh">ENHANCE</span></td><td class="num">3</td><td class="num">4</td><td class="num">12</td><td class="num">5</td><td class="num">24</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P4</b> · Claims</td><td><span class="tag t-build">BUILD</span></td><td class="num">3</td><td class="num">3</td><td class="num">9</td><td class="num">4</td><td class="num">19</td><td><span class="c-m">Med</span></td></tr>
+    <tr><td><b>P4</b> · Loans &amp; Advances</td><td><span class="tag t-build">BUILD</span></td><td class="num">4</td><td class="num">4</td><td class="num">12</td><td class="num">5</td><td class="num">25</td><td><span class="c-l">Low</span></td></tr>
+    <tr><td><b>P4</b> · Reports / Warehouse / Analytics</td><td><span class="tag t-build">BUILD</span></td><td class="num">4</td><td class="num">5</td><td class="num">16</td><td class="num">6</td><td class="num">31</td><td><span class="c-m">Med</span></td></tr>
+    <tr class="total"><td>Phase 4 subtotal</td><td>Remaining scope</td><td class="num">29</td><td class="num">31</td><td class="num">95</td><td class="num">38</td><td class="num">193</td><td></td></tr>
+
+    <tr class="grand"><td>MODULE BUILD TOTAL</td><td>16 modules</td><td class="num">96</td><td class="num">104</td><td class="num">303</td><td class="num">116</td><td class="num">619</td><td></td></tr>
+  </tbody>
+</table>
+
+<!-- =================== 4. PER-MODULE DETAIL =================== -->
+<h2>4. Per-Module Detail (Sub-Feature Breakdown)</h2>
+<p>Each card lists the module's sub-features with Dev days, its dependencies, the key inputs it needs from AAU
+   (ties to Closure §7), and external interfaces. Req/Des/Tst totals repeat the roll-up.</p>
+
+<!-- ---- FOUNDATION ---- -->
+<h3>Phase 0 — Foundation (cross-cutting; gates all later modules)</h3>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">User Management / RBAC <span class="tag t-enh">ENHANCE</span></div>
+    <div class="tot">Req 3 · Des 4 · Dev 10 · Tst 4 · <b>21 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Generalise EFMS 6-user-type / 3-access-level model into system-wide RBAC</td><td class="num">4</td><td>core</td></tr>
+      <tr><td>Role / permission admin UI</td><td class="num">3</td><td></td></tr>
+      <tr><td>SSO / single login, session, password policy</td><td class="num">2</td><td>reuse existing logins</td></tr>
+      <tr><td>Centre / department scoping (users see own domain)</td><td class="num">1</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> none (first build). <b>Inputs:</b> EFMS role/access-level definitions. <b>Feeds:</b> every module.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">EFMS — E-File Movement <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 5 · Des 6 · Dev 18 · Tst 6 · <b>35 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>File lifecycle state machine (Received▸Accessed▸Forwarded▸Processed)</td><td class="num">6</td><td>core rail</td></tr>
+      <tr><td>Access-based routing (3 levels) + forwarding rules</td><td class="num">4</td><td></td></tr>
+      <tr><td>Full movement log + creator lifecycle view</td><td class="num">3</td><td></td></tr>
+      <tr><td>Reporting-officer notification on processing</td><td class="num">2</td><td>uses Notif. svc</td></tr>
+      <tr><td>Reusable workflow API (consumed by Bill/Estab/Leave/Pension)</td><td class="num">3</td><td>key reuse</td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> RBAC. <b>Inputs:</b> EFMS role/access definitions, current file-movement walkthrough. <b>Open point:</b> EFMS vs salary-bill workflow — one engine or two (Closure §6.4).</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Masters &amp; Rule Engine <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 8 · Des 10 · Dev 25 · Tst 8 · <b>51 pd</b> · <span class="c-l">Low conf.</span></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Master CRUD: DDO, Designation, Grade, Fund Type, Budget Head, Discipline, Nature Type, Payscale</td><td class="num">7</td><td></td></tr>
+      <tr><td>Mapping layer (combine masters → valid "setting")</td><td class="num">4</td><td></td></tr>
+      <tr><td>Formula engine (author, store, map formula→head)</td><td class="num">7</td><td>highest risk</td></tr>
+      <tr><td>Deduction-breakup master (LIC/GIS/SSS/IT/loans)</td><td class="num">3</td><td></td></tr>
+      <tr><td>Effective-dating + versioning (past runs recompute on then-rules)</td><td class="num">4</td><td>audit-critical</td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> RBAC, Audit Ledger. <b>Inputs:</b> master-table list, 2–3 real formula definitions. <b>Open point:</b> formula governance — who authors, versioning, mid-year recompute (Closure §6.3). Drives most downstream modules.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Audit Ledger <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 2 · Des 3 · Dev 8 · Tst 3 · <b>16 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Append-only log (who/what/when/why/which sanction)</td><td class="num">4</td><td></td></tr>
+      <tr><td>Maker–checker hook reusable by all modules</td><td class="num">2</td><td></td></tr>
+      <tr><td>Audit query / AG-CAG / RTI export views</td><td class="num">2</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> RBAC. <b>Feeds:</b> every write path. Government-grade auditability.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Notification Service <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 1 · Des 2 · Dev 6 · Tst 2 · <b>11 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Event → notification dispatch (email + in-app)</td><td class="num">4</td><td>PAN+email link</td></tr>
+      <tr><td>Templates + reporting-officer targeting</td><td class="num">2</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> RBAC. <b>Feeds:</b> EFMS, Bill Tracking, Leave, alerts.</p>
+  </div>
+</div>
+
+<!-- ---- PHASE 1 ---- -->
+<h3>Phase 1 — HRMS Integration + Establishment</h3>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">HRMS Integration <span class="tag t-reuse">REUSE</span></div>
+    <div class="tot">Req 5 · Des 5 · Dev 14 · Tst 5 · <b>29 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Employee-master read adapter (PAN = key), no re-keying</td><td class="num">5</td><td>source of truth</td></tr>
+      <tr><td>Consume JSON profiles (qualifications, employment, research) as-is</td><td class="num">4</td><td></td></tr>
+      <tr><td>Department ↔ faculty shared-ID transfer-history reuse</td><td class="num">3</td><td></td></tr>
+      <tr><td>PAN-based de-duplication (one person = one record)</td><td class="num">2</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Masters. <b>Inputs:</b> JSON schema dumps, HRMS API maturity (Closure §6 open). <b>Open point:</b> connector effort depends on existing API maturity.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Establishment <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 5 · Des 5 · Dev 16 · Tst 6 · <b>32 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Transfer workflow (form + EFMS + audit)</td><td class="num">4</td><td></td></tr>
+      <tr><td>Promotion / increment workflow</td><td class="num">4</td><td></td></tr>
+      <tr><td>Appraisal integration — 8 existing formats (APAR/CAS/MACP feed)</td><td class="num">5</td><td>integrate, not rebuild</td></tr>
+      <tr><td>Retirement-due auto-listing (age varies by cadre) → Pension</td><td class="num">3</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> HRMS integ, EFMS, Masters. <b>Inputs:</b> 8 appraisal formats, retirement-age rules by cadre. <b>Open point:</b> scope of 8 formats to integrate (Closure §6).</p>
+  </div>
+</div>
+
+<!-- ---- PHASE 2 ---- -->
+<h3>Phase 2 — Payroll + Leave + GPF (core revenue module)</h3>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Payroll Engine <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 12 · Des 12 · Dev 35 · Tst 14 · <b>73 pd</b> · <span class="c-l">Low conf.</span></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Gross calc (pay + allowances) from masters/formulas</td><td class="num">6</td><td></td></tr>
+      <tr><td>Deduction engine (IT monthly, LIC, GIS, SSS, loans, GPF)</td><td class="num">7</td><td></td></tr>
+      <tr><td>Net + per fund-type / budget-head tagging</td><td class="num">4</td><td>feeds FOC</td></tr>
+      <tr><td>Attendance-linked pay (LWP / absence reduces pay)</td><td class="num">3</td><td></td></tr>
+      <tr><td>Batch corrections</td><td class="num">4</td><td></td></tr>
+      <tr><td>Formula-based increments</td><td class="num">3</td><td></td></tr>
+      <tr><td>Arrears (recompute on effective-dated rules)</td><td class="num">4</td><td>audit-critical</td></tr>
+      <tr><td>Dynamic payslip + annual employee report + salary-difference/scrutiny report</td><td class="num">4</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Masters/Rule engine, HRMS, Leave (LWP), GPF, Audit. <b>Inputs:</b> real payslip, real treasury pay-bill, formula defs, deduction sheets, sample arrear case. <b>Open points:</b> payscale model designation-vs-grade-wise (HLD↔Closure contradiction), IT deduction-only vs full statutory (§6.4). <b>Excludes:</b> TA/DA (separate billing module).</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Leave <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 3 · Des 3 · Dev 10 · Tst 4 · <b>20 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Apply → approve → balance update workflow</td><td class="num">5</td><td>uses EFMS</td></tr>
+      <tr><td>LWP detection → Payroll pay impact</td><td class="num">3</td><td></td></tr>
+      <tr><td>Leave-type masters + balances</td><td class="num">2</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> HRMS, EFMS, Masters. <b>Feeds:</b> Payroll, Establishment.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">GPF <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 4 · Des 4 · Dev 12 · Tst 5 · <b>25 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Subscription (Payroll deduction link)</td><td class="num">3</td><td></td></tr>
+      <tr><td>Advances / withdrawals</td><td class="num">4</td><td></td></tr>
+      <tr><td>Ledger + annual statement</td><td class="num">5</td><td>feeds Pension</td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Payroll, Masters, Audit. <b>Inputs:</b> GPF rules, opening balances. <b>Feeds:</b> Pension.</p>
+  </div>
+</div>
+
+<!-- ---- PHASE 3 ---- -->
+<h3>Phase 3 — Finance + FOC + Bill Tracking (money convergence)</h3>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Finance &amp; Accounts <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 8 · Des 8 · Dev 24 · Tst 9 · <b>49 pd</b> · <span class="c-l">Low conf.</span></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>General ledger + chart of accounts</td><td class="num">7</td><td></td></tr>
+      <tr><td>Fund accounting (per fund type/head)</td><td class="num">5</td><td></td></tr>
+      <tr><td>Postings intake (Payroll, Fee, Store)</td><td class="num">4</td><td>convergence point</td></tr>
+      <tr><td>Treasury interaction</td><td class="num">4</td><td>external</td></tr>
+      <tr><td>Reconciliation (payroll-to-bill, fund-to-spend totals must agree)</td><td class="num">4</td><td>audit evidence</td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Payroll, FOC, Masters. <b>Open point:</b> salary treasury-drawn vs university-drawn → depth of treasury integration (Closure §6).</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">FOC / Budget — Fixation of Ceiling <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 7 · Des 7 · Dev 18 · Tst 7 · <b>39 pd</b> · <span class="c-l">Low conf.</span></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Fund-source intake (govt budget, ICAR/scheme grants, receipts, endowments)</td><td class="num">4</td><td></td></tr>
+      <tr><td>Fund ↔ head ↔ sector + designation ↔ fund mapping</td><td class="num">5</td><td></td></tr>
+      <tr><td>Ceiling fixation + dispersal breakup on receipt</td><td class="num">5</td><td></td></tr>
+      <tr><td>Ceiling-gating check at each spend (salary/store/other)</td><td class="num">4</td><td>gates Bill chain</td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Masters, Finance. <b>Inputs:</b> complete fund-source list, one project's funding-to-disbursal trail. <b>Open point:</b> actual fund-source tracing is the biggest study gap (Closure §6.1).</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Bill Tracking <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 4 · Des 4 · Dev 12 · Tst 5 · <b>25 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Disbursement chain state machine (Accounts→DDO→Budget→Cashier→Treasury)</td><td class="num">6</td><td>reuses EFMS</td></tr>
+      <tr><td>Per-hop FOC ceiling check</td><td class="num">3</td><td></td></tr>
+      <tr><td>Single live status / full-lifecycle view to originator</td><td class="num">3</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> EFMS, FOC, Payroll (bill+PDF). <b>Inputs:</b> real treasury pay-bill, observed approval chain.</p>
+  </div>
+</div>
+
+<!-- ---- PHASE 4 ---- -->
+<h3>Phase 4 — Pension, Store/Asset, ESS, Claims, Loans, Analytics</h3>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Pension <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 6 · Des 6 · Dev 18 · Tst 7 · <b>37 pd</b> · <span class="c-l">Low conf.</span></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Retirement intake from Establishment auto-list</td><td class="num">3</td><td></td></tr>
+      <tr><td>Pension computation (service history + GPF)</td><td class="num">7</td><td></td></tr>
+      <tr><td>Pensioner records + lifecycle</td><td class="num">5</td><td></td></tr>
+      <tr><td>NPS-CRA / Jeevan Pramaan / AG office interfaces</td><td class="num">3</td><td>external</td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Establishment, GPF, Finance, history load. <b>Open point:</b> pension scheme cohorts OPS/NPS/UPS + integrated vs handoff (Closure §6.4).</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Store &amp; Purchase <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 5 · Des 5 · Dev 16 · Tst 6 · <b>32 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Requisition → purchase → receipt → issue workflow</td><td class="num">8</td><td>currently offline</td></tr>
+      <tr><td>FOC fund draw + Finance (AP) posting</td><td class="num">4</td><td></td></tr>
+      <tr><td>Feeds Asset register</td><td class="num">4</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> FOC, Finance, Asset. <b>Inputs:</b> current store/purchase process detail. <b>Note:</b> excluded from initial phase unless explicitly requested (Closure §5).</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Asset &amp; Estate <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 4 · Des 4 · Dev 12 · Tst 5 · <b>25 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Asset register + allocation</td><td class="num">6</td><td></td></tr>
+      <tr><td>Estate / quarters + license-fee deduction → Payroll</td><td class="num">6</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Store, Finance, Payroll (license-fee). </p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Employee Portal (ESS) <span class="tag t-enh">ENHANCE</span></div>
+    <div class="tot">Req 3 · Des 4 · Dev 12 · Tst 5 · <b>24 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Self-service: profile, payslip, leave, claims (logins exist)</td><td class="num">6</td><td>read across modules</td></tr>
+      <tr><td>Document downloads (payslip/annual statement/GPF)</td><td class="num">3</td><td></td></tr>
+      <tr><td>Request submission into workflows</td><td class="num">3</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Payroll, Leave, GPF, Claims. <b>Reuse:</b> existing employee logins.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Claims <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 3 · Des 3 · Dev 9 · Tst 4 · <b>19 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Claim submission → approval workflow</td><td class="num">5</td><td>uses EFMS</td></tr>
+      <tr><td>Payment via bill chain / reimbursement posting</td><td class="num">4</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> EFMS, Finance, Bill Tracking. <b>Note:</b> TA/DA billed here, outside salary engine.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Loans &amp; Advances <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 4 · Des 4 · Dev 12 · Tst 5 · <b>25 pd</b> · <span class="c-l">Low conf.</span></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Loan grant + schedule</td><td class="num">5</td><td></td></tr>
+      <tr><td>Recovery via Payroll deduction</td><td class="num">4</td><td></td></tr>
+      <tr><td>Balance / closure ledger</td><td class="num">3</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> Payroll, Masters. <b>Inputs:</b> sample loan schedule. <b>Open point:</b> full lifecycle vs deduction-line only (Closure §6.4) — scope swings effort.</p>
+  </div>
+</div>
+
+<div class="modcard">
+  <div class="modhead">
+    <div class="nm">Reports / Warehouse / Analytics <span class="tag t-build">BUILD</span></div>
+    <div class="tot">Req 4 · Des 5 · Dev 16 · Tst 6 · <b>31 pd</b></div>
+  </div>
+  <div class="modbody">
+    <table>
+      <tr><th>Sub-feature</th><th class="num">Dev</th><th>Note</th></tr>
+      <tr><td>Warehouse / archive (cumulative history, read-mostly)</td><td class="num">6</td><td></td></tr>
+      <tr><td>Central dashboards (activity across modules, real time)</td><td class="num">5</td><td>portal vision</td></tr>
+      <tr><td>Payroll / fund / pension / HR analytics + AG-CAG/RTI exports</td><td class="num">5</td><td></td></tr>
+    </table>
+    <p class="dep"><b>Depends on:</b> all transactional modules live. </p>
+  </div>
+</div>
+
+<!-- =================== 5. REQUIREMENT COLLECTION PLAN =================== -->
+<h2>5. Requirement Collection Plan (per module)</h2>
+<p>Method per module, run before its build phase opens. Each module's Req-days above assume this sequence completes.</p>
+<table>
+  <tr><th>Step</th><th>What happens</th><th>Output / gate</th></tr>
+  <tr><td>1. Sample study</td><td>Study the real artifacts from Closure §7 (payslip, treasury bill, formula defs, JSON schema, master tables, appraisal formats)</td><td>Annotated as-is process notes</td></tr>
+  <tr><td>2. Legacy code review</td><td>Reverse-engineer incumbent vendor's DB schema, stored procs, batch jobs, report SQL (Closure §7.2 — time-critical)</td><td>Extracted business-logic catalogue (salary rules, rounding, arrears, fixation)</td></tr>
+  <tr><td>3. SME workshops</td><td>Online clarification sessions by domain: HR → Payroll → Finance → IT, resolving Closure §6 open points</td><td>Decision log entries, signed</td></tr>
+  <tr><td>4. Module spec</td><td>Per-module requirement note + acceptance criteria; updates effort if scope shifts</td><td>Module spec → BRD section</td></tr>
+  <tr><td>5. Sign-off gate</td><td>Decision authority confirms before build starts</td><td>Scope locked for that module</td></tr>
+</table>
+<div class="callout warn">
+  <b>Critical-path dependency.</b> Step 2 (legacy vendor handover) is the single biggest schedule risk. The genuine
+  salary/fund/fixation logic lives in incumbent code, not manuals. If handover slips, Payroll, Finance, FOC and Pension
+  requirement collection cannot complete and their build dates move. Flag this to AAU for early formal instruction to the vendor.
+</div>
+
+<h3>Per-module input checklist (ties to Closure §7)</h3>
+<table>
+  <tr><th>Module</th><th>Must-have inputs before build</th></tr>
+  <tr><td>Masters / Payroll</td><td>Real payslip, real treasury pay-bill, 2–3 formula defs, master-table list, deduction sheets (GIS/LIC/SSS), sample arrear case, payscale model decision</td></tr>
+  <tr><td>HRMS / Establishment</td><td>JSON schema dumps, 8 appraisal formats, retirement-age rules by cadre, HRMS API maturity</td></tr>
+  <tr><td>FOC / Finance</td><td>Complete fund-source list, one project's funding-to-disbursal paper trail, treasury-drawn vs university-drawn decision</td></tr>
+  <tr><td>GPF / Loans / Pension</td><td>GPF rules + opening balances, sample loan schedule, pension cohort (OPS/NPS/UPS) decision</td></tr>
+  <tr><td>All</td><td>Module usage-status sheet (live / partial / unused / offline) — confirms what is actually built</td></tr>
+</table>
+
+<!-- =================== 6. PROGRAM-LEVEL EFFORT =================== -->
+<h2>6. Program-Level Effort (added on top of module build)</h2>
+<p>Effort not attributable to a single module. Management adds these to the §3 module total.</p>
+<table>
+  <thead><tr><th>Item</th><th>Basis</th><th class="num">Person-days</th></tr></thead>
+  <tbody>
+    <tr><td>Project / delivery management</td><td>~12% across programme duration</td><td class="num">74</td></tr>
+    <tr><td>Data migration</td><td>Legacy → opening balances (live) + full history (warehouse); PAN de-dup, cleanse, load</td><td class="num">30</td></tr>
+    <tr><td>External integrations</td><td>Treasury, PFMS, Banks (NEFT/RTGS), NPS-CRA, Income Tax/TRACES, AG/Pension, Jeevan Pramaan, ICAR/UGC, payment gateways</td><td class="num">45</td></tr>
+    <tr><td>System / integration testing + UAT support</td><td>Cross-module, reconciliation, parallel-run validation</td><td class="num">25</td></tr>
+    <tr><td>Deployment, go-live, parallel run</td><td>Per phase cutover</td><td class="num">20</td></tr>
+    <tr><td>Training &amp; documentation</td><td>SME/end-user training, admin + user manuals</td><td class="num">15</td></tr>
+    <tr class="total"><td>Program-level subtotal</td><td></td><td class="num">209</td></tr>
+    <tr class="grand"><td>INDICATIVE TOTAL (module 619 + program 209)</td><td>before margin &amp; contingency</td><td class="num">828</td></tr>
+  </tbody>
+</table>
+<div class="callout accent">
+  <b>For management:</b> apply day-rate, overhead and margin to the 828 pd. Recommend a <b>contingency band of +15% to +25%</b>
+  weighted to the <span class="c-l">Low-confidence</span> modules (Masters/Rule engine, Payroll, Finance, FOC, Pension, Loans),
+  pending Closure §6 resolution and legacy-code access.
+</div>
+
+<!-- =================== 7. RESOURCE PROFILE =================== -->
+<h2>7. Indicative Resource Profile by Phase</h2>
+<table>
+  <thead><tr><th>Role</th><th>P0</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th></tr></thead>
+  <tbody>
+    <tr><td>Project Manager</td><td>◐</td><td>◐</td><td>●</td><td>●</td><td>●</td></tr>
+    <tr><td>Business Analyst</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td></tr>
+    <tr><td>Solution / Data Architect</td><td>●</td><td>◐</td><td>◐</td><td>◐</td><td>○</td></tr>
+    <tr><td>Backend Developers (×2–3)</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td></tr>
+    <tr><td>Frontend Developer</td><td>◐</td><td>◐</td><td>●</td><td>◐</td><td>●</td></tr>
+    <tr><td>DBA / Migration Engineer</td><td>◐</td><td>●</td><td>◐</td><td>●</td><td>●</td></tr>
+    <tr><td>Integration Engineer</td><td>○</td><td>○</td><td>◐</td><td>●</td><td>●</td></tr>
+    <tr><td>QA / Tester</td><td>◐</td><td>●</td><td>●</td><td>●</td><td>●</td></tr>
+  </tbody>
+</table>
+<p class="meta">● full engagement · ◐ part engagement · ○ minimal. Exact headcount and calendar duration follow from agreed day-rate and parallelism — management to set.</p>
+
+<!-- =================== 8. DELIVERY MILESTONES =================== -->
+<h2>8. Delivery Milestones &amp; Acceptance</h2>
+<table>
+  <thead><tr><th>Phase</th><th>Delivered</th><th>Exit / acceptance criteria</th></tr></thead>
+  <tbody>
+    <tr><td><b>P0</b> Foundation</td><td>RBAC, EFMS rail, Masters/Rule engine, Audit, Notifications</td><td>A master setting drives a sample calc; a file moves end-to-end with full audit log</td></tr>
+    <tr><td><b>P1</b> HRMS + Estab.</td><td>Employee master integrated (PAN), transfer/promotion/appraisal, JSON reuse</td><td>Employee resolvable by PAN across modules; retirement auto-list works</td></tr>
+    <tr><td><b>P2</b> Payroll core</td><td>Salary engine, deductions, corrections, increments, bill+PDF, Leave, GPF</td><td><b>Parallel run</b> matches existing payslip + treasury bill within tolerance</td></tr>
+    <tr><td><b>P3</b> Finance + Fund</td><td>FOC ceiling control, budget, bill-tracking chain, treasury posting</td><td>Payroll-to-bill &amp; fund-to-spend reconciliation totals agree</td></tr>
+    <tr><td><b>P4</b> Remaining</td><td>Pension, Store, Asset, ESS, Claims, Loans, warehouse/analytics</td><td>Pension computed from history+GPF; dashboards live; RTI/AG export verified</td></tr>
+  </tbody>
+</table>
+
+<!-- =================== 9. RISKS / ASSUMPTIONS / EXCLUSIONS =================== -->
+<h2>9. Risks, Assumptions &amp; Exclusions (effort-affecting)</h2>
+<h3>Risks that move effort</h3>
+<ul>
+  <li><b>Legacy logic lives in incumbent code</b> — handover delay blocks Payroll/Finance/FOC/Pension req-collection (Closure §7.2).</li>
+  <li><b>Payscale model unresolved</b> — Closure says pay-grade-wise, HLD says designation-wise (to confirm). Reshapes Masters + Payroll.</li>
+  <li><b>Module reality unknown</b> — paper-only modules may add or remove scope until usage-status sheet received.</li>
+  <li><b>Fund-source tracing is the stated study gap</b> — FOC effort can swing on actual flow (Closure §6.1).</li>
+  <li><b>External API maturity unknown</b> — treasury/PFMS/NPS integration depth variable.</li>
+  <li><b>Scope boundaries open</b> — IT (deduction vs full statutory), loans (lifecycle vs deduction), pension (integrated vs handoff), EFMS-vs-salary-bill engine count (Closure §6.4).</li>
+</ul>
+<h3>Assumptions (per Closure §5)</h3>
+<ul>
+  <li>HRMS data reasonably complete and usable as primary source; PAN unique per employee.</li>
+  <li>AAU provides data, samples, SMEs and decision authority on time.</li>
+  <li>Salary/fund/formula logic made available for reverse-engineering.</li>
+</ul>
+<h3>Excluded from this effort (unless later agreed)</h3>
+<ul>
+  <li>TA/DA inside salary engine (separate billing — see Claims).</li>
+  <li>Offline Store/Inventory in initial phase unless explicitly requested.</li>
+  <li>Modules confirmed unused — not rebuilt by default.</li>
+  <li>Hardware, network/connectivity, third-party licences.</li>
+</ul>
+
+<!-- =================== 10. NEXT STEPS =================== -->
+<h2>10. Next Steps</h2>
+<ol>
+  <li>Management applies rate, overhead, margin and contingency to the §6 total → format cost estimate.</li>
+  <li>Collect Closure §7 inputs; issue formal vendor-handover instruction (time-critical).</li>
+  <li>Run domain SME workshops; close §6 open points into the decision log.</li>
+  <li>Convert this roadmap into the BRD with locked scope &amp; phasing; revise effort where scope changed.</li>
+</ol>
+
+<footer>
+  AAU IUMS — Module Delivery Roadmap · Internal effort basis for cost estimation · Draft v0.1 · 11 June 2026<br>
+  Indicative pre-BRD effort · Subject to Closure §6 clarification &amp; legacy-code access · Not a price or commitment
+</footer>
+
+</div>
+</body>
+</html>

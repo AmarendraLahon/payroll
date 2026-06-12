@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap 2 — Payroll + Native HRMS + Admin Platform</title>
+<style>
+:root{
+  --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+  --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+  --muted:#5a6a5a; --line:#dde8dd;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#fafdfa; color:var(--ink);
+  font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55;
+  padding:32px 18px 80px;
+}
+.page{ max-width:920px; margin:0 auto; background:#fff; border:1px solid #e6efe6;
+  border-radius:12px; padding:38px 46px 52px; box-shadow:0 2px 14px rgba(27,94,32,.06); }
+h1{ color:var(--green); font-size:28px; line-height:1.2; letter-spacing:-.5px;
+  margin:.1em 0 .5em; border-bottom:3px solid var(--accent); padding-bottom:.35em; }
+h2{ color:var(--green); font-size:20px; margin:1.9em 0 .6em;
+  border-bottom:2px solid #e0ece0; padding-bottom:.25em; }
+h3{ color:var(--green2); font-size:16px; margin:1.5em 0 .5em; }
+p,li{ font-size:14.5px; }
+a{ color:var(--green2); }
+strong{ color:var(--green); }
+em{ color:var(--green2); font-style:italic; }
+code{ background:#eef4ee; border:1px solid #dce8dc; border-radius:4px;
+  padding:.08em .4em; font-family:Consolas,"Courier New",monospace; font-size:.88em; color:#37474f; }
+pre{ background:#10240f; color:#d7f0d0; border-radius:8px; padding:16px 18px;
+  overflow:auto; font-size:13px; line-height:1.5; }
+pre code{ background:none; border:none; color:inherit; padding:0; font-size:13px; }
+hr{ border:none; border-top:1px solid var(--line); margin:2em 0; }
+ul,ol{ padding-left:24px; }
+li{ margin:.28em 0; }
+blockquote{
+  margin:1.1em 0; padding:11px 16px; background:#fffdf5;
+  border-left:5px solid var(--accent); border-radius:6px; color:#5a4a10; }
+blockquote p{ margin:.35em 0; color:#4a3d0e; }
+blockquote strong{ color:var(--green); }
+blockquote code{ background:#fdf3d4; border-color:#f0e2a8; }
+table{ border-collapse:collapse; width:100%; margin:1.1em 0; font-size:13px; }
+th{ background:var(--green); color:#fff; text-align:left; padding:8px 10px; font-weight:600; font-size:12.5px; }
+td{ padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td{ background:#f6faf6; }
+table code{ font-size:.85em; }
+.docmeta{ color:var(--muted); font-size:12.5px; }
+.footer-note{ color:#8a9a8a; font-size:11.5px; text-align:center; margin-top:40px;
+  border-top:1px solid #e0ece0; padding-top:14px; }
+@media print{
+  body{ background:#fff; padding:0; }
+  .page{ border:none; box-shadow:none; border-radius:0; padding:0; }
+  table,blockquote,pre{ break-inside:avoid; }
+  h2{ break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>Roadmap 2 — Payroll + Native HRMS + Admin Platform</h1>
+<p><strong>Project:</strong> Assam Agricultural University (AAU) — Integrated University Management System
+<strong>Option:</strong> 2 of 3 · <em>Own your people data, not just payroll</em>
+<strong>Prepared by:</strong> Bohniman Systems Private Limited (BSPL)
+<strong>Version:</strong> 0.1 (Draft) · <strong>Date:</strong> 12 June 2026</p>
+<blockquote>
+<p><strong>In one line:</strong> Everything in Roadmap 1, plus a <strong>natively rebuilt HRMS</strong> — employee master, establishment (transfer/promotion/pay-fixation/increment) and appraisal — so AAU owns its people data end-to-end and feeds payroll directly.</p>
+</blockquote>
+<p><strong>Built on:</strong> Spring Boot + React + PostgreSQL (Spring Security app-side RBAC, Flowable workflow, RabbitMQ, JasperReports, Redis), containerised on AAU's in-house servers. Full stack in the <em>Options Overview</em>.</p>
+<hr>
+<h2>1. What this adds over Roadmap 1</h2>
+<p>Roadmap 1 integrates the existing HRMS read-only. Roadmap 2 <strong>rebuilds HRMS natively</strong> on the new stack and makes it the single source of truth for "who is an employee". That removes dependence on the legacy HRMS, brings establishment workflows online, and lets promotions/increments feed payroll automatically instead of being keyed in by hand.</p>
+<pre><code>  Roadmap 1 scope  +  HRMS (rebuild)  +  Establishment  +  Appraisal integration
+</code></pre>
+<hr>
+<h2>2. Goal — what the University gets</h2>
+<p>Everything in Roadmap 1, <strong>plus</strong>:</p>
+<ul>
+<li>A <strong>native HRMS</strong> — employee master keyed on PAN, qualifications/employment/research consumed as-is, transfer history, the single source of truth all modules read from.</li>
+<li><strong>Establishment workflows online</strong> — transfer, promotion, pay-fixation on the new payscale, increment workflow, basic seniority — feeding payroll <strong>automatically</strong> (no manual re-entry).</li>
+<li><strong>Appraisal integration</strong> — the existing 8 appraisal formats and a <strong>self-appraisal (APAR) workflow</strong> drive promotion / CAS-MACP eligibility.</li>
+<li><strong>Retirement auto-listing</strong> — employees due for retirement (age varies by cadre) are surfaced automatically.</li>
+<li><strong>Standard report framework</strong> — <em>employees retiring in next 6 / 12 / N months</em>, increment-due, probation/contract-ending, appraisal-due lists — parameterised by college/dept/cadre, scheduled, exportable. Native HRMS owns DOB + cadre rules, so these are <strong>exact</strong> (no dependency on legacy systems).</li>
+<li><strong>Digital Service Book + one-click transfer</strong> — each employee's complete service history (postings, promotions, fixations, increments, leave, GPF, verification entries) is a live record. When faculty transfer between AAU's colleges / KVKs / DDOs, the <strong>whole service book moves as a custody change</strong> — no physical book, no re-keying, balances preserved. <em>(This solves the client's stated transfer pain point.)</em></li>
+<li><strong>One identity across HR and payroll</strong> — PAN-based de-duplication; a promotion changes pay with a full audit trail.</li>
+</ul>
+<p><strong>Still integrated read-only (not rebuilt here):</strong> FOC fund control and Finance &amp; Accounts — see Roadmap 3 to own these.</p>
+<hr>
+<h2>3. Scope — modules built</h2>
+<p>All Roadmap 1 modules, <strong>plus</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Module</th>
+<th>Build state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identity &amp; HR</strong></td>
+<td>HRMS (employee master, PAN key, JSON profiles, transfer history)</td>
+<td>Rebuild</td>
+</tr>
+<tr>
+<td><strong>Career</strong></td>
+<td>Establishment (transfer, promotion, pay-fixation, increment, seniority)</td>
+<td>Build</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Service Book</strong> — complete service-history record + <strong>inter-DDO service-book transfer</strong></td>
+<td>Build</td>
+</tr>
+<tr>
+<td></td>
+<td>Appraisal — 8 formats + self-appraisal (APAR) workflow, CAS/MACP eligibility feed</td>
+<td>Build</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Employee onboarding &amp; identity reconciliation (native).</strong> With HRMS native, the <strong>PAN-complete payroll data (from the legacy payroll DB) seeds the HRMS employee master directly</strong> — no external verification API needed.
+- <strong>Existing employees</strong> — auto-matched on the key hierarchy (PAN → legacy emp-ID → email+mobile → fuzzy name+DOB); low-confidence → <strong>admin match-review</strong>.
+- <strong>In payroll, not in HRMS</strong> — <strong>HRMS registration form prefilled from payroll data → HRMS admin verifies → onboarded</strong>.
+- <strong>New joiner</strong> — fills the HRMS form (no autofill, no prior data) → HRMS admin verifies/approves → record <strong>auto-propagates to payroll</strong> → the respective user creates foundation data (payscale mapping, etc.).
+- Every new / auto-created record is <strong>draft, not payable until maker-checker approval</strong>. Internal <strong>Employee ID is the primary key</strong>; PAN mandatory at onboarding; email/mobile retained to bridge the legacy in-house apps.</p>
+<p><strong>Input-boundary note (modules deferred to next phase).</strong> Leave, Attendance and the full GPF/Loan ledgers still come later, so — as in Roadmap 1 — <strong>LWP/attendance is fed to payroll by periodic import/manual sheet</strong>, and <strong>GPF/Loans run as deduction lines with minimal recovery-balance tracking</strong> until the full ledger modules arrive. (HRMS itself is now native, so employee data is no longer a manual feed.)</p>
+</blockquote>
+<hr>
+<h2>4. Deployment plan</h2>
+<p>Six overlapping waves over an indicative <strong>11–13 month</strong> window.</p>
+<table>
+<thead>
+<tr>
+<th>Wave</th>
+<th>Months</th>
+<th>Delivers</th>
+<th>Exit / acceptance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>W0 — Discovery &amp; Foundation</strong></td>
+<td>M1–M2</td>
+<td>Legacy reverse-engineering (payroll + HRMS); Masters &amp; Rule Engine, RBAC, Audit, Notification, Workflow rail</td>
+<td>Master setting drives a sample calc; legacy logic catalogued</td>
+</tr>
+<tr>
+<td><strong>W1 — HRMS rebuild</strong></td>
+<td>M2–M5</td>
+<td>Employee master (PAN), JSON profiles, transfer history; HRMS data migration</td>
+<td>Every employee resolvable by PAN across modules</td>
+</tr>
+<tr>
+<td><strong>W2 — Payroll core</strong></td>
+<td>M4–M7</td>
+<td>Payroll engine, deductions, corrections, increments, arrears, payslip &amp; reports</td>
+<td>Test month matches a real legacy payslip</td>
+</tr>
+<tr>
+<td><strong>W3 — Establishment &amp; Appraisal</strong></td>
+<td>M6–M9</td>
+<td>Transfer/promotion/pay-fixation/increment/seniority; appraisal + self-appraisal workflow, eligibility feed</td>
+<td>Promotion/increment flows feed payroll automatically</td>
+</tr>
+<tr>
+<td><strong>W4 — Bill, platform &amp; integration</strong></td>
+<td>M7–M10</td>
+<td>Bill generation + tracking; treasury/bank/IT interfaces; Admin/Monitoring Portal; integrate remaining existing apps</td>
+<td>Salary bill flows to treasury; existing apps on one portal</td>
+</tr>
+<tr>
+<td><strong>W5 — Parallel run &amp; go-live</strong></td>
+<td>M9–M13</td>
+<td>Full parallel run, UAT, cutover, training, go-live, stabilisation</td>
+<td>Full salary cycle matches legacy; old payroll + HRMS dependence retired</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Parallel run begins ~M9.</strong></p>
+<hr>
+<h2>5. Man-days required</h2>
+<h3>Module build</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Roadmap 1 module subtotal (incl. onboarding/reconciliation)</em></td>
+<td style="text-align: right;"><em>317</em></td>
+</tr>
+<tr>
+<td>HRMS (rebuild) — incl. <strong>native registration + maker-checker onboarding</strong></td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr>
+<td>Establishment (transfer, promotion, fixation, increment, seniority) + <strong>Service Book &amp; inter-DDO transfer</strong></td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr>
+<td>Appraisal (8 formats + self-appraisal workflow)</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>422</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Programme-level</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project / delivery management (~12%)</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr>
+<td>Data migration (payroll + <strong>HRMS master &amp; history</strong>; opening balances)</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr>
+<td>External integrations (treasury, bank, IT/TRACES)</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>System/integration testing + UAT + parallel run</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td>Deployment, go-live, cutover</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td>Training &amp; documentation</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td><strong>Programme subtotal</strong></td>
+<td style="text-align: right;"><strong>169</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Roadmap 2 total</strong></td>
+<td style="text-align: right;"><strong>~591</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Effort is build only — person-days, pre-BRD. Day-rate, overhead, margin and contingency (+15–25% recommended) are set by management to produce the commercial figure.</p>
+</blockquote>
+<hr>
+<h2>6. Requirements needed from client</h2>
+<p>All Roadmap 1 inputs (§6 there: old-payroll analysis, API contracts, samples, decisions, people), <strong>plus</strong> the HR inputs below.</p>
+<h3>6.1 HR policy &amp; service rules</h3>
+<ul>
+<li><strong>HR policy manual / service rules</strong> — recruitment, confirmation, seniority, cadre structure.</li>
+<li><strong>Transfer &amp; posting policy</strong> — who can be transferred where, approval chain.</li>
+<li><strong>Promotion &amp; pay-fixation rules</strong> — including <strong>CAS / MACP</strong> eligibility criteria and the pay-fixation method on the new payscale.</li>
+<li><strong>Designation → payscale mapping rules</strong> (resolves the designation-vs-grade open point).</li>
+<li><strong>Retirement-age rules by cadre/designation.</strong></li>
+</ul>
+<blockquote>
+<p><strong>If no HR manual exists.</strong> Establishment and appraisal workflows can only be built against documented rules. If AAU has no consolidated HR policy / service rules / appraisal rubric and asks BSPL to <strong>author it</strong>, we must engage an <strong>HR domain specialist</strong> to draft and validate the policy. This adds cost and time to Roadmap 2 and is <strong>not included</strong> in the effort above — it is sized separately once the gap is confirmed.</p>
+</blockquote>
+<h3>6.2 Appraisal / self-appraisal (suggested set)</h3>
+<p>Since AAU's appraisal drives promotion eligibility, we need the rules to build the workflow:
+- The <strong>8 existing appraisal formats</strong> (filled examples).
+- <strong>Self-appraisal (APAR) rules</strong> — who self-appraises, the reporting/reviewing-officer chain, scoring/grading rubric, and the cycle (annual, mid-year).
+- <strong>Eligibility logic</strong> — how appraisal scores + service translate to CAS/MACP/promotion eligibility.
+- Any <strong>API to the existing appraisal system</strong>, if it is to be consumed rather than fully rebuilt.</p>
+<h3>6.3 HRMS data</h3>
+<ul>
+<li><strong>JSON schema dumps</strong> (qualification, employment, research profiles).</li>
+<li>Department ↔ faculty shared-ID mapping and transfer-history extract.</li>
+<li>Employee master extract for migration + PAN de-duplication.</li>
+<li><strong>Service Book</strong> — existing format/fields, the <strong>service-verification rules</strong> (who attests, how often), and the <strong>inter-DDO transfer procedure</strong> (who hands over, who accepts). The service book is the pension foundation, so completeness of the migrated history matters.</li>
+</ul>
+<h3>6.4 People &amp; access</h3>
+<ul>
+<li>HR SMEs and Establishment SMEs in addition to Payroll/Accounts/IT.</li>
+<li>Decision authority for HR-policy sign-off.</li>
+</ul>
+<h3>6.5 System scale &amp; environment</h3>
+<ul>
+<li><strong>Scale figures</strong> — employee, pensioner, department and KVK/centre counts, and monthly payroll/transaction volume.</li>
+<li><strong>In-house server &amp; infrastructure</strong> — AAU-provided host environment, OS/DB access and deployment credentials.</li>
+</ul>
+<hr>
+<h2>7. Support, warranty &amp; ownership</h2>
+<ul>
+<li><strong>Source-code ownership</strong> — AAU owns the full source code, database schema and documentation on final acceptance. No vendor lock-in.</li>
+<li><strong>Warranty</strong> — defect-fix warranty (indicatively 6 months) post go-live at no extra cost.</li>
+<li><strong>Support / AMC</strong> — optional Annual Maintenance Contract after warranty; priced separately by management.</li>
+<li><strong>Knowledge transfer</strong> — handover, source walkthrough and runbooks so AAU IT can run and extend the system.</li>
+<li><strong>Hosting</strong> — deployed on AAU's in-house server and infrastructure; BSPL handles deployment, containerisation and configuration.</li>
+</ul>
+<hr>
+<h2>8. Modules developed after go-live (next phase)</h2>
+<p>Independent modules delivered as one or more waves <strong>after</strong> the Roadmap 2 go-live — none block it. Estimated build effort (person-days, indicative, pre-BRD):</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Est. person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESS Portal (self-service: profile, payslip, leave, claims)</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Attendance</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>Leave</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>GPF — full ledger</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Loans &amp; Advances — full lifecycle</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Pension &amp; Retirement</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td>Asset &amp; Estate</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>Store &amp; Purchase</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td>Deep Analytics / Warehouse</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>AI assists (optional starter bundle — see <code>AI_Assist_Enhancement.md</code>)</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>259</strong></td>
+</tr>
+<tr>
+<td><strong>Programme-level (~20%: PM, testing, deployment, training)</strong></td>
+<td style="text-align: right;"><strong>51</strong></td>
+</tr>
+<tr>
+<td><strong>Next-phase total</strong></td>
+<td style="text-align: right;"><strong>~310</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>
+- <strong>GPF / Loans</strong> figures are the <strong>delta</strong> over the deduction-line already built in Roadmap 2.
+- <strong>Pension</strong> is most efficient here — it reuses the <strong>native HRMS service history</strong> built in this roadmap (no extra HRMS-data work, unlike Roadmap 1).
+- <strong>AI assists</strong> is optional / à-la-carte; the 38 pd is the no-GPU classic-ML starter bundle. Full menu (~87 pd) + deployment options in <code>AI_Assist_Enhancement.md</code>.
+- Sequence into smaller waves by priority; effort is scale-dependent.</p>
+<hr>
+<h2>9. Risks, assumptions, exclusions</h2>
+<ul>
+<li><strong>Risk:</strong> legacy handover (payroll <strong>and</strong> HRMS) — #1 schedule risk.</li>
+<li><strong>Risk:</strong> appraisal scope — the 8 formats can vary in complexity; eligibility rules must be confirmed before build.</li>
+<li><strong>Risk:</strong> HRMS data quality — migration and de-duplication effort depends on it.</li>
+<li><strong>Risk:</strong> effort assumes a mid-size establishment — scale figures (above) may adjust it.</li>
+<li><strong>Assumption (onboarding effort):</strong> BSPL builds the reconciliation <strong>tools</strong> (match-review screen, prefilled registration + maker-checker onboarding); the <strong>manual data-matching and cleanup labour</strong> — resolving low-confidence mismatches, filling missing PANs, verifying records — is <strong>AAU-side effort</strong>, not in the build figures above.</li>
+<li><strong>Assumption:</strong> hosting on AAU's in-house server/infra; HR policy and appraisal rules documented and available; PAN unique per employee.</li>
+<li><strong>Excludes:</strong> FOC and Finance (integrated only — see Roadmap 3); hardware, network, third-party licences; next-phase modules.</li>
+</ul>
+<hr>
+<p><em>Indicative, pre-BRD. Subject to BRD confirmation and legacy-code access. Not a price or commitment.</em></p>
+</div>
+</body>
+</html>

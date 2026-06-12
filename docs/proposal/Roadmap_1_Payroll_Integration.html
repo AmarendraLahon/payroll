@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap 1 — Payroll Replacement + Integration Platform</title>
+<style>
+:root{
+  --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+  --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+  --muted:#5a6a5a; --line:#dde8dd;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#fafdfa; color:var(--ink);
+  font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55;
+  padding:32px 18px 80px;
+}
+.page{ max-width:920px; margin:0 auto; background:#fff; border:1px solid #e6efe6;
+  border-radius:12px; padding:38px 46px 52px; box-shadow:0 2px 14px rgba(27,94,32,.06); }
+h1{ color:var(--green); font-size:28px; line-height:1.2; letter-spacing:-.5px;
+  margin:.1em 0 .5em; border-bottom:3px solid var(--accent); padding-bottom:.35em; }
+h2{ color:var(--green); font-size:20px; margin:1.9em 0 .6em;
+  border-bottom:2px solid #e0ece0; padding-bottom:.25em; }
+h3{ color:var(--green2); font-size:16px; margin:1.5em 0 .5em; }
+p,li{ font-size:14.5px; }
+a{ color:var(--green2); }
+strong{ color:var(--green); }
+em{ color:var(--green2); font-style:italic; }
+code{ background:#eef4ee; border:1px solid #dce8dc; border-radius:4px;
+  padding:.08em .4em; font-family:Consolas,"Courier New",monospace; font-size:.88em; color:#37474f; }
+pre{ background:#10240f; color:#d7f0d0; border-radius:8px; padding:16px 18px;
+  overflow:auto; font-size:13px; line-height:1.5; }
+pre code{ background:none; border:none; color:inherit; padding:0; font-size:13px; }
+hr{ border:none; border-top:1px solid var(--line); margin:2em 0; }
+ul,ol{ padding-left:24px; }
+li{ margin:.28em 0; }
+blockquote{
+  margin:1.1em 0; padding:11px 16px; background:#fffdf5;
+  border-left:5px solid var(--accent); border-radius:6px; color:#5a4a10; }
+blockquote p{ margin:.35em 0; color:#4a3d0e; }
+blockquote strong{ color:var(--green); }
+blockquote code{ background:#fdf3d4; border-color:#f0e2a8; }
+table{ border-collapse:collapse; width:100%; margin:1.1em 0; font-size:13px; }
+th{ background:var(--green); color:#fff; text-align:left; padding:8px 10px; font-weight:600; font-size:12.5px; }
+td{ padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td{ background:#f6faf6; }
+table code{ font-size:.85em; }
+.docmeta{ color:var(--muted); font-size:12.5px; }
+.footer-note{ color:#8a9a8a; font-size:11.5px; text-align:center; margin-top:40px;
+  border-top:1px solid #e0ece0; padding-top:14px; }
+@media print{
+  body{ background:#fff; padding:0; }
+  .page{ border:none; box-shadow:none; border-radius:0; padding:0; }
+  table,blockquote,pre{ break-inside:avoid; }
+  h2{ break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>Roadmap 1 — Payroll Replacement + Integration Platform</h1>
+<p><strong>Project:</strong> Assam Agricultural University (AAU) — Integrated University Management System
+<strong>Option:</strong> 1 of 3 · <em>Fastest delivery — solve the payroll problem first</em>
+<strong>Prepared by:</strong> Bohniman Systems Private Limited (BSPL)
+<strong>Version:</strong> 0.1 (Draft) · <strong>Date:</strong> 12 June 2026</p>
+<blockquote>
+<p><strong>In one line:</strong> Rebuild the existing payroll <em>exactly as it works today</em> on a modern, integrable technology stack, add a single Admin/Monitoring platform, and connect all existing in-house applications into it for unified reporting — in the shortest possible time.</p>
+</blockquote>
+<p><strong>Built on:</strong> Spring Boot + React + PostgreSQL (Spring Security app-side RBAC, Flowable workflow, RabbitMQ, JasperReports, Redis), containerised on AAU's in-house servers. Full stack in the <em>Options Overview</em>.</p>
+<hr>
+<h2>1. The problem this solves</h2>
+<p>AAU runs its payroll on an <strong>outsourced .NET system</strong> that is:
+- built on <strong>old technology</strong>,
+- <strong>expensive</strong> to keep running, and
+- <strong>cannot integrate</strong> with AAU's in-house applications.</p>
+<p>Roadmap 1 replaces only that payroll — like-for-like in function — on a new stack that <strong>integrates cleanly</strong>, and puts a control platform over everything AAU already has. No re-design of payroll rules, so delivery is fast and risk is contained.</p>
+<hr>
+<h2>2. Goal — what the University gets</h2>
+<p>When Roadmap 1 is live, AAU will be able to:</p>
+<ul>
+<li><strong>Run the full monthly salary cycle</strong> on the new system — gross (pay + allowances), all deductions (IT, LIC, GIS, SSS, loans, GPF, license-fee), net per fund/budget-head, batch corrections, formula increments, arrears.</li>
+<li>Produce <strong>dynamic payslips, the annual employee report, and the salary-difference/scrutiny report</strong> — matching today's outputs.</li>
+<li>Generate the <strong>treasury salary bill (PDF)</strong> and <strong>track it end-to-end</strong> through the disbursement chain (Accounts → DDO → Budget → Cashier → Treasury), with a single live status per bill.</li>
+<li><strong>Stop paying the existing .NET payroll vendor</strong> — the new payroll is owned by AAU and built to integrate.</li>
+<li>See <strong>one Admin / Monitoring portal</strong> with live dashboards, alerts, file/bill lifecycle tracking, audit views and payroll analytics.</li>
+<li>View <strong>all existing in-house applications in one place</strong> — HRMS, Recruitment, Academic, Exam, Fee Collection, Employee Portal, User Management, EFMS, Notices — surfaced read-only with reports, linked by <strong>PAN (with email/mobile fallback)</strong>.</li>
+<li>Give the HRMS team a <strong>PAN-keyed employee verification API</strong> to map and cleanse their records against the authoritative, PAN-complete payroll data (see onboarding note below).</li>
+<li>Pull <strong>standard parameterised reports</strong> — <em>employees retiring in next 6 / 12 / N months</em>, increment-due, probation/contract-ending lists — filtered by college/dept/cadre, exported to PDF/Excel, scheduled. <em>(Retirement/cadre reports depend on the legacy HRMS exposing DOB + retirement-age via API; reliable natively from Roadmap 2.)</em></li>
+<li>Rely on <strong>government-grade auditability</strong> — append-only audit log, effective-dated rules, AG/CAG &amp; RTI-ready exports.</li>
+</ul>
+<p><strong>Explicitly <em>not</em> in Roadmap 1</strong> (kept as-is and integrated): HRMS rebuild, FOC fund control, Finance &amp; Accounts. These are integrated for reporting only — see Roadmaps 2 and 3 to own them natively.</p>
+<blockquote>
+<p><strong>Service-book transfer pain point — not solved in Roadmap 1.</strong> Because HRMS stays legacy (read-only), the <strong>faculty service book and its inter-DDO transfer</strong> remain in the existing system — still effectively manual. This is solved from <strong>Roadmap 2</strong> onward, where HRMS + Establishment are native and the service book transfers as a digital custody change.</p>
+</blockquote>
+<hr>
+<h2>3. Scope — modules built</h2>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Module</th>
+<th>Build state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Foundation</strong></td>
+<td>Masters &amp; Rule Engine (DDO, designation, grade, fund type, budget head, payscale, formulas — effective-dated)</td>
+<td>Build</td>
+</tr>
+<tr>
+<td></td>
+<td>RBAC / User Management — <strong>app-side</strong> (one role per user, permissions, <strong>temporary/delegated grants with expiry</strong> = delegation-of-powers, dept/centre scoping, maker-checker; custom React login)</td>
+<td>Build</td>
+</tr>
+<tr>
+<td></td>
+<td>Audit Ledger</td>
+<td>Build</td>
+</tr>
+<tr>
+<td></td>
+<td>Notification Service</td>
+<td>Build</td>
+</tr>
+<tr>
+<td></td>
+<td>Workflow / File-movement rail</td>
+<td>Build</td>
+</tr>
+<tr>
+<td><strong>Payroll</strong></td>
+<td>Payroll engine (rebuilt as-is on new stack)</td>
+<td>Rebuild</td>
+</tr>
+<tr>
+<td></td>
+<td>Bill Tracking (generation + disbursement-chain state machine)</td>
+<td>Build</td>
+</tr>
+<tr>
+<td><strong>Platform</strong></td>
+<td>Admin / Monitoring Portal (dashboards, alerts, <strong>parameterised report framework</strong> — retirement-due / increment-due / contract-ending and similar "due in next N months" lists)</td>
+<td>Build</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>Read-only connectors to all existing in-house apps + report surfacing</td>
+<td>Integrate</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Access control note.</strong> Authorization is built <strong>app-side</strong> (Spring Security + RBAC tables in PostgreSQL), not in Keycloak. One role per user; <strong>temporary permissions</strong> are time-bound grant rows (<code>valid_from</code>/<code>valid_to</code>) that auto-expire and are logged to the Audit Ledger — the digital form of <em>delegation of powers</em>. This keeps full control of the login UI and avoids Keycloak's theming limits. Keycloak is added later only if external/AD/state-SSO federation is required (authentication only).</p>
+<p><strong>Employee onboarding &amp; identity reconciliation.</strong> Our migrated payroll master is <strong>PAN-complete</strong> — taken from the existing payroll DB at deployment. The legacy HRMS is the incomplete side (some employees missing, some without PAN), and the in-house apps link by <strong>email/mobile</strong>, not PAN. Approach for Roadmap 1 (HRMS stays legacy, we don't change its UI):
+- <strong>We expose a PAN-keyed employee verification / lookup API</strong> (fallback keys: email + mobile, legacy employee-ID). The HRMS team uses it to map and cleanse their records and fill missing PANs against our authoritative payroll data.
+- <strong>Existing employees</strong> — matched on a key hierarchy (<strong>PAN → legacy emp-ID → email+mobile → fuzzy name+DOB</strong>); low-confidence matches go to an <strong>admin match-review screen</strong> for manual rectification.
+- <strong>In payroll, not in HRMS</strong> — kept in our payroll master; the HRMS team onboards them on their side via the API.
+- <strong>New joiner</strong> — admin creates in our payroll (PAN captured); legacy HRMS onboarding stays their process. Record is <strong>draft, not payable until verified</strong> (maker-checker).
+- Internal <strong>Employee ID is the primary key</strong>; PAN / email / mobile / legacy-IDs are alternate identifiers. "PAN-pending" applies only to HRMS-only records and blocks statutory/pension actions only — <strong>never monthly pay</strong> (payroll PAN is complete).</p>
+<p><strong>Input-boundary note (modules deferred to next phase).</strong> Since Leave, Attendance and the full GPF/Loan ledgers come later, payroll is fed exactly as the old system is fed today:
+- <strong>Leave / Attendance / LWP</strong> — supplied to payroll as a <strong>periodic import or manual sheet</strong> until the live modules land.
+- <strong>GPF / Loans</strong> — payroll holds the <strong>deduction line plus the minimal recovery schedule / running balance</strong> needed to deduct (loan EMI schedule, GPF subscription). The full ledger, passbook, annual statement and advance workflow arrive in the next phase and take over balance ownership.</p>
+</blockquote>
+<hr>
+<h2>4. Deployment plan</h2>
+<p>Five overlapping waves over an indicative <strong>7–9 month</strong> window. Calendar is governed by legacy reverse-engineering, parallel run and sign-off gates — not raw coding speed.</p>
+<table>
+<thead>
+<tr>
+<th>Wave</th>
+<th>Months</th>
+<th>Delivers</th>
+<th>Exit / acceptance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>W0 — Discovery &amp; Foundation</strong></td>
+<td>M1–M2</td>
+<td>Reverse-engineer old .NET payroll (schema, stored procs, batch jobs, report SQL); Masters &amp; Rule Engine, RBAC, Audit, Notification, Workflow rail</td>
+<td>A master setting drives a sample calc; legacy salary logic catalogued</td>
+</tr>
+<tr>
+<td><strong>W1 — Payroll core</strong></td>
+<td>M2–M4</td>
+<td>Payroll engine (gross, deductions, net, corrections, increments, arrears, payslip, annual &amp; scrutiny reports)</td>
+<td>A test month computes to match a real legacy payslip</td>
+</tr>
+<tr>
+<td><strong>W2 — Bill &amp; external interfaces</strong></td>
+<td>M3–M5</td>
+<td>Bill generation (treasury PDF) + Bill Tracking chain; treasury / bank / IT-TRACES interfaces</td>
+<td>A salary bill flows Accounts→…→Treasury with live status</td>
+</tr>
+<tr>
+<td><strong>W3 — Platform &amp; integration</strong></td>
+<td>M4–M6</td>
+<td>Admin/Monitoring Portal; read-only connectors to all existing in-house apps; reports/dashboards</td>
+<td>Existing apps visible on one portal; payroll dashboards live</td>
+</tr>
+<tr>
+<td><strong>W4 — Parallel run &amp; go-live</strong></td>
+<td>M5–M9</td>
+<td>Full parallel run, UAT, data cutover, training, go-live, stabilisation</td>
+<td>A full salary cycle on the new system matches legacy within tolerance; old .NET payroll retired</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Parallel run begins ~M5</strong> — new and old payroll run side by side until totals agree, then cutover. This de-risks the switch.</p>
+<hr>
+<h2>5. Man-days required</h2>
+<p>Build effort only — excludes day-rate, leave and margin (management adds those).</p>
+<h3>Module build</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Masters &amp; Rule Engine</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr>
+<td>RBAC / User Management</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr>
+<td>Audit Ledger</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td>Notification Service</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td>Workflow / File-movement rail</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>Payroll engine (as-is rebuild)</td>
+<td style="text-align: right;">73</td>
+</tr>
+<tr>
+<td>Bill Tracking (gen + chain)</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>Admin / Monitoring Portal</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr>
+<td>Integration connectors (all existing apps + reports)</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>Employee onboarding &amp; identity reconciliation (PAN-verification API + match-review + admin-create)</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>317</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Programme-level</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project / delivery management (~12%)</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td>Data migration (legacy payroll → new; opening balances; deduction/loan balances)</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td>External integrations (treasury, bank/NEFT-RTGS, IT/TRACES)</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>System/integration testing + UAT + parallel run</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>Deployment, go-live, cutover</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td>Training &amp; documentation</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td><strong>Programme subtotal</strong></td>
+<td style="text-align: right;"><strong>144</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Roadmap 1 total</strong></td>
+<td style="text-align: right;"><strong>~461</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Effort is build only — person-days, pre-BRD. Day-rate, overhead, margin and contingency (+15–25% recommended) are set by management to produce the commercial figure.</p>
+</blockquote>
+<hr>
+<h2>6. Requirements needed from client</h2>
+<p>Roadmap 1 is fast <em>only if</em> these are provided early. The single biggest schedule risk is delayed legacy-code handover.</p>
+<h3>6.1 Old payroll system — full analysis (time-critical)</h3>
+<p>Formal instruction to the <strong>incumbent .NET vendor</strong> to release:
+- Database schema / ER diagrams
+- Stored procedures and scheduled/batch jobs
+- Report SQL and calculation logic
+- Integration specifications</p>
+<blockquote>
+<p>The genuine salary rules (rounding, arrears, fixation) live in this code, not in manuals. Securing it early is essential.</p>
+</blockquote>
+<h3>6.2 API contracts of existing in-house apps</h3>
+<p>For every app to be integrated (HRMS, Recruitment, Academic, Exam, Fee, Employee Portal, User Management, EFMS, Notices):
+- API documentation / contracts / endpoint specs, <strong>or</strong> read-replica / export access where no API exists
+- Authentication method and data schema</p>
+<h3>6.3 Real samples (filled, not blank templates)</h3>
+<ul>
+<li>A real payslip and a real treasury salary/pay bill</li>
+<li>2–3 real calculation-formula definitions from the master</li>
+<li>Master-table list (DDO, designation, grade, fund type, budget head, payscale, deduction breakup)</li>
+<li>GIS / LIC / SSS deduction sheets; a sample loan schedule</li>
+<li>A sample arrear / salary-correction case</li>
+</ul>
+<h3>6.4 Decisions to confirm</h3>
+<ul>
+<li><strong>Payscale model</strong> — designation-wise vs pay-grade-wise (Closure §6).</li>
+<li>Income-tax handling — deduction-only vs full statutory compliance.</li>
+<li>Salary treasury-drawn vs university-drawn (depth of treasury integration).</li>
+</ul>
+<h3>6.5 People &amp; access</h3>
+<ul>
+<li>SMEs for Payroll, Accounts/DDO and IT for clarification sessions.</li>
+<li>A decision-making authority empowered to sign off scope.</li>
+<li>Secure transfer method + NDA for sensitive data (PAN/Aadhaar).</li>
+</ul>
+<h3>6.6 System scale &amp; environment</h3>
+<ul>
+<li><strong>Scale figures</strong> — employee, pensioner, department and KVK/centre counts, and monthly payroll/transaction volume (sizes effort, performance and training).</li>
+<li><strong>In-house server &amp; infrastructure</strong> — AAU-provided host environment, OS/DB access and deployment credentials.</li>
+</ul>
+<hr>
+<h2>7. Support, warranty &amp; ownership</h2>
+<ul>
+<li><strong>Source-code ownership</strong> — AAU owns the full source code, database schema and documentation on final acceptance. No vendor lock-in.</li>
+<li><strong>Warranty</strong> — defect-fix warranty (indicatively 6 months) post go-live at no extra cost.</li>
+<li><strong>Support / AMC</strong> — optional Annual Maintenance Contract after warranty; priced separately by management.</li>
+<li><strong>Knowledge transfer</strong> — handover, source walkthrough and runbooks so AAU IT can run and extend the system.</li>
+<li><strong>Hosting</strong> — deployed on AAU's in-house server and infrastructure; BSPL handles deployment, containerisation and configuration.</li>
+</ul>
+<hr>
+<h2>8. Modules developed after go-live (next phase)</h2>
+<p>Independent modules delivered as one or more waves <strong>after</strong> the Roadmap 1 go-live — none block it. Estimated build effort (person-days, indicative, pre-BRD):</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Est. person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESS Portal (self-service: profile, payslip, leave, claims)</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Attendance</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>Leave</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>GPF — full ledger</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Loans &amp; Advances — full lifecycle</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Pension &amp; Retirement</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td>Asset &amp; Estate</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>Store &amp; Purchase</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td>Deep Analytics / Warehouse</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>AI assists (optional starter bundle — see <code>AI_Assist_Enhancement.md</code>)</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>259</strong></td>
+</tr>
+<tr>
+<td><strong>Programme-level (~20%: PM, testing, deployment, training)</strong></td>
+<td style="text-align: right;"><strong>51</strong></td>
+</tr>
+<tr>
+<td><strong>Next-phase total</strong></td>
+<td style="text-align: right;"><strong>~310</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>
+- <strong>GPF / Loans</strong> figures are the <strong>delta</strong> over the deduction-line already built in Roadmap 1.
+- <strong>Roadmap 1 only:</strong> Pension needs <strong>extra HRMS-data work</strong> (no native HRMS) — the figure may rise; it is native and cheaper from Roadmap 2.
+- <strong>AI assists</strong> is optional / à-la-carte; the 38 pd is the no-GPU classic-ML starter bundle. Full menu (~87 pd) + deployment options in <code>AI_Assist_Enhancement.md</code>.
+- Sequence into smaller waves by priority; effort is scale-dependent.</p>
+<hr>
+<h2>9. Risks, assumptions, exclusions</h2>
+<ul>
+<li><strong>Risk:</strong> incumbent-vendor handover delay is the #1 schedule risk — blocks payroll reverse-engineering.</li>
+<li><strong>Risk:</strong> existing apps may lack clean APIs — sizing of integration depends on API maturity.</li>
+<li><strong>Risk:</strong> effort assumes a mid-size establishment — scale figures (above) may adjust it.</li>
+<li><strong>Assumption (onboarding effort):</strong> BSPL builds the reconciliation <strong>tools</strong> (PAN-verification API, match-review screen, admin-create form); the <strong>manual data-matching and cleanup labour</strong> — resolving low-confidence mismatches, filling missing PANs in the legacy HRMS, verifying records — is <strong>AAU-side effort</strong>, not in the build figures above.</li>
+<li><strong>Assumption:</strong> hosting on AAU's in-house server/infra; legacy payroll data usable for parallel-run validation; PAN unique per employee; AAU provides data, SMEs and decision authority on time.</li>
+<li><strong>Excludes:</strong> HRMS rebuild, FOC, Finance (integrated only — see Roadmaps 2/3); hardware, network, third-party licences; next-phase modules above.</li>
+</ul>
+<hr>
+<p><em>Indicative, pre-BRD. Subject to BRD confirmation and legacy-code access. Not a price or commitment.</em></p>
+</div>
+</body>
+</html>

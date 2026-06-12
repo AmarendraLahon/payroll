@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAU IUMS — High-Level Design &amp; Workflow</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+  <style>
+    :root{
+      --aau-green:#1b5e20;
+      --aau-green-light:#2e7d32;
+      --aau-accent:#f9a825;
+      --aau-ink:#1c2b21;
+      --aau-soft:#f3f7f3;
+      --aau-blue:#1565c0;
+    }
+    .reveal { font-family: "Segoe UI", Helvetica, Arial, sans-serif; color: var(--aau-ink); font-size: 30px; }
+    .reveal h1,.reveal h2,.reveal h3{ color: var(--aau-green); font-weight:700; text-transform:none; letter-spacing:-0.5px;}
+    .reveal h1{ font-size:1.9em; }
+    .reveal h2{ font-size:1.35em; border-bottom:3px solid var(--aau-accent); padding-bottom:.18em; display:inline-block;}
+    .reveal section{ text-align:left; }
+    .reveal .center{ text-align:center; }
+    .reveal em{ color: var(--aau-green-light); font-style:normal; font-weight:600;}
+    .reveal strong{ color: var(--aau-green);}
+    .reveal table{ font-size:.6em; }
+    .reveal table th{ background:var(--aau-green); color:#fff; padding:.32em .5em;}
+    .reveal table td{ padding:.28em .5em; border-bottom:1px solid #d9e4d9;}
+    .reveal table tr:nth-child(even) td{ background:var(--aau-soft);}
+    .reveal ul{ margin-left:1em;}
+    .reveal li{ margin:.22em 0;}
+    .tag{ display:inline-block; padding:.1em .55em; border-radius:14px; font-size:.5em; font-weight:700; vertical-align:middle;}
+    .tag-have{ background:#c8e6c9; color:#1b5e20;}
+    .tag-need{ background:#ffe0b2; color:#e65100;}
+    .tag-enh{ background:#bbdefb; color:#0d47a1;}
+    .pill{ display:inline-block; background:var(--aau-soft); border:1px solid #cfe0cf; border-radius:8px; padding:.32em .55em; margin:.2em; font-size:.56em; font-weight:600;}
+    .pill-need{ background:#fff3e0; border-color:#ffcc80;}
+    .pill-have{ background:#e8f5e9; border-color:#a5d6a7;}
+    .cols{ display:flex; gap:1.1em; }
+    .col{ flex:1; }
+    .card{ background:var(--aau-soft); border-left:5px solid var(--aau-green); border-radius:6px; padding:.6em .85em; font-size:.66em; }
+    .card-accent{ border-left-color:var(--aau-accent);}
+    .card-blue{ border-left-color:var(--aau-blue);}
+    .reveal .footer{ position:fixed; bottom:8px; left:18px; font-size:13px; color:#7a8a7a;}
+    .reveal .pagenum{ position:fixed; bottom:8px; right:18px; font-size:13px; color:#7a8a7a;}
+    .big-num{ font-size:1.5em; color:var(--aau-accent); font-weight:800;}
+    .title-bg{ background:linear-gradient(135deg,#1b5e20 0%, #2e7d32 60%, #43a047 100%); }
+    .title-bg h1,.title-bg h3,.title-bg p{ color:#fff !important;}
+    .flow{ font-family:Consolas,monospace; font-size:.5em; background:#10240f; color:#d7f0d0; padding:.9em 1em; border-radius:8px; line-height:1.42; white-space:pre; overflow:auto;}
+    .flow .y{ color:#ffd54f;}
+    .flow .b{ color:#90caf9;}
+    .flow .g{ color:#a5d6a7;}
+    .flow .w{ color:#ffffff;}
+    .kicker{ color:var(--aau-accent); font-weight:700; letter-spacing:2px; font-size:.55em; text-transform:uppercase;}
+    .legend{ font-size:.5em; color:#5a6a5a; margin-top:.3em;}
+    .note{ font-size:.6em; color:#5a6a5a;}
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. TITLE -->
+<section data-background-gradient="linear-gradient(135deg,#1b5e20 0%, #2e7d32 60%, #43a047 100%)" class="center title-bg">
+  <p class="kicker">High-Level Design &amp; End-to-End Workflow</p>
+  <h1 style="color:#fff;">Integrated University<br>Management System</h1>
+  <h3 style="color:#fff; font-weight:400;">Assam Agricultural University</h3>
+  <p style="color:#e8f5e9; margin-top:1.1em;">Based on the system study &amp; requirement analysis &nbsp;·&nbsp; June 2026<br><span style="color:#cdebd0; font-size:.8em;">HRMS · Payroll · Fund Control (FOC) · EFMS · Bill Tracking · Finance · Pension</span></p>
+</section>
+
+<!-- 2. PURPOSE -->
+<section>
+  <h2>What This Document Shows</h2>
+  <ul>
+    <li>The <strong>entire workflow</strong> of the proposed system, end to end — from master setup to salary disbursement and pension.</li>
+    <li>Built on the <em>actual</em> findings of the system study, not a generic ERP template.</li>
+    <li>Shows <strong>what AAU already runs</strong>, what we <strong>enhance</strong>, and what we <strong>build new</strong>.</li>
+    <li>Designed for review by <strong>Establishment, Accounts, DDO &amp; IT</strong> stakeholders.</li>
+  </ul>
+  <div class="card card-accent" style="margin-top:.5em;">
+    Goal of this review: confirm we have understood your workflow correctly before detailed design begins.
+  </div>
+</section>
+
+<!-- 3. WHAT THE STUDY FOUND -->
+<section>
+  <h2>What the System Study Found</h2>
+  <div class="cols">
+    <div class="col">
+      <h3 style="font-size:.92em;">Already in place &amp; working</h3>
+      <ul style="font-size:.66em;">
+        <li><strong>HRMS</strong> — the well-used core; departments, courses, faculties, notices</li>
+        <li><strong>Faculty profile</strong> — qualifications, employment history &amp; research in <em>JSON</em>; <strong>8 appraisal formats</strong></li>
+        <li><strong>Departmental login</strong> — faculty transfer history (dept &amp; faculty share IDs)</li>
+        <li><strong>Recruitment</strong>, Academic, Exam, Fee, Notices</li>
+        <li><strong>PAN / Aadhaar</strong> captured; <em>PAN is the universal identifier</em> across systems &amp; external APIs</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3 style="font-size:.92em;">Manual / offline / to build</h3>
+      <ul style="font-size:.66em;">
+        <li><strong>Payroll</strong> — salary structure exists, but processing fragmented</li>
+        <li><strong>Fund control (FOC)</strong> — ceiling &amp; dispersal managed manually</li>
+        <li><strong>Inventory / Store &amp; Purchase</strong> — currently offline</li>
+        <li><strong>Bill movement</strong> — Accounts → DDO → Budget → Cashier, largely manual</li>
+        <li><strong>GPF, Leave, Pension</strong> — not yet integrated</li>
+        <li><strong>TA/DA</strong> — applied manually, outside salary</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MODULE LANDSCAPE -->
+<section>
+  <h2>Module Landscape (from the study)</h2>
+  <p class="note">Twelve functional areas. We integrate the working core and build the administrative-financial backbone around it.</p>
+  <div class="center" style="margin-top:.3em;">
+    <span class="pill pill-have">HRMS <span class="tag tag-have">well-used</span></span>
+    <span class="pill pill-have">Recruitment <span class="tag tag-have">have</span></span>
+    <span class="pill pill-have">Employee Portal <span class="tag tag-have">have</span></span>
+    <span class="pill pill-have">User Management <span class="tag tag-have">have</span></span>
+    <span class="pill pill-need">Payroll <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Finance &amp; Accounts <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Budget Mgmt (FOC) <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Bill Tracking <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Establishments <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">GPF <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Leave <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Pension <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Store &amp; Purchases <span class="tag tag-need">build</span></span>
+    <span class="pill pill-need">Asset &amp; Estate <span class="tag tag-need">build</span></span>
+    <span class="pill" style="background:#ede7f6;border-color:#b39ddb;">EFMS (E-File Movement) <span class="tag" style="background:#d1c4e9;color:#4527a0;">cross-cut</span></span>
+  </div>
+  <div class="card" style="margin-top:.55em;">
+    <strong>HRMS stays the source of truth for "who is an employee"</strong> (PAN = key). Everything new — Payroll, Establishment, GPF, Leave, Pension, Finance — reads from it, never re-keys it.
+  </div>
+</section>
+
+<!-- 5. HERO — END TO END WORKFLOW -->
+<section>
+  <h2>The Whole System on One Page</h2>
+  <div class="flow"><span class="y">  ╔══════════════════ MASTERS · configuration backbone (drives every calculation) ═══════════════════╗</span>
+<span class="y">  ║</span>  DDO · Designation · Grade · Fund Type · Budget Head · Discipline · Nature Type             <span class="y">║</span>
+<span class="y">  ║</span>  Payscale · Calculation Formulas · Deduction %  (LIC/GIS/SSS/IT/Loans)                      <span class="y">║</span>
+<span class="y">  ╚═══════════════════════════════════════════╤═══════════════════════════════════════════════════╝</span>
+                                              │ configures
+   <span class="g">PEOPLE</span>      Recruitment ─▶ <span class="w">HRMS / Employee Master</span> ─▶ Establishment ─▶ Retirement ─▶ <span class="w">Pension</span>
+   <span class="g">LIFECYCLE</span>    (have)        (PAN key · JSON quals)    (transfer/promo/    (age varies)    (dept)
+                                                        appraisal·8 fmts)
+                                    │ employee + attendance + pay data
+                                    ▼
+   <span class="b">PAYROLL</span>     Attendance ─▶ <span class="w">Salary Calculation</span> ─▶ Corrections ─▶ Increments ─▶ Diff Report
+   <span class="b">ENGINE</span>                   (formulas · IT · LIC/GIS/SSS    (batch)      (formula)     &amp; Scrutiny
+                              · loans · deductions)
+                                    │ bill + PDF
+                                    ▼
+   <span class="b">MONEY</span>       <span class="w">Bill Tracking</span> ─▶ Accounts ─▶ DDO ─▶ Budget ─▶ funds to Accounts ─▶ <span class="w">Cashier</span> ─▶ Treasury
+   <span class="b">FLOW</span>            ▲
+                  │ ceiling &amp; fund availability
+   <span class="y">FUND</span>        <span class="w">FOC / Fund Control</span> ◀── Govt yearly budget · multiple fund sources · purpose-bound dispersal
+   <span class="y">CONTROL</span>
+
+   <span style="color:#ce93d8;">EFMS</span>        ░░ E-File Movement overlays the whole flow — 6 user types · 3 access levels · full audit log ░░</div>
+  <p class="legend">Read top-down: <span style="color:#b8860b;">masters</span> configure everything → people lifecycle → payroll → money flow, with <span style="color:#1565c0;">fund control</span> gating spend and <span style="color:#8e24aa;">EFMS</span> moving the files.</p>
+</section>
+
+<!-- 6. MASTERS BACKBONE -->
+<section>
+  <h2>Workflow 1 — Master-Driven Configuration</h2>
+  <p class="note">Nothing is hard-coded. Settings are built by combining master entries — exactly as AAU works today.</p>
+  <div class="cols">
+    <div class="col">
+      <div class="flow" style="font-size:.46em;">  <span class="y">Each is a MASTER entry:</span>
+  ┌─ DDO ──────────── (mapped to departments)
+  ├─ Designation ──── (mapped to Payscale)
+  ├─ Grade
+  ├─ Fund Type ────── (mapped to Head &amp; Sector)
+  ├─ Budget Head
+  ├─ Discipline
+  └─ Nature Type
+        │ combine
+        ▼
+  ┌──────────────────────────────────┐
+  │  SETTING  (a valid combination)  │
+  └──────────────────────────────────┘
+        │ applies
+        ▼
+  Payscale ▶ Formula ▶ Head ▶ Deduction%
+        │
+        ▼   auto-populated, dynamic
+     PAY SLIP  (credits + deductions)</div>
+    </div>
+    <div class="col">
+      <ul style="font-size:.6em;">
+        <li><strong>Designation → Payscale</strong> mapping in masters (designation-wise structure — <em>to confirm</em>).</li>
+        <li><strong>Calculation formulas</strong> are master entries, mapped to a <strong>head</strong>; deductions apply across employees.</li>
+        <li><strong>Deduction breakup %</strong> maintained in master — LIC, GIS, SSS, IT, loans.</li>
+        <li><strong>Fund Type ↔ Head ↔ Sector</strong> and <strong>Designation ↔ Fund Type</strong> mappings drive which fund pays which salary component.</li>
+        <li>Changing a formula re-drives increments &amp; corrections without code changes.</li>
+      </ul>
+      <div class="card card-accent" style="margin-top:.3em; font-size:.6em;"><strong>Effective-dated masters</strong> so a past pay run re-computes with the rules that applied then — vital for arrears &amp; audit.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. EMPLOYEE LIFECYCLE -->
+<section>
+  <h2>Workflow 2 — Employee Lifecycle</h2>
+  <div class="flow">  <span class="g">Recruitment</span>            <span class="b">HRMS / Establishment</span>                         <span class="b">Separation</span>
+  ┌───────────┐  joining  ┌──────────────────────────────┐   event   ┌──────────────┐
+  │ Selected  │──────────▶│ Employee Master (PAN = key)  │──────────▶│ Retirement   │
+  │ candidate │  (no      │  • personal: PAN/Aadhaar     │  (age     │ (age varies  │
+  └───────────┘  re-key)  │  • qualifications (JSON)     │  varies)  │  by cadre)   │
+                          │  • employment history (JSON) │           └──────┬───────┘
+                          │  • research details (JSON)   │                  │ forwarded
+                          └──────────────┬───────────────┘                  ▼
+                                         │                            ┌──────────────┐
+                  ┌──────────────────────┼───────────────────┐        │ PENSION dept │
+                  ▼                      ▼                    ▼        └──────────────┘
+            Transfer history      Promotion (form)     Appraisal (8 formats)
+            (dept ↔ faculty IDs)  Increment            APAR/CAS/MACP feed</div>
+  <ul style="font-size:.56em; margin-top:.35em;">
+    <li><strong>Transfer &amp; promotion</strong> are form-driven entries today — we keep that pattern, add workflow &amp; audit.</li>
+    <li><strong>8 existing appraisal formats</strong> are integrated for promotion eligibility, not rebuilt from scratch.</li>
+    <li><strong>Retirement age varies</strong> by cadre — configured per rule; auto-lists employees due for retirement → Pension.</li>
+  </ul>
+</section>
+
+<!-- 8. PAYROLL WORKFLOW -->
+<section>
+  <h2>Workflow 3 — Payroll Engine</h2>
+  <div class="flow">  <span class="g">INPUTS</span>                    <span class="b">MONTHLY PAYROLL RUN</span>                       <span class="b">OUTPUTS</span>
+  Attendance ───┐
+  Pay matrix ───┤        ┌──────────────────────────────┐        ┌─ Pay slip (dynamic
+  Formulas ─────┼───────▶│  Gross  =  pay + allowances   │───────▶│   credits + deductions)
+  Fund mapping ─┤        │  Deduct =  IT (monthly) ·     │        ├─ Employee annual report
+  Loans ────────┘        │            LIC · GIS · SSS ·  │        │   (all transactions)
+                         │            loans · GPF        │        ├─ Salary difference report
+       Attendance        │  Net    =  Gross − Deductions │        │   ▶ scrutiny
+       adjusts pay ─────▶│  (per fund / budget head)     │        └─ Bill + PDF ▶ Accounts
+                         └───────────────┬──────────────┘
+   <span class="y">Corrections (batch)</span> ◀────────────┤
+   <span class="y">Increments (formula)</span> ◀───────────┘     TA/DA = applied manually, outside salary</div>
+  <ul style="font-size:.55em; margin-top:.3em;">
+    <li><strong>Attendance-linked</strong>: LWP / absence reduces pay automatically.</li>
+    <li><strong>Batch corrections</strong> &amp; <strong>formula-based increments</strong> — formulas editable in masters.</li>
+    <li>Every salary component is tagged to its <strong>fund type &amp; budget head</strong> for downstream fund control.</li>
+  </ul>
+</section>
+
+<!-- 9. FUND CONTROL / FOC -->
+<section>
+  <h2>Workflow 4 — Fund Control (FOC)</h2>
+  <p class="note">"Fixation of Ceiling" — multiple fund sources, each spent only on its sanctioned purpose.</p>
+  <div class="flow">  Govt yearly budget ──┐
+  ICAR / scheme grants ─┤                 ┌─────────────────────────────┐
+  Internal receipts ────┼── received ────▶│  FOC — Fixation of Ceiling  │
+  Endowments / other ───┘                 │  • fund type ↔ head ↔ sector │
+                                          │  • designation ↔ fund mapping│
+                                          │  • dispersal breakup as per  │
+                                          │    requirement on receipt    │
+                                          └──────────────┬──────────────┘
+                                                         │ ceiling gates
+                              ┌──────────────────────────┼──────────────────────────┐
+                              ▼                          ▼                           ▼
+                       Salary component          Store / Purchase             Other expenditure
+                       drawn from its fund       drawn from its fund          within its ceiling
+                              │
+                              ▼
+                       Monthly salary bill ▶ Treasury</div>
+  <div class="card card-accent" style="margin-top:.35em; font-size:.58em;"><strong>Gap surfaced in study:</strong> tracing the <em>actual</em> source of a fund is currently weak (though managed seamlessly). The system makes fund → head → spend traceable end to end.</div>
+</section>
+
+<!-- 10. BILL & DISBURSEMENT CHAIN -->
+<section>
+  <h2>Workflow 5 — Bill &amp; Disbursement Chain</h2>
+  <p class="note">The exact approval chain observed in the study — digitised, tracked &amp; auditable.</p>
+  <div class="flow">  <span class="g">Payroll</span>          <span class="b">BILL TRACKING (each hop logged, with status &amp; timestamp)</span>          <span class="g">Funds out</span>
+
+  Bill + PDF ──▶ <span class="w">Accounts Dept</span> ──▶ generates ──▶ <span class="w">DDO</span> ──▶ <span class="w">Budget</span> ──▶ funds ──▶ <span class="w">Cashier</span> ──▶ releases
+   (upload)       receives        bill            sanctions   checks      to        verifies    funds
+                                                              ceiling   Accounts
+        │                                                        │
+        └──────────────── status visible to originator ─────────┘
+                          at every stage (full lifecycle view)</div>
+  <ul style="font-size:.56em; margin-top:.35em;">
+    <li>Mirrors today's flow: <strong>Accounts → DDO → Budget → funds to Accounts → Cashier releases</strong>.</li>
+    <li><strong>Bill Tracking</strong> gives a single live status; no more chasing files between desks.</li>
+    <li>Each hop checks against <strong>FOC ceiling</strong> &amp; budget availability before passing on.</li>
+  </ul>
+</section>
+
+<!-- 11. EFMS -->
+<section>
+  <h2>Workflow 6 — EFMS (E-File Movement)</h2>
+  <p class="note">The access-controlled file rail that carries every administrative action across the system.</p>
+  <div class="cols">
+    <div class="col">
+      <div class="flow" style="font-size:.48em;">  Creator opens file
+        │  full lifecycle view
+        ▼
+  ┌───────────────────────────┐
+  │  Received ▶ Accessed ▶     │
+  │  Forwarded ▶ Processed     │  every
+  │  (complete movement log)   │  action
+  └─────────────┬─────────────┘  logged
+                │ on processing
+                ▼
+     Notification ▶ Reporting Officer
+                │
+   linked by  PAN + email across systems</div>
+    </div>
+    <div class="col">
+      <ul style="font-size:.6em;">
+        <li><strong>Access-based</strong> — <strong>3 levels</strong> of file access.</li>
+        <li><strong>6 types of users</strong> with distinct rights.</li>
+        <li><strong>Full lifecycle view</strong> for the file creator.</li>
+        <li>Complete log: <em>received, accessed, forwarded, processed</em>.</li>
+        <li>On processing → <strong>notification to reporting officer</strong>.</li>
+        <li><strong>PAN &amp; email</strong> are the communication link between systems.</li>
+      </ul>
+      <div class="card card-blue" style="margin-top:.3em; font-size:.58em;">EFMS is the common workflow + audit backbone reused by Bill Tracking, Establishment, Leave, Pension &amp; more.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. SUPPORTING MODULES -->
+<section>
+  <h2>Workflow 7 — Supporting Modules</h2>
+  <table>
+    <tr><th>Module</th><th>Core workflow</th><th>Feeds</th></tr>
+    <tr><td><strong>GPF</strong></td><td>Subscription · advances/withdrawals · ledger · annual statement</td><td>Payroll deduction, Pension</td></tr>
+    <tr><td><strong>Leave</strong></td><td>Apply → approve → balance update; LWP detection</td><td>Payroll (pay impact), Establishment</td></tr>
+    <tr><td><strong>Store &amp; Purchases</strong></td><td>Requisition → purchase → receipt → issue (currently offline)</td><td>FOC fund, Finance (AP), Asset</td></tr>
+    <tr><td><strong>Asset &amp; Estate</strong></td><td>Asset register · allocation · estate/quarters</td><td>Finance, Store, License-fee deduction</td></tr>
+    <tr><td><strong>Pension</strong></td><td>Retirement → computation → pensioner records</td><td>Service history, GPF, Finance</td></tr>
+    <tr><td><strong>Employee Portal</strong></td><td>Self-service: profile, payslip, leave, claims (logins exist)</td><td>All modules (read)</td></tr>
+    <tr><td><strong>User Management</strong></td><td>Roles, access levels, login (exists)</td><td>EFMS access, RBAC everywhere</td></tr>
+    <tr><td><strong>Finance &amp; Accounts</strong></td><td>GL · bills · fund accounting · treasury</td><td>Receives Payroll, Fee, Store postings</td></tr>
+  </table>
+</section>
+
+<!-- 13. MODULE INTERACTION MAP -->
+<section>
+  <h2>How the Modules Talk</h2>
+  <div class="flow">                         ┌───────────────────────────┐
+                         │   HRMS / Employee Master  │  (PAN = universal key)
+                         └────────────┬──────────────┘
+            ┌─────────────┬───────────┼────────────┬─────────────┐
+            ▼             ▼           ▼            ▼             ▼
+       Establishment   Leave       Payroll       GPF         Pension
+            │             │           │            │             │
+            └─────────────┴─────┬─────┴────────────┴─────────────┘
+                                ▼
+                    Bill Tracking ──▶ <span class="w">Finance &amp; Accounts</span> ◀── Store &amp; Purchases · Asset &amp; Estate
+                                ▲                  │
+                                │                  ▼
+                         FOC / Budget ◀──── Treasury / Govt funds
+   ──────────────────────────────────────────────────────────────────────────────
+   <span style="color:#ce93d8;">EFMS</span> (file rail) · <span class="y">User Mgmt / RBAC</span> · <span class="b">Employee Portal</span>  ── span across all of the above</div>
+  <p class="legend">One master (HRMS), one money convergence point (Finance &amp; Accounts), one file rail (EFMS), one identity (PAN).</p>
+</section>
+
+<!-- 14. IDENTITY & INTEGRATION -->
+<section>
+  <h2>Identity &amp; Integration Principles</h2>
+  <div class="cols">
+    <div class="col">
+      <ul style="font-size:.66em;">
+        <li><strong>PAN is the universal key</strong> — links employee across HRMS, Payroll, EFMS &amp; external APIs.</li>
+        <li><strong>Email + PAN</strong> = the cross-system communication link (as in EFMS today).</li>
+        <li><strong>JSON faculty data</strong> (qualifications, employment, research) is consumed as-is — no re-keying.</li>
+        <li><strong>8 appraisal formats</strong> integrated into promotion workflow.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="card" style="font-size:.62em;"><strong>Integrate, don't replace.</strong> The well-used HRMS and existing logins stay. New modules attach through clean, versioned interfaces and read the existing masters.</div>
+      <div class="card card-accent" style="margin-top:.4em; font-size:.62em;"><strong>Reconciliation</strong> built in — payroll-to-bill and fund-to-spend totals must agree, giving audit evidence by design.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 15. ROLES & ACCESS -->
+<section>
+  <h2>Roles, Access &amp; Control</h2>
+  <div class="cols">
+    <div class="col">
+      <ul style="font-size:.66em;">
+        <li><strong>6 user types</strong> &amp; <strong>3 access levels</strong> (from EFMS) generalised into system-wide RBAC.</li>
+        <li><strong>Separation of duties</strong> — maker submits, checker approves on pay, fund &amp; master changes.</li>
+        <li><strong>Centre / department scope</strong> — users see only their domain.</li>
+        <li><strong>Reporting-officer notifications</strong> on file processing.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="flow" style="font-size:.5em;">  Action ─▶ <span class="y">Maker</span> ─▶ <span class="g">Checker</span> ─▶ effect
+              │            │
+              ▼            ▼
+        every change written to
+        <span class="w">append-only audit log</span>
+        (who · what · when · why ·
+         which order/sanction)</div>
+    </div>
+  </div>
+  <div class="card card-accent" style="margin-top:.4em; font-size:.6em;">Government-grade auditability: append-only logs &amp; effective-dated rules make every past computation reproducible for AG/CAG audit &amp; RTI.</div>
+</section>
+
+<!-- 16. DATA & CURRENT vs CUMULATIVE -->
+<section>
+  <h2>Data: Live State &amp; Full History</h2>
+  <div class="cols">
+    <div class="col card" style="font-size:.62em;">
+      <strong>Current state</strong> (live modules)<br>
+      Operate from go-live: current pay, leave balances, GPF/NPS opening, outstanding bills, fund balances, present posting.
+    </div>
+    <div class="col card card-accent" style="font-size:.62em;">
+      <strong>Cumulative history</strong> (archive + warehouse)<br>
+      Full service history, increment &amp; transfer history, GPF/leave ledger, multi-year financials — for pension, audit, RTI.
+    </div>
+  </div>
+  <div class="flow" style="margin-top:.45em; font-size:.5em;">  Legacy (HRMS · spreadsheets · registers · files) ─▶ Profile ─▶ Cleanse ─▶ Load
+        │                                                                      │
+        ▼                                                                      ▼
+   opening balances ─▶ LIVE SYSTEM                 full history ─▶ ARCHIVE / WAREHOUSE
+                                                                  (read-mostly, queryable)</div>
+  <p class="legend">PAN-based de-duplication: one person = one employee record across every module.</p>
+</section>
+
+<!-- 17. PHASED DELIVERY -->
+<section>
+  <h2>Phased Delivery (workflow order)</h2>
+  <table>
+    <tr><th>Phase</th><th>Delivers (in dependency order)</th></tr>
+    <tr><td><strong>0 — Foundation</strong></td><td>User mgmt / RBAC, EFMS file rail, masters &amp; rule engine, audit log</td></tr>
+    <tr><td><strong>1 — HRMS integration + Establishment</strong></td><td>Employee master (PAN), transfer/promotion/appraisal, JSON data integration</td></tr>
+    <tr><td><strong>2 — Payroll + Leave + GPF</strong></td><td>Salary engine, deductions, corrections, increments, bills; parallel run</td></tr>
+    <tr><td><strong>3 — Finance + FOC + Bill Tracking</strong></td><td>Fund control, budget, disbursement chain, treasury</td></tr>
+    <tr><td><strong>4 — Pension + Store/Asset + Analytics</strong></td><td>Pension lifecycle, Store &amp; Purchase, Asset &amp; Estate, reports/warehouse</td></tr>
+  </table>
+  <p class="legend">Masters &amp; the file rail come first because every later workflow depends on them. Active employees go live first; pensioners &amp; inactive records in a follow-on wave.</p>
+</section>
+
+<!-- 18. OPEN CONFIRMATIONS -->
+<section>
+  <h2>Points to Confirm with AAU</h2>
+  <table>
+    <tr><th>#</th><th>Item to confirm</th><th>Why it matters</th></tr>
+    <tr><td>1</td><td>Is salary structure <strong>designation-wise</strong> (vs pay-grade-wise)?</td><td>Shapes the payscale ↔ designation master model</td></tr>
+    <tr><td>2</td><td>Complete list of <strong>fund sources &amp; types</strong></td><td>Drives FOC fund-head-sector mapping</td></tr>
+    <tr><td>3</td><td>Salary <strong>treasury-drawn vs university-drawn</strong></td><td>Depth of treasury integration</td></tr>
+    <tr><td>4</td><td>Pension scheme cohorts (OPS / NPS / UPS) &amp; <strong>retirement ages</strong> by cadre</td><td>Payroll deductions &amp; retirement auto-listing</td></tr>
+    <tr><td>5</td><td>API maturity of existing HRMS / Recruitment / Fee</td><td>Integration effort &amp; connector scope</td></tr>
+    <tr><td>6</td><td>Scope of <strong>8 appraisal formats</strong> to integrate</td><td>Promotion / CAS-MACP workflow design</td></tr>
+    <tr><td>7</td><td>State / Purchase &amp; Inventory current process detail</td><td>Bringing offline inventory into the system</td></tr>
+  </table>
+</section>
+
+<!-- 19. NEXT STEPS -->
+<section>
+  <h2>Next Steps</h2>
+  <ol style="font-size:.82em;">
+    <li><strong>Walk through these workflows</strong> with Establishment, Accounts &amp; DDO — confirm or correct.</li>
+    <li><strong>Close the open confirmations</strong> (previous slide) in a short discovery workshop.</li>
+    <li><strong>Detailed design</strong> — master/data model, EFMS &amp; bill-tracking state machines, payroll formula catalogue.</li>
+    <li><strong>Phase 0 kick-off</strong> — foundation: user management, file rail, masters, audit.</li>
+  </ol>
+  <div class="card" style="margin-top:.5em; font-size:.78em;">This HLD is a shared picture of <em>your</em> workflow. Once you confirm it reflects how AAU actually works, we lock scope and move to detailed design.</div>
+</section>
+
+<!-- 20. THANK YOU -->
+<section data-background-gradient="linear-gradient(135deg,#1b5e20 0%, #2e7d32 60%, #43a047 100%)" class="center title-bg">
+  <h1 style="color:#fff;">Thank You</h1>
+  <h3 style="color:#fff; font-weight:400;">One integrated, auditable platform — built around how AAU already works</h3>
+  <p style="color:#cdebd0; font-size:.6em; margin-top:1.2em;">Discussion &amp; walkthrough</p>
+</section>
+
+</div></div>
+
+<div class="footer">AAU IUMS — High-Level Design &amp; Workflow · Confidential</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    width: 1280,
+    height: 720,
+    margin: 0.055
+  });
+</script>
+</body>
+</html>

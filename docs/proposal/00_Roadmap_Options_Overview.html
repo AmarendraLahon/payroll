@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAU IUMS — Three Roadmap Options (Overview & Comparison)</title>
+<style>
+:root{
+  --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+  --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+  --muted:#5a6a5a; --line:#dde8dd;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#fafdfa; color:var(--ink);
+  font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55;
+  padding:32px 18px 80px;
+}
+.page{ max-width:920px; margin:0 auto; background:#fff; border:1px solid #e6efe6;
+  border-radius:12px; padding:38px 46px 52px; box-shadow:0 2px 14px rgba(27,94,32,.06); }
+h1{ color:var(--green); font-size:28px; line-height:1.2; letter-spacing:-.5px;
+  margin:.1em 0 .5em; border-bottom:3px solid var(--accent); padding-bottom:.35em; }
+h2{ color:var(--green); font-size:20px; margin:1.9em 0 .6em;
+  border-bottom:2px solid #e0ece0; padding-bottom:.25em; }
+h3{ color:var(--green2); font-size:16px; margin:1.5em 0 .5em; }
+p,li{ font-size:14.5px; }
+a{ color:var(--green2); }
+strong{ color:var(--green); }
+em{ color:var(--green2); font-style:italic; }
+code{ background:#eef4ee; border:1px solid #dce8dc; border-radius:4px;
+  padding:.08em .4em; font-family:Consolas,"Courier New",monospace; font-size:.88em; color:#37474f; }
+pre{ background:#10240f; color:#d7f0d0; border-radius:8px; padding:16px 18px;
+  overflow:auto; font-size:13px; line-height:1.5; }
+pre code{ background:none; border:none; color:inherit; padding:0; font-size:13px; }
+hr{ border:none; border-top:1px solid var(--line); margin:2em 0; }
+ul,ol{ padding-left:24px; }
+li{ margin:.28em 0; }
+blockquote{
+  margin:1.1em 0; padding:11px 16px; background:#fffdf5;
+  border-left:5px solid var(--accent); border-radius:6px; color:#5a4a10; }
+blockquote p{ margin:.35em 0; color:#4a3d0e; }
+blockquote strong{ color:var(--green); }
+blockquote code{ background:#fdf3d4; border-color:#f0e2a8; }
+table{ border-collapse:collapse; width:100%; margin:1.1em 0; font-size:13px; }
+th{ background:var(--green); color:#fff; text-align:left; padding:8px 10px; font-weight:600; font-size:12.5px; }
+td{ padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td{ background:#f6faf6; }
+table code{ font-size:.85em; }
+.docmeta{ color:var(--muted); font-size:12.5px; }
+.footer-note{ color:#8a9a8a; font-size:11.5px; text-align:center; margin-top:40px;
+  border-top:1px solid #e0ece0; padding-top:14px; }
+@media print{
+  body{ background:#fff; padding:0; }
+  .page{ border:none; box-shadow:none; border-radius:0; padding:0; }
+  table,blockquote,pre{ break-inside:avoid; }
+  h2{ break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>AAU IUMS — Three Roadmap Options (Overview &amp; Comparison)</h1>
+<p><strong>Project:</strong> Assam Agricultural University (AAU) — Integrated University Management System (IUMS)
+<strong>Prepared by:</strong> Bohniman Systems Private Limited (BSPL)
+<strong>For:</strong> AAU — decision on engagement scope
+<strong>Version:</strong> 0.1 (Draft) · <strong>Date:</strong> 12 June 2026
+<strong>Baseline:</strong> Visit Closure Document v1.0 + HLD (8–9 June 2026 study)</p>
+<hr>
+<h2>Why three options</h2>
+<p>The University's most pressing problem is its <strong>outsourced .NET payroll system</strong> — old technology, high recurring cost, and <strong>unable to integrate</strong> with AAU's in-house applications. Every option below solves that core problem first. They differ only in <strong>how much of the surrounding administrative-financial backbone</strong> is rebuilt natively in the same engagement.</p>
+<p>You choose <strong>one</strong> option as the starting engagement. Each is a complete, go-live deliverable. The options are <strong>progressive supersets</strong>:</p>
+<pre><code>  Roadmap 1  ─────────────▶  Roadmap 2  ─────────────▶  Roadmap 3
+  Payroll + Admin +         + HRMS (native)            + FOC + Finance
+  integrate existing apps   + Establishment            + fund control
+                            + Appraisal                + reconciliation
+</code></pre>
+<p>Whatever option you pick, the <strong>independent modules</strong> (ESS portal, Attendance, Leave, Asset &amp; Estate, Store &amp; Purchase, GPF/Loans full ledgers, Pension, Deep Analytics/Warehouse, AI assists) are delivered as a <strong>subsequent phase</strong> — they do not block the first go-live.</p>
+<hr>
+<h2>How to read these documents</h2>
+<p>Each roadmap document states four things, as requested:</p>
+<ol>
+<li><strong>Goal</strong> — what the University will actually be able to do once the system is live.</li>
+<li><strong>Deployment plan</strong> — the delivery waves, milestones and go-live approach.</li>
+<li><strong>Man-days required</strong> — build effort in person-days (module + programme).</li>
+<li><strong>Requirements from client</strong> — exactly what AAU must provide for that scope to be built.</li>
+</ol>
+<blockquote>
+<p><strong>Effort, not price.</strong> Figures are <strong>person-days, pre-BRD</strong> — build effort only. Day-rate, overhead, margin and contingency (+15–25% recommended on low-confidence modules) are applied by management to produce the commercial figure. Excludes hardware, network and third-party licences.</p>
+<p><strong>Policy-document dependency.</strong> Roadmap 2 needs a documented <strong>HR policy / service &amp; appraisal rules</strong>; Roadmap 3 needs a documented <strong>Financial manual / fund-handling rules</strong>. If these do not exist and AAU asks BSPL to <strong>author them</strong>, we must engage a <strong>domain specialist</strong> (HR or finance) to draft and validate the policy — adding cost and time, sized separately and <strong>not included</strong> in the effort figures above.</p>
+</blockquote>
+<hr>
+<h2>Side-by-side comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th><strong>Roadmap 1</strong><br>Payroll + Integration</th>
+<th><strong>Roadmap 2</strong><br>+ HRMS</th>
+<th><strong>Roadmap 3</strong><br>+ Finance &amp; Fund</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core idea</strong></td>
+<td>Replace .NET payroll on a modern, integrable stack; one admin platform over existing apps</td>
+<td>Also own HRMS natively (employee master, establishment, appraisal)</td>
+<td>Also own the money backbone (fund control + finance)</td>
+</tr>
+<tr>
+<td><strong>Payroll (new stack)</strong></td>
+<td>✅ rebuilt as-is</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Bill generation + tracking</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Admin / Monitoring portal</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Integrate existing in-house apps</strong></td>
+<td>✅ (read + report)</td>
+<td>✅ (HRMS now native)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Employee onboarding / identity reconciliation</strong></td>
+<td>PAN-verification API + match-review (HRMS team maps)</td>
+<td>Native registration + maker-checker onboarding</td>
+<td>Native (inherited)</td>
+</tr>
+<tr>
+<td><strong>HRMS rebuilt natively</strong></td>
+<td>— (integrated only)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Establishment + Appraisal</strong></td>
+<td>—</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Service Book + inter-DDO transfer</strong></td>
+<td>— (stays legacy/manual)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>FOC (fund ceiling control)</strong></td>
+<td>—</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Finance &amp; Accounts</strong></td>
+<td>—</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Payroll-to-bill &amp; fund-to-spend reconciliation</strong></td>
+<td>partial (bill side)</td>
+<td>partial</td>
+<td>✅ full</td>
+</tr>
+<tr>
+<td><strong>Module build (pd)</strong></td>
+<td>317</td>
+<td>422</td>
+<td>536</td>
+</tr>
+<tr>
+<td><strong>Programme (pd)</strong></td>
+<td>144</td>
+<td>169</td>
+<td>199</td>
+</tr>
+<tr>
+<td><strong>Total effort (pd)</strong></td>
+<td><strong>~461</strong></td>
+<td><strong>~591</strong></td>
+<td><strong>~735</strong></td>
+</tr>
+<tr>
+<td><strong>Indicative delivery</strong></td>
+<td><strong>7–9 months</strong></td>
+<td><strong>11–13 months</strong></td>
+<td><strong>15–18 months</strong></td>
+</tr>
+<tr>
+<td><strong>Primary new inputs needed</strong></td>
+<td>Old-payroll analysis + API contracts</td>
+<td>+ HR policy &amp; appraisal rules</td>
+<td>+ Finance policy &amp; fund rules</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Which option fits when</h2>
+<ul>
+<li><strong>Roadmap 1</strong> — fastest exit from the costly .NET payroll. Choose if the priority is <em>stop the bleeding</em> and unify reporting now; HRMS/Finance stay as they are and are integrated.</li>
+<li><strong>Roadmap 2</strong> — choose if AAU also wants to <strong>stop depending on the existing HRMS</strong> and own employee data, establishment workflows and appraisal natively alongside payroll. <strong>Also solves the faculty service-book transfer pain point</strong> — the full digital service book moves between colleges/KVKs/DDOs as a custody change, no physical book, no re-keying.</li>
+<li><strong>Roadmap 3</strong> — choose if AAU wants the <strong>complete salary-to-treasury money loop</strong> closed in one engagement: fund control, finance ledger, and automatic reconciliation for AG/CAG and RTI audit.</li>
+</ul>
+<hr>
+<h2>Common foundation (in every option)</h2>
+<p>All three share the same reusable core, <strong>built once and never reworked</strong>:</p>
+<ul>
+<li><strong>Masters &amp; Rule Engine</strong> — effective-dated, formula-driven (no hard-coded salary logic).</li>
+<li><strong>RBAC / User Management</strong> — role-based access, maker–checker.</li>
+<li><strong>Audit Ledger</strong> — append-only, AG/CAG &amp; RTI ready.</li>
+<li><strong>Notification Service</strong> — event-driven alerts to reporting officers.</li>
+<li><strong>Workflow / File-movement rail</strong> — reusable approval engine.</li>
+<li><strong>PAN = universal identity key</strong> — no duplicated employee masters.</li>
+</ul>
+<blockquote>
+<p><strong>Upgrading between options is additive at the core — with one exception: HRMS.</strong> Roadmap 1 integrates the legacy HRMS read-only; Roadmaps 2 and 3 replace it natively. So a later Roadmap 1 → 2 upgrade <strong>swaps the HRMS read-connector for the native HRMS module</strong> (re-migration of HR data + a fresh HR-side parallel run) — re-integration at the HRMS boundary only, not a full rebuild. Picking the target option up front avoids this.</p>
+</blockquote>
+<hr>
+<h2>Technology stack</h2>
+<p>Built on a modern, open, integrable stack — the opposite of the closed .NET system being replaced. No recurring third-party licence cost; runs on AAU's in-house servers.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Java 21 + <strong>Spring Boot</strong> (modular REST services)</td>
+</tr>
+<tr>
+<td><strong>Frontend</strong></td>
+<td><strong>React</strong> + TypeScript (role-based portal UI)</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td><strong>PostgreSQL</strong> (OLTP; effective-dated masters, append-only audit)</td>
+</tr>
+<tr>
+<td><strong>Security / authZ</strong></td>
+<td><strong>Spring Security</strong> with <strong>app-side RBAC in PostgreSQL</strong> (one role per user, permissions, temporary/delegated grants, dept scoping, maker-checker). Custom React login UI — full branding control. <em>Keycloak optional, only if external SSO / Active Directory / state-govt-SSO federation is later required — and even then for authentication only, never authorization.</em></td>
+</tr>
+<tr>
+<td><strong>Workflow</strong></td>
+<td><strong>Flowable / Camunda</strong> engine for the EFMS file rail, maker–checker and bill chain</td>
+</tr>
+<tr>
+<td><strong>Eventing / notifications</strong></td>
+<td><strong>RabbitMQ</strong> (or Kafka) event bus — activity feed + module decoupling</td>
+</tr>
+<tr>
+<td><strong>Reporting / PDF</strong></td>
+<td><strong>JasperReports</strong> — payslips, treasury bills, statements (govt formats)</td>
+</tr>
+<tr>
+<td><strong>Caching</strong></td>
+<td><strong>Redis</strong> (sessions, performance)</td>
+</tr>
+<tr>
+<td><strong>Reporting / warehouse</strong></td>
+<td>PostgreSQL read-replica + materialized views (dedicated OLAP in a later phase)</td>
+</tr>
+<tr>
+<td><strong>Packaging / deploy</strong></td>
+<td><strong>Docker</strong> containers on AAU's in-house servers</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Core (Spring Boot + React + PostgreSQL) confirmed by AAU. A workflow engine, an event bus, JasperReports and Redis are the recommended supporting components — all open-source and on-prem-friendly. <strong>Authorization is built app-side</strong> (no Keycloak by default): keeps temporary/delegated permissions and dept scoping in the app, and avoids Keycloak's login-UI theming constraints. Keycloak is held in reserve only for external/AD/state-SSO federation.</p>
+<p><strong>AI assists (next phase):</strong> because PAN/Aadhaar data stays on AAU's in-house servers, AI features use <strong>on-prem / open-weight models or strict anonymisation</strong> — no sensitive data leaves the premises.</p>
+</blockquote>
+<hr>
+<h2>Engagement terms (all options)</h2>
+<ul>
+<li><strong>Source-code ownership</strong> — AAU owns the full source code, database schema and documentation on final acceptance. <strong>No vendor lock-in</strong> — the core reason for this replacement.</li>
+<li><strong>Warranty</strong> — defect-fix warranty (indicatively 6 months) post go-live at no extra cost; bugs in delivered scope fixed free.</li>
+<li><strong>Support / AMC</strong> — optional Annual Maintenance Contract after warranty (tiered: defect fix, minor enhancements, helpdesk), priced separately by management.</li>
+<li><strong>Knowledge transfer</strong> — technical + admin handover, source walkthrough and runbooks so AAU IT can operate and extend the system independently.</li>
+<li><strong>Hosting</strong> — deployed on AAU's <strong>in-house server and infrastructure (AAU-provided)</strong>; BSPL provides deployment, containerisation and configuration.</li>
+<li><strong>Scale to confirm</strong> — effort assumes a mid-size establishment; final employee/pensioner/department/KVK counts and transaction volume are a required input (below) and may adjust effort.</li>
+</ul>
+<hr>
+<h2>Next phase (applies to all three options)</h2>
+<p>Delivered after the chosen option's go-live, as one or more independent waves. <strong>Indicative effort</strong> (person-days, build only) — sized like the roadmap modules; confirmed at the BRD for that phase.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Indicative pd</th>
+<th>Why deferred</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ESS Portal</strong> (self-service profile, payslip, leave, claims)</td>
+<td style="text-align: right;">24</td>
+<td>Not on the salary-critical path; large UI surface</td>
+</tr>
+<tr>
+<td><strong>Attendance</strong></td>
+<td style="text-align: right;">18</td>
+<td>Feeds LWP but runs from imports initially</td>
+</tr>
+<tr>
+<td><strong>Leave</strong></td>
+<td style="text-align: right;">20</td>
+<td>Deduction impact handled as manual input until then</td>
+</tr>
+<tr>
+<td><strong>GPF — full ledger</strong></td>
+<td style="text-align: right;">20</td>
+<td>Deduction <em>line</em> already in payroll; full ledger/passbook/statement later</td>
+</tr>
+<tr>
+<td><strong>Loans &amp; Advances — full</strong></td>
+<td style="text-align: right;">20</td>
+<td>Deduction <em>line</em> already in payroll; full lifecycle later</td>
+</tr>
+<tr>
+<td><strong>Pension &amp; Retirement</strong></td>
+<td style="text-align: right;">37</td>
+<td>No immediate salary impact; leans on HRMS service history (R2/R3)</td>
+</tr>
+<tr>
+<td><strong>Asset &amp; Estate</strong></td>
+<td style="text-align: right;">25</td>
+<td>License-fee deduction already a payroll master line</td>
+</tr>
+<tr>
+<td><strong>Store &amp; Purchase</strong></td>
+<td style="text-align: right;">32</td>
+<td>Currently offline; finance can post bills meanwhile</td>
+</tr>
+<tr>
+<td><strong>Deep Analytics / Warehouse</strong></td>
+<td style="text-align: right;">25</td>
+<td>Beyond the in-build Admin/Monitoring portal</td>
+</tr>
+<tr>
+<td><strong>AI assists</strong> (payroll anomaly detection, document extraction, ESS chatbot, fund-trace summaries)</td>
+<td style="text-align: right;">38*</td>
+<td>On-prem / open-weight models; layered on once core data exists</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>259</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Programme-level (~20%)</strong></td>
+<td style="text-align: right;"><strong>51</strong></td>
+<td>PM, integration testing, deployment, training</td>
+</tr>
+<tr>
+<td><strong>Next-phase indicative total</strong></td>
+<td style="text-align: right;"><strong>~310</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Indicative and scale-dependent. Modules can be sequenced into smaller waves by priority. GPF/Loans figures are the <strong>delta</strong> over the deduction-line already built in the chosen option. Pension is most efficient on Roadmaps 2/3 (native HRMS history); on Roadmap 1 it needs extra HRMS-data work.</p>
+<p>* <strong>AI assists is an optional à-la-carte enhancement</strong> — the 38 pd shown is the no-GPU classic-ML starter bundle. Full use-case menu, deployment options (on-prem vs cloud) and the GPU-infra decision are in <strong><code>AI_Assist_Enhancement.md</code></strong> (full menu ~87 pd).</p>
+</blockquote>
+<hr>
+<p><em>Working draft for discussion. Effort and phasing are indicative, subject to BRD confirmation and access to the incumbent vendor's legacy code. Not a price or commitment.</em></p>
+</div>
+</body>
+</html>

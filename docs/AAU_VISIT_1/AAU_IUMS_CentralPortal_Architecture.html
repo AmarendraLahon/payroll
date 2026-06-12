@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAU IUMS — Centralised Portal Architecture</title>
+<style>
+  :root{
+    --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+    --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+    --blue:#1565c0; --blue-soft:#e3f2fd;
+    --purple:#6a1b9a; --purple-soft:#f3e5f5;
+    --have:#2e7d32; --have-soft:#e8f5e9; --have-bd:#a5d6a7;
+    --need:#e65100; --need-soft:#fff3e0; --need-bd:#ffcc80;
+    --grey:#607d8b; --grey-soft:#eceff1; --grey-bd:#b0bec5;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; font-family:"Segoe UI",Helvetica,Arial,sans-serif; color:var(--ink);
+    background:#fafdfa; padding:28px 26px 50px;
+  }
+  .page{ max-width:1280px; margin:0 auto; }
+  header.top{ text-align:center; margin-bottom:18px; }
+  .kicker{ color:#b8860b; font-weight:700; letter-spacing:2px; font-size:12px; text-transform:uppercase; }
+  h1{ color:var(--green); font-size:30px; margin:.15em 0 .1em; letter-spacing:-.5px; }
+  .sub{ color:#5a6a5a; font-size:14px; margin:0; }
+
+  .layer{ border-radius:12px; padding:12px 16px 16px; margin:14px 0; position:relative; }
+  .layer-label{ position:absolute; top:10px; left:14px; font-size:10.5px; font-weight:800;
+    letter-spacing:1.5px; text-transform:uppercase; color:#8aa08a; }
+  .layer-title{ text-align:center; font-size:13px; font-weight:700; color:var(--green); margin:2px 0 12px; }
+
+  /* connectors */
+  .conn{ text-align:center; color:var(--grey); font-size:22px; line-height:1; margin:-4px 0; }
+  .conn small{ display:block; font-size:11px; color:#8a9a8a; font-weight:600; letter-spacing:.5px; }
+
+  /* channel chips */
+  .channels{ display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+  .chip{ background:#fff; border:1.5px solid var(--green-bd,#cfe0cf); border-color:#cfe0cf;
+    border-radius:18px; padding:6px 13px; font-size:12.5px; font-weight:600; color:var(--green);
+    box-shadow:0 1px 2px rgba(0,0,0,.05); }
+
+  /* HERO portal */
+  .portal{ background:linear-gradient(135deg,var(--green) 0%,var(--green2) 55%,var(--green3) 100%);
+    border-radius:14px; padding:18px 20px 20px; color:#fff; box-shadow:0 6px 22px rgba(27,94,32,.28); }
+  .portal h2{ margin:0 0 3px; font-size:21px; text-align:center; color:#fff; }
+  .portal .tagline{ text-align:center; font-size:12.5px; color:#dff3e0; margin:0 0 14px; }
+  .capgrid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .cap{ background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.28);
+    border-radius:9px; padding:9px 10px; text-align:center; }
+  .cap .ic{ font-size:19px; display:block; margin-bottom:3px; }
+  .cap .t{ font-size:12px; font-weight:700; color:#fff; display:block; line-height:1.15; }
+  .cap .d{ font-size:10px; color:#ddf1de; display:block; margin-top:2px; line-height:1.2; }
+
+  /* integration bar */
+  .integration{ background:#fffdf5; border:1.5px dashed var(--accent); border-radius:11px;
+    padding:12px 16px; }
+  .integration .row{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .ibox{ background:#fff; border:1px solid #e6d9a8; border-radius:8px; padding:7px 12px; font-size:12px;
+    font-weight:600; color:#7a5d00; text-align:center; }
+  .ibox b{ color:var(--green); }
+  .keytag{ background:var(--accent); color:#3a2c00; border-radius:14px; padding:5px 12px;
+    font-size:12px; font-weight:800; }
+
+  /* systems columns */
+  .twocol{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .syscol{ border-radius:11px; padding:12px 14px 14px; }
+  .syscol.have{ background:var(--have-soft); border:1.5px solid var(--have-bd); }
+  .syscol.need{ background:var(--need-soft); border:1.5px solid var(--need-bd); }
+  .syscol h3{ margin:0 0 3px; font-size:14.5px; display:flex; align-items:center; gap:8px; }
+  .syscol.have h3{ color:var(--have); }
+  .syscol.need h3{ color:var(--need); }
+  .syscol .cap-note{ font-size:11px; color:#5a6a5a; margin:0 0 10px; }
+  .badge{ font-size:10px; font-weight:800; padding:2px 8px; border-radius:11px; letter-spacing:.3px; }
+  .badge.have{ background:#c8e6c9; color:#1b5e20; }
+  .badge.need{ background:#ffe0b2; color:#e65100; }
+  .modgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .mod{ background:#fff; border-radius:8px; padding:8px 9px; font-size:12px; font-weight:600;
+    text-align:center; line-height:1.2; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+  .syscol.have .mod{ border:1px solid var(--have-bd); color:#1b5e20; }
+  .syscol.need .mod{ border:1px solid var(--need-bd); color:#b34700; }
+  .mod small{ display:block; font-size:9.5px; font-weight:600; color:#8a9a8a; margin-top:2px; }
+  .mod.star{ background:#fffde7; box-shadow:0 0 0 2px var(--accent) inset; }
+
+  /* foundation strip */
+  .foundation{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .fbox{ background:#fff; border:1.5px solid #cfd8dc; border-left:5px solid var(--grey);
+    border-radius:8px; padding:9px 11px; }
+  .fbox .ft{ font-size:12.5px; font-weight:700; color:#37474f; }
+  .fbox .fd{ font-size:10.5px; color:#607d8b; margin-top:2px; line-height:1.25; }
+
+  /* external */
+  .external{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+  .ext{ background:var(--blue-soft); border:1px solid #90caf9; border-radius:8px;
+    padding:6px 11px; font-size:11.5px; font-weight:600; color:#0d47a1; }
+
+  .layer.l-channel{ background:var(--soft); border:1px solid #dfeadf; }
+  .layer.l-integration{ background:transparent; padding-top:6px; }
+  .layer.l-systems{ background:transparent; padding-top:6px; }
+  .layer.l-foundation{ background:var(--grey-soft); border:1px solid #d5dde0; }
+  .layer.l-external{ background:var(--blue-soft); border:1px solid #bbdefb; }
+
+  /* legend / footer */
+  .legend{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:18px;
+    font-size:11.5px; color:#5a6a5a; }
+  .legend .li{ display:flex; align-items:center; gap:6px; }
+  .sw{ width:14px; height:14px; border-radius:4px; display:inline-block; border:1px solid #00000022; }
+  footer{ text-align:center; color:#8a9a8a; font-size:11px; margin-top:16px; }
+  .flowtag{ font-size:11px; color:#8a9a8a; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <div class="kicker">Proposed System · Integration &amp; Monitoring Architecture</div>
+    <h1>Centralised Portal — Integrated University Management System</h1>
+    <p class="sub">Assam Agricultural University · A single command portal that integrates every existing system and monitors all activity end-to-end</p>
+  </header>
+
+  <!-- USERS / CHANNELS -->
+  <div class="layer l-channel">
+    <span class="layer-label">Who uses it</span>
+    <div class="layer-title">Unified Access — one login, role-based (SSO)</div>
+    <div class="channels">
+      <span class="chip">Vice-Chancellor / Officers</span>
+      <span class="chip">Establishment</span>
+      <span class="chip">Accounts &amp; DDO</span>
+      <span class="chip">Budget / Finance</span>
+      <span class="chip">HoDs / Reporting Officers</span>
+      <span class="chip">Faculty &amp; Staff</span>
+      <span class="chip">Pensioners</span>
+      <span class="chip">Auditors (AG/CAG)</span>
+      <span class="chip">Centre / KVK admins</span>
+    </div>
+  </div>
+
+  <div class="conn">▼<small>SECURE LOGIN · ROLE-BASED ACCESS</small></div>
+
+  <!-- HERO: CENTRAL PORTAL -->
+  <div class="portal">
+    <h2>◎ CENTRALISED MONITORING PORTAL</h2>
+    <p class="tagline">The single pane of glass — live visibility &amp; control over every module and every file movement</p>
+    <div class="capgrid">
+      <div class="cap"><span class="ic">📊</span><span class="t">Live Dashboards</span><span class="d">Activity across all modules in real time</span></div>
+      <div class="cap"><span class="ic">🔔</span><span class="t">Alerts &amp; Notifications</span><span class="d">To reporting officers on each action</span></div>
+      <div class="cap"><span class="ic">🗂️</span><span class="t">File &amp; Bill Tracking</span><span class="d">Full lifecycle status of every file</span></div>
+      <div class="cap"><span class="ic">🛡️</span><span class="t">Audit &amp; Compliance</span><span class="d">Append-only log · AG/CAG &amp; RTI ready</span></div>
+      <div class="cap"><span class="ic">📈</span><span class="t">Reports &amp; Analytics</span><span class="d">Payroll, fund, pension &amp; HR insights</span></div>
+    </div>
+  </div>
+
+  <div class="conn">▲ &nbsp;monitors &amp; orchestrates&nbsp; ▼<small>API GATEWAY · EVENT BUS · ANTI-CORRUPTION ADAPTERS</small></div>
+
+  <!-- INTEGRATION FABRIC -->
+  <div class="layer l-integration">
+    <span class="layer-label">How it connects</span>
+    <div class="integration">
+      <div class="row">
+        <div class="ibox"><b>API Gateway</b><br>secure, versioned</div>
+        <div class="ibox"><b>Event Bus</b><br>real-time activity feed</div>
+        <div class="ibox"><b>Adapters</b><br>wrap existing systems</div>
+        <div class="ibox"><b>Reconciliation</b><br>totals must agree</div>
+        <span class="keytag">🔑 PAN + Email = universal identity key</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn">▼<small>READS &amp; WRITES · NO DUPLICATED MASTERS</small></div>
+
+  <!-- SYSTEMS: EXISTING + NEW -->
+  <div class="layer l-systems">
+    <span class="layer-label">What it integrates</span>
+    <div class="twocol">
+
+      <!-- EXISTING -->
+      <div class="syscol have">
+        <h3>✅ Existing Systems <span class="badge have">KEEP &amp; INTEGRATE</span></h3>
+        <p class="cap-note">AAU-owned &amp; working — connected, not replaced.</p>
+        <div class="modgrid">
+          <div class="mod star">HRMS<small>source of truth · well-used</small></div>
+          <div class="mod">Recruitment<small>feeds onboarding</small></div>
+          <div class="mod">Academic · Exam<small>faculty, results</small></div>
+          <div class="mod">Fee Collection<small>→ Finance posting</small></div>
+          <div class="mod">Employee Portal<small>logins exist</small></div>
+          <div class="mod">User Management<small>roles / access</small></div>
+          <div class="mod">EFMS<small>e-file movement</small></div>
+          <div class="mod">Notices<small>communication</small></div>
+          <div class="mod">Faculty Data (JSON)<small>quals · research</small></div>
+        </div>
+      </div>
+
+      <!-- NEW -->
+      <div class="syscol need">
+        <h3>🛠️ New Modules <span class="badge need">BUILD &amp; PLUG IN</span></h3>
+        <p class="cap-note">The administrative-financial backbone, built around HRMS.</p>
+        <div class="modgrid">
+          <div class="mod">Payroll<small>salary · deductions</small></div>
+          <div class="mod">Finance &amp; Accounts<small>GL · treasury</small></div>
+          <div class="mod">Budget / FOC<small>fund ceiling</small></div>
+          <div class="mod">Bill Tracking<small>Accts→DDO→Cashier</small></div>
+          <div class="mod">Establishments<small>transfer · promo</small></div>
+          <div class="mod">GPF<small>ledger · advances</small></div>
+          <div class="mod">Leave<small>balances · LWP</small></div>
+          <div class="mod">Pension<small>retirement loop</small></div>
+          <div class="mod">Store &amp; Purchases<small>was offline</small></div>
+          <div class="mod">Asset &amp; Estate<small>register · quarters</small></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="conn">▼<small>SHARED FOUNDATION USED BY EVERY MODULE</small></div>
+
+  <!-- FOUNDATION / DATA -->
+  <div class="layer l-foundation">
+    <span class="layer-label">What powers it</span>
+    <div class="foundation">
+      <div class="fbox"><div class="ft">⚙️ Masters &amp; Rule Engine</div><div class="fd">DDO · Designation · Grade · Fund Type · Budget Head · Payscale · Formulas — effective-dated</div></div>
+      <div class="fbox"><div class="ft">🔁 Workflow &amp; Approvals</div><div class="fd">Maker–checker · 3 access levels · 6 user types · delegation of powers</div></div>
+      <div class="fbox"><div class="ft">🧾 Audit Ledger</div><div class="fd">Append-only who / what / when / why — reproducible for audit &amp; RTI</div></div>
+      <div class="fbox"><div class="ft">🗄️ Data &amp; History</div><div class="fd">Live OLTP (current state) + warehouse/archive (cumulative history)</div></div>
+    </div>
+  </div>
+
+  <div class="conn">▼<small>STATUTORY &amp; FINANCIAL INTERFACES</small></div>
+
+  <!-- EXTERNAL -->
+  <div class="layer l-external">
+    <span class="layer-label">External / Government</span>
+    <div class="external">
+      <span class="ext">🏛️ State Treasury</span>
+      <span class="ext">💰 PFMS</span>
+      <span class="ext">🏦 Banks (NEFT/RTGS)</span>
+      <span class="ext">📑 NPS-CRA</span>
+      <span class="ext">🧮 Income Tax / TRACES</span>
+      <span class="ext">🏢 AG / Pension Office</span>
+      <span class="ext">🪪 Jeevan Pramaan</span>
+      <span class="ext">🎓 ICAR / UGC</span>
+      <span class="ext">💳 Payment Gateways</span>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="li"><span class="sw" style="background:var(--have-soft);border-color:var(--have-bd);"></span> Existing — keep &amp; integrate</div>
+    <div class="li"><span class="sw" style="background:var(--need-soft);border-color:var(--need-bd);"></span> New — build &amp; plug in</div>
+    <div class="li"><span class="sw" style="background:#fffde7;box-shadow:0 0 0 2px var(--accent) inset;"></span> Source of truth (HRMS)</div>
+    <div class="li"><span class="sw" style="background:var(--blue-soft);border-color:#90caf9;"></span> External / government</div>
+    <div class="li"><span class="sw" style="background:linear-gradient(135deg,var(--green),var(--green3));border:none;"></span> Centralised portal</div>
+  </div>
+
+  <footer>AAU IUMS — Centralised Portal Architecture · Confidential · June 2026 &nbsp;|&nbsp; Integrate, don't replace · One identity (PAN) · One portal to monitor all activity</footer>
+
+</div>
+</body>
+</html>

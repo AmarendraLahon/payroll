@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAU IUMS — AI Assist (Optional Enhancement)</title>
+<style>
+:root{
+  --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+  --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+  --muted:#5a6a5a; --line:#dde8dd;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#fafdfa; color:var(--ink);
+  font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55;
+  padding:32px 18px 80px;
+}
+.page{ max-width:920px; margin:0 auto; background:#fff; border:1px solid #e6efe6;
+  border-radius:12px; padding:38px 46px 52px; box-shadow:0 2px 14px rgba(27,94,32,.06); }
+h1{ color:var(--green); font-size:28px; line-height:1.2; letter-spacing:-.5px;
+  margin:.1em 0 .5em; border-bottom:3px solid var(--accent); padding-bottom:.35em; }
+h2{ color:var(--green); font-size:20px; margin:1.9em 0 .6em;
+  border-bottom:2px solid #e0ece0; padding-bottom:.25em; }
+h3{ color:var(--green2); font-size:16px; margin:1.5em 0 .5em; }
+p,li{ font-size:14.5px; }
+a{ color:var(--green2); }
+strong{ color:var(--green); }
+em{ color:var(--green2); font-style:italic; }
+code{ background:#eef4ee; border:1px solid #dce8dc; border-radius:4px;
+  padding:.08em .4em; font-family:Consolas,"Courier New",monospace; font-size:.88em; color:#37474f; }
+pre{ background:#10240f; color:#d7f0d0; border-radius:8px; padding:16px 18px;
+  overflow:auto; font-size:13px; line-height:1.5; }
+pre code{ background:none; border:none; color:inherit; padding:0; font-size:13px; }
+hr{ border:none; border-top:1px solid var(--line); margin:2em 0; }
+ul,ol{ padding-left:24px; }
+li{ margin:.28em 0; }
+blockquote{
+  margin:1.1em 0; padding:11px 16px; background:#fffdf5;
+  border-left:5px solid var(--accent); border-radius:6px; color:#5a4a10; }
+blockquote p{ margin:.35em 0; color:#4a3d0e; }
+blockquote strong{ color:var(--green); }
+blockquote code{ background:#fdf3d4; border-color:#f0e2a8; }
+table{ border-collapse:collapse; width:100%; margin:1.1em 0; font-size:13px; }
+th{ background:var(--green); color:#fff; text-align:left; padding:8px 10px; font-weight:600; font-size:12.5px; }
+td{ padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td{ background:#f6faf6; }
+table code{ font-size:.85em; }
+.docmeta{ color:var(--muted); font-size:12.5px; }
+.footer-note{ color:#8a9a8a; font-size:11.5px; text-align:center; margin-top:40px;
+  border-top:1px solid #e0ece0; padding-top:14px; }
+@media print{
+  body{ background:#fff; padding:0; }
+  .page{ border:none; box-shadow:none; border-radius:0; padding:0; }
+  table,blockquote,pre{ break-inside:avoid; }
+  h2{ break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>AAU IUMS — AI Assist (Optional Enhancement)</h1>
+<p><strong>Project:</strong> Assam Agricultural University (AAU) — Integrated University Management System
+<strong>Document type:</strong> Optional enhancement — applies on top of any roadmap (1, 2 or 3)
+<strong>Prepared by:</strong> Bohniman Systems Private Limited (BSPL)
+<strong>Version:</strong> 0.1 (Draft) · <strong>Date:</strong> 12 June 2026</p>
+<blockquote>
+<p><strong>Positioning.</strong> AI assist is <strong>optional and à-la-carte</strong> — not required for any roadmap to go live. It layers on once the chosen option's core data exists, and AAU can pick any subset. Because AAU hosts on-premise and the data includes PAN/Aadhaar, the default stance is <strong>AI runs on-premise; sensitive data never leaves AAU servers.</strong></p>
+</blockquote>
+<hr>
+<h2>1. Where AI helps — by module</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>AI use-case</th>
+<th>AI type</th>
+<th>Data sensitivity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Payroll</strong></td>
+<td>Anomaly / fraud detection — salary jumps, duplicate pay, wrong deduction, pre-run ceiling breach</td>
+<td>Classic ML</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>Arrears / fixation <strong>"why did pay change" explainer</strong></td>
+<td>LLM</td>
+<td>Med</td>
+</tr>
+<tr>
+<td><strong>Finance / FOC / Bill</strong></td>
+<td><strong>Reconciliation assistant</strong> — explain payroll-to-bill / fund-to-spend mismatches</td>
+<td>LLM + rules</td>
+<td>Low–Med</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Fund-trace summariser</strong> — natural-language fund → head → spend trace</td>
+<td>LLM (RAG)</td>
+<td>Low</td>
+</tr>
+<tr>
+<td></td>
+<td>Duplicate / fraud bill detection; budget burn-rate forecast</td>
+<td>Classic ML</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><strong>HRMS / Establishment</strong></td>
+<td><strong>Document &amp; service-book extraction</strong> — OCR old books, certificates, appraisal forms → structured data</td>
+<td>OCR + LLM</td>
+<td><strong>High</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Service-book gap detector</strong> — missing verification entries, leave / GPF mismatch</td>
+<td>ML + rules</td>
+<td>High</td>
+</tr>
+<tr>
+<td></td>
+<td>Promotion / CAS-MACP <strong>eligibility explainer</strong>; fuzzy duplicate-employee match</td>
+<td>LLM / ML</td>
+<td>High</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Self-appraisal (APAR) draft assist</strong> + summarise for reporting officer</td>
+<td>LLM</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>ESS</strong></td>
+<td><strong>Employee chatbot</strong> — "my GPF balance", "how to apply leave", policy Q&amp;A</td>
+<td>LLM (RAG)</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Admin / Monitoring portal</strong></td>
+<td><strong>Natural-language query over dashboards</strong> ("pending bills &gt; 30 days in college X"); bottleneck detection; alert prioritisation</td>
+<td>LLM + ML</td>
+<td>Low–Med</td>
+</tr>
+<tr>
+<td><strong>Reporting (any module)</strong></td>
+<td><strong>NL → report</strong> ("who retires in next 6 months in College X" → AI builds the filter, the <strong>list stays a deterministic query</strong>); <strong>report briefing/summary</strong>; proactive succession / pension-dossier alerts</td>
+<td>LLM + rules</td>
+<td>Low–Med</td>
+</tr>
+<tr>
+<td><strong>EFMS / Workflow</strong></td>
+<td>SLA-breach prediction, smart file routing, movement-bottleneck analytics</td>
+<td>ML</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><strong>Cross-cutting</strong></td>
+<td><strong>RAG over HR / Finance manuals</strong> ("which rule applies"); audit / RTI natural-language query; Assamese ↔ English translation</td>
+<td>LLM (RAG)</td>
+<td>Med</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Earliest ROI:</strong> classic-ML wins (payroll anomaly, reconciliation, forecast) — no LLM, no GPU, runs on CPU on-premise. Ship these first.
+<strong>Highest migration value:</strong> document / service-book extraction — removes manual data-entry of legacy and physical records.</p>
+<hr>
+<h2>2. Deployment options</h2>
+<h3>A. On-premise local model (recommended default)</h3>
+<p>Open-weight model (Llama 3.x / Qwen2.5 / Mistral) served with <strong>Ollama or vLLM</strong> on a GPU node.</p>
+<ul>
+<li>✅ Data <strong>never leaves AAU premises</strong> — PAN/Aadhaar safe; government-compliant</li>
+<li>✅ No per-call cost; no internet dependency; full control</li>
+<li>❌ Needs <strong>GPU hardware</strong> (capex, see §4) and in-house MLOps</li>
+<li>❌ Lower ceiling than frontier cloud models; slower on very large models</li>
+</ul>
+<h3>B. Cloud API (Claude / GPT / Gemini)</h3>
+<ul>
+<li>✅ Strongest reasoning; zero infra; fastest to ship; scales</li>
+<li>❌ <strong>Sensitive data leaves premises</strong> → compliance/legal blocker for citizen PII</li>
+<li>❌ Recurring per-token cost; internet dependency; data-residency concerns</li>
+</ul>
+<blockquote>
+<p>For a government university, sending raw PAN/Aadhaar/service-book data to external cloud is <strong>likely not permitted</strong> without anonymisation and legal clearance.</p>
+</blockquote>
+<h3>C. Hybrid + anonymise (pragmatic middle path)</h3>
+<ul>
+<li>Sensitive tasks (HR, ESS, service-book, payroll PII) → <strong>on-premise local</strong></li>
+<li>Non-sensitive / aggregated / <strong>anonymised</strong> tasks (dashboard NL-query, manual RAG, public-notice translation) → cloud API allowed, <strong>PII stripped first</strong></li>
+<li>RAG: documents + vector DB stay <strong>on-premise</strong>; only the anonymised prompt optionally goes to cloud</li>
+</ul>
+<hr>
+<h2>3. Recommendation matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Use-case</th>
+<th>Recommended deployment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Payroll anomaly / fraud / forecast</td>
+<td><strong>On-prem, classic ML</strong> (no GPU)</td>
+</tr>
+<tr>
+<td>Service-book / document extraction</td>
+<td><strong>On-prem local</strong> (PII)</td>
+</tr>
+<tr>
+<td>ESS chatbot + policy RAG</td>
+<td><strong>On-prem local</strong> (8B–14B model sufficient)</td>
+</tr>
+<tr>
+<td>Self-appraisal assist, eligibility explainer</td>
+<td><strong>On-prem local</strong></td>
+</tr>
+<tr>
+<td>NL dashboard query, report summarise</td>
+<td>On-prem; cloud OK only if anonymised aggregates</td>
+</tr>
+<tr>
+<td>Assamese ↔ English public notices</td>
+<td>Local or cloud (non-PII)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. Hardware / infrastructure requirement</h2>
+<p>AAU provides the in-house server — but <strong>LLM features need a GPU; classic ML does not.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Hardware</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classic ML (anomaly / forecast / reconciliation)</td>
+<td><strong>CPU server — no extra hardware</strong></td>
+</tr>
+<tr>
+<td>Local LLM 8B–14B (RAG, chatbot, extraction)</td>
+<td><strong>1× GPU 24 GB</strong> (e.g. RTX 4090 / A5000)</td>
+</tr>
+<tr>
+<td>Local LLM ~32B</td>
+<td>1× GPU 48 GB (A6000)</td>
+</tr>
+<tr>
+<td>Local LLM ~70B</td>
+<td>Multi-GPU node</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Decision point for AAU:</strong> a GPU node is <strong>extra infrastructure beyond the standard application server</strong> and must be provisioned or budgeted. All classic-ML AI features work without it. Hardware cost is AAU's (outside BSPL software scope).</p>
+</blockquote>
+<p><strong>Supporting AI stack (on-prem, open-source):</strong> Ollama / vLLM (serving), a vector DB (pgvector on the existing PostgreSQL, or Qdrant) for RAG, OCR (PaddleOCR / Tesseract) for extraction, and an <strong>anonymisation/guardrail layer</strong> that strips PII before any optional cloud call.</p>
+<hr>
+<h2>5. Data privacy &amp; guardrails</h2>
+<ul>
+<li><strong>PII never to external APIs</strong> by default; on-prem for all sensitive tasks.</li>
+<li><strong>Anonymisation layer</strong> mandatory on any cloud path — strip PAN/Aadhaar/names/account numbers first.</li>
+<li><strong>Human-in-the-loop</strong> — AI output is advisory; pay, fixation, eligibility and bill decisions stay with maker–checker, logged in the Audit Ledger.</li>
+<li><strong>No autonomous money/HR actions</strong> — AI explains, drafts, flags; it does not approve.</li>
+<li><strong>RAG grounding</strong> — answers cite the source rule/record to prevent hallucinated policy.</li>
+</ul>
+<hr>
+<h2>6. Indicative effort (à-la-carte menu)</h2>
+<p>Build effort only (person-days), pre-BRD. Pick any subset; each is independent.</p>
+<table>
+<thead>
+<tr>
+<th>AI feature</th>
+<th style="text-align: right;">Person-days</th>
+<th style="text-align: center;">Needs GPU?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI platform setup (model serving, vector DB, anonymisation/guardrails)</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: center;">— / yes for LLM</td>
+</tr>
+<tr>
+<td>Payroll anomaly / fraud detection (classic ML)</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Reconciliation assistant</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Budget / burn-rate forecast</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Document &amp; service-book extraction (OCR + LLM)</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>ESS chatbot + policy RAG</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>NL dashboard query (Admin portal)</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Self-appraisal assist + eligibility explainer</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Assamese ↔ English translation</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: center;">Optional</td>
+</tr>
+<tr>
+<td><strong>Full menu</strong></td>
+<td style="text-align: right;"><strong>~87</strong></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Starter bundle (~38 pd, no GPU):</strong> platform setup (12) + payroll anomaly (12) + reconciliation (8) + forecast (6) — the classic-ML wins that need no GPU and give the fastest ROI. This matches the indicative "AI assists" line in the <em>Options Overview</em> next-phase table; the table above breaks out the full menu so AAU can choose.</p>
+</blockquote>
+<hr>
+<h2>7. Requirements from client</h2>
+<ul>
+<li><strong>Use-case selection</strong> — which features from §6 AAU wants (drives effort and whether a GPU is needed).</li>
+<li><strong>GPU infrastructure decision</strong> — provision a GPU node, or stay CPU-only (classic ML only).</li>
+<li><strong>Cloud-vs-on-prem policy</strong> — confirm whether any anonymised cloud use is permitted, or strictly on-prem.</li>
+<li><strong>Source documents for RAG / extraction</strong> — HR &amp; Finance manuals, service-book samples, appraisal formats (already requested for Roadmaps 2/3).</li>
+<li><strong>Labelled samples</strong> — for anomaly/fraud detection, examples of known good/bad cases to train against.</li>
+<li><strong>Legal / data-privacy sign-off</strong> for any cloud path involving (even anonymised) data.</li>
+</ul>
+<hr>
+<h2>8. Phasing</h2>
+<ol>
+<li><strong>Classic-ML wins</strong> — anomaly, reconciliation, forecast. On-prem CPU, cheap, high ROI. No GPU.</li>
+<li><strong>RAG chatbot + document extraction</strong> — provision GPU node, deploy local model.</li>
+<li><strong>Optional cloud</strong> — non-sensitive / anonymised heavy reasoning, only after legal sign-off.</li>
+</ol>
+<hr>
+<h2>9. Assumptions &amp; exclusions</h2>
+<ul>
+<li><strong>Optional enhancement</strong> — not required for any roadmap go-live; delivered after core data exists.</li>
+<li><strong>Assumption:</strong> on-premise hosting; sensitive data stays on AAU servers; AAU provisions any GPU.</li>
+<li><strong>Excludes:</strong> GPU/hardware cost (AAU's); cloud-API subscription cost if option B/C chosen; external legal/compliance clearance.</li>
+</ul>
+<hr>
+<p><em>Indicative, pre-BRD. Effort is build only — day-rate, overhead and margin applied by management. Not a price or commitment.</em></p>
+</div>
+</body>
+</html>

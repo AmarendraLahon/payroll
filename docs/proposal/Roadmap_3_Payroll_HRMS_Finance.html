@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap 3 — Payroll + HRMS + Finance & Fund Control</title>
+<style>
+:root{
+  --green:#1b5e20; --green2:#2e7d32; --green3:#43a047;
+  --accent:#f9a825; --ink:#1c2b21; --soft:#f3f7f3;
+  --muted:#5a6a5a; --line:#dde8dd;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#fafdfa; color:var(--ink);
+  font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55;
+  padding:32px 18px 80px;
+}
+.page{ max-width:920px; margin:0 auto; background:#fff; border:1px solid #e6efe6;
+  border-radius:12px; padding:38px 46px 52px; box-shadow:0 2px 14px rgba(27,94,32,.06); }
+h1{ color:var(--green); font-size:28px; line-height:1.2; letter-spacing:-.5px;
+  margin:.1em 0 .5em; border-bottom:3px solid var(--accent); padding-bottom:.35em; }
+h2{ color:var(--green); font-size:20px; margin:1.9em 0 .6em;
+  border-bottom:2px solid #e0ece0; padding-bottom:.25em; }
+h3{ color:var(--green2); font-size:16px; margin:1.5em 0 .5em; }
+p,li{ font-size:14.5px; }
+a{ color:var(--green2); }
+strong{ color:var(--green); }
+em{ color:var(--green2); font-style:italic; }
+code{ background:#eef4ee; border:1px solid #dce8dc; border-radius:4px;
+  padding:.08em .4em; font-family:Consolas,"Courier New",monospace; font-size:.88em; color:#37474f; }
+pre{ background:#10240f; color:#d7f0d0; border-radius:8px; padding:16px 18px;
+  overflow:auto; font-size:13px; line-height:1.5; }
+pre code{ background:none; border:none; color:inherit; padding:0; font-size:13px; }
+hr{ border:none; border-top:1px solid var(--line); margin:2em 0; }
+ul,ol{ padding-left:24px; }
+li{ margin:.28em 0; }
+blockquote{
+  margin:1.1em 0; padding:11px 16px; background:#fffdf5;
+  border-left:5px solid var(--accent); border-radius:6px; color:#5a4a10; }
+blockquote p{ margin:.35em 0; color:#4a3d0e; }
+blockquote strong{ color:var(--green); }
+blockquote code{ background:#fdf3d4; border-color:#f0e2a8; }
+table{ border-collapse:collapse; width:100%; margin:1.1em 0; font-size:13px; }
+th{ background:var(--green); color:#fff; text-align:left; padding:8px 10px; font-weight:600; font-size:12.5px; }
+td{ padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td{ background:#f6faf6; }
+table code{ font-size:.85em; }
+.docmeta{ color:var(--muted); font-size:12.5px; }
+.footer-note{ color:#8a9a8a; font-size:11.5px; text-align:center; margin-top:40px;
+  border-top:1px solid #e0ece0; padding-top:14px; }
+@media print{
+  body{ background:#fff; padding:0; }
+  .page{ border:none; box-shadow:none; border-radius:0; padding:0; }
+  table,blockquote,pre{ break-inside:avoid; }
+  h2{ break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>Roadmap 3 — Payroll + HRMS + Finance &amp; Fund Control</h1>
+<p><strong>Project:</strong> Assam Agricultural University (AAU) — Integrated University Management System
+<strong>Option:</strong> 3 of 3 · <em>Close the full salary-to-treasury money loop</em>
+<strong>Prepared by:</strong> Bohniman Systems Private Limited (BSPL)
+<strong>Version:</strong> 0.1 (Draft) · <strong>Date:</strong> 12 June 2026</p>
+<blockquote>
+<p><strong>In one line:</strong> Everything in Roadmap 2, plus <strong>FOC (fund ceiling control)</strong> and <strong>Finance &amp; Accounts</strong> — so every salary rupee is traced from its fund source through the bill to the treasury, with automatic reconciliation for audit.</p>
+</blockquote>
+<p><strong>Built on:</strong> Spring Boot + React + PostgreSQL (Spring Security app-side RBAC, Flowable workflow, RabbitMQ, JasperReports, Redis), containerised on AAU's in-house servers. Full stack in the <em>Options Overview</em>.</p>
+<hr>
+<h2>1. What this adds over Roadmap 2</h2>
+<p>Roadmap 2 owns people and payroll; the money still depends on offline finance and manual fund control. Roadmap 3 brings the <strong>financial backbone</strong> in-house:</p>
+<pre><code>  Roadmap 2 scope  +  FOC (Fixation of Ceiling)  +  Finance &amp; Accounts  +  full reconciliation
+</code></pre>
+<p>This is the complete administrative-financial core: fund source → ceiling → salary component → bill → treasury → ledger, all traceable end-to-end.</p>
+<hr>
+<h2>2. Goal — what the University gets</h2>
+<p>Everything in Roadmap 2, <strong>plus</strong>:</p>
+<ul>
+<li><strong>Fund control (FOC)</strong> — fund-source intake (govt budget, ICAR/scheme grants, internal receipts, endowments), fund ↔ head ↔ sector and designation ↔ fund mapping, ceiling fixation, dispersal breakup, and <strong>per-spend ceiling gating</strong> so each fund is spent only on its sanctioned purpose.</li>
+<li><strong>Finance &amp; Accounts</strong> — general ledger + chart of accounts, fund accounting, accounts payable/receivable, treasury interface, postings intake (payroll, fee, store), bank reconciliation, budget tracking, financial statements.</li>
+<li><strong>End-to-end fund traceability</strong> — the study's stated gap (tracing a fund's actual source) is closed: fund → head → spend is auditable.</li>
+<li><strong>Reconciliation by design</strong> — <strong>payroll-to-bill and fund-to-spend totals must agree</strong>, producing AG/CAG and RTI audit evidence automatically.</li>
+<li><strong>The full money loop in one system</strong> — salary computed, bill raised, ceiling checked at every hop, funds released, ledger posted, reconciled.</li>
+<li><strong>Standard report framework</strong> (inherited from Roadmap 2) — <em>retiring in next 6/12/N months</em>, increment-due, contract-ending, appraisal-due lists — now extended with <strong>fund/finance reports</strong> (fund-utilisation, ceiling-breach, reconciliation statements).</li>
+</ul>
+<hr>
+<h2>3. Scope — modules built</h2>
+<p>All Roadmap 2 modules, <strong>plus</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Module</th>
+<th>Build state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fund &amp; Money</strong></td>
+<td>FOC — Fixation of Ceiling (fund intake, mapping, ceiling fixation, gating)</td>
+<td>Rebuild</td>
+</tr>
+<tr>
+<td></td>
+<td>Finance &amp; Accounts (GL, fund accounting, AP/AR, treasury, reconciliation, statements)</td>
+<td>Build</td>
+</tr>
+</tbody>
+</table>
+<p>(Bill Tracking, already built in Roadmap 1, is now <strong>gated by FOC</strong> at each hop and <strong>reconciled</strong> by Finance. The native HRMS, Establishment and <strong>digital Service Book + inter-DDO transfer</strong> are inherited from Roadmap 2 — so the faculty service-book transfer pain point is solved here too.)</p>
+<blockquote>
+<p><strong>Employee onboarding &amp; identity reconciliation (native, inherited from Roadmap 2).</strong> PAN-complete payroll data seeds the native HRMS master; existing employees auto-matched (PAN → emp-ID → email+mobile → fuzzy) with admin match-review; payroll-only employees onboarded via prefilled HRMS registration; new joiners fill the HRMS form → admin approves → auto-propagates to payroll → foundation data created. All new records draft until maker-checker. Internal Employee ID = PK.</p>
+<p><strong>Input-boundary note (modules deferred to next phase).</strong> Leave, Attendance and the full GPF/Loan ledgers remain next-phase, so <strong>LWP/attendance is fed to payroll by periodic import/manual sheet</strong> and <strong>GPF/Loans run as deduction lines with minimal recovery-balance tracking</strong> until those modules arrive. HRMS, FOC and Finance are all native here.</p>
+</blockquote>
+<hr>
+<h2>4. Deployment plan</h2>
+<p>Seven overlapping waves over an indicative <strong>15–18 month</strong> window.</p>
+<table>
+<thead>
+<tr>
+<th>Wave</th>
+<th>Months</th>
+<th>Delivers</th>
+<th>Exit / acceptance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>W0 — Discovery &amp; Foundation</strong></td>
+<td>M1–M2</td>
+<td>Legacy reverse-engineering (payroll + HRMS + fund flow); Masters &amp; Rule Engine, RBAC, Audit, Notification, Workflow rail</td>
+<td>Master setting drives a sample calc; fund flow documented</td>
+</tr>
+<tr>
+<td><strong>W1 — HRMS rebuild</strong></td>
+<td>M2–M5</td>
+<td>Employee master (PAN), profiles, transfer history; HRMS migration</td>
+<td>Employee resolvable by PAN across modules</td>
+</tr>
+<tr>
+<td><strong>W2 — Payroll core</strong></td>
+<td>M4–M7</td>
+<td>Payroll engine, deductions, corrections, increments, arrears, payslip &amp; reports</td>
+<td>Test month matches a real legacy payslip</td>
+</tr>
+<tr>
+<td><strong>W3 — Establishment &amp; Appraisal</strong></td>
+<td>M6–M9</td>
+<td>Transfer/promotion/fixation/increment/seniority; appraisal + self-appraisal workflow</td>
+<td>Promotion/increment feed payroll automatically</td>
+</tr>
+<tr>
+<td><strong>W4 — Fund &amp; Finance</strong></td>
+<td>M9–M13</td>
+<td>FOC rebuild; Finance &amp; Accounts (GL, fund accounting, AP/AR, treasury, statements)</td>
+<td>A fund's source → head → spend is traceable</td>
+</tr>
+<tr>
+<td><strong>W5 — Bill, reconciliation, platform</strong></td>
+<td>M11–M15</td>
+<td>Bill tracking gated by FOC; payroll-to-bill &amp; fund-to-spend reconciliation; Admin/Monitoring Portal; integrate remaining apps</td>
+<td>Reconciliation totals agree; dashboards live</td>
+</tr>
+<tr>
+<td><strong>W6 — Parallel run &amp; go-live</strong></td>
+<td>M13–M18</td>
+<td>Full parallel run, UAT, cutover, training, go-live, stabilisation</td>
+<td>Full salary + finance cycle on new system; legacy retired</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Parallel run begins ~M13.</strong> An internal "salary runnable" checkpoint at ~M9 lets payroll be parallel-tested before Finance completes — de-risking the big-bang.</p>
+<hr>
+<h2>5. Man-days required</h2>
+<h3>Module build</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Roadmap 2 module subtotal (incl. Service Book + native onboarding)</em></td>
+<td style="text-align: right;"><em>422</em></td>
+</tr>
+<tr>
+<td>FOC — Fixation of Ceiling (rebuild)</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr>
+<td>Finance &amp; Accounts (full suite)</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>536</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Programme-level</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project / delivery management (~12%)</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td>Data migration (payroll + HRMS + <strong>fund/opening balances, ledgers</strong>)</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr>
+<td>External integrations (treasury, <strong>PFMS</strong>, bank, IT/TRACES)</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>System/integration testing + UAT + parallel run + <strong>reconciliation</strong></td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>Deployment, go-live, cutover</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>Training &amp; documentation</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td><strong>Programme subtotal</strong></td>
+<td style="text-align: right;"><strong>199</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">Person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Roadmap 3 total</strong></td>
+<td style="text-align: right;"><strong>~735</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Effort is build only — person-days, pre-BRD. Day-rate, overhead, margin and contingency are set by management to produce the commercial figure. Contingency (+15–25% recommended) should be weighted to the low-confidence Finance/FOC modules pending fund-flow clarification.</p>
+</blockquote>
+<hr>
+<h2>6. Requirements needed from client</h2>
+<p>All Roadmap 2 inputs (old-payroll analysis, API contracts, samples, HR policy, appraisal rules, people), <strong>plus</strong> the finance inputs below.</p>
+<h3>6.1 Finance policy &amp; fund-handling rules</h3>
+<ul>
+<li><strong>Finance policy manual / accounts manual</strong> — accounting rules, posting policy, financial year handling.</li>
+<li><strong>Delegation of financial powers</strong> — who sanctions what, at which ceiling.</li>
+<li><strong>Chart of accounts</strong> and <strong>fund-accounting rules</strong> (per fund type/head/sector).</li>
+<li><strong>Reconciliation rules</strong> — how payroll-to-bill and fund-to-spend totals are expected to tie out.</li>
+<li><strong>Treasury drawing procedure</strong> — treasury-drawn vs university-drawn salary; depth of treasury/PFMS integration.</li>
+</ul>
+<blockquote>
+<p><strong>If no Financial manual exists.</strong> FOC ceiling rules and Finance posting/reconciliation logic can only be built against a documented finance policy. If AAU has no Financial manual / delegation-of-powers / chart-of-accounts and asks BSPL to <strong>author it</strong>, we must engage a <strong>finance/government-accounting domain specialist</strong> to draft and validate it. This adds cost and time to Roadmap 3 and is <strong>not included</strong> in the effort above — it is sized separately once the gap is confirmed.</p>
+</blockquote>
+<h3>6.2 Fund-source data (closes the study's biggest gap)</h3>
+<ul>
+<li><strong>Complete fund-source list</strong> (govt budget, ICAR/scheme grants, internal receipts, endowments, others).</li>
+<li><strong>One project's full funding-to-disbursal paper trail</strong> — to model the real fund → head → spend flow.</li>
+<li>Fund ↔ head ↔ sector and designation ↔ fund mapping definitions.</li>
+<li>Ceiling-fixation and dispersal-breakup rules on receipt.</li>
+</ul>
+<h3>6.3 Integration specs</h3>
+<ul>
+<li>Treasury and <strong>PFMS</strong> interface specifications.</li>
+<li>Bank (NEFT/RTGS) and IT/TRACES specs (shared with payroll).</li>
+</ul>
+<h3>6.4 People &amp; access</h3>
+<ul>
+<li>Finance / Budget / DDO SMEs in addition to HR, Payroll and IT.</li>
+<li>Decision authority for finance-policy sign-off.</li>
+</ul>
+<h3>6.5 System scale &amp; environment</h3>
+<ul>
+<li><strong>Scale figures</strong> — employee, pensioner, department and KVK/centre counts, and monthly payroll/transaction volume.</li>
+<li><strong>In-house server &amp; infrastructure</strong> — AAU-provided host environment, OS/DB access and deployment credentials.</li>
+</ul>
+<hr>
+<h2>7. Support, warranty &amp; ownership</h2>
+<ul>
+<li><strong>Source-code ownership</strong> — AAU owns the full source code, database schema and documentation on final acceptance. No vendor lock-in.</li>
+<li><strong>Warranty</strong> — defect-fix warranty (indicatively 6 months) post go-live at no extra cost.</li>
+<li><strong>Support / AMC</strong> — optional Annual Maintenance Contract after warranty; priced separately by management.</li>
+<li><strong>Knowledge transfer</strong> — handover, source walkthrough and runbooks so AAU IT can run and extend the system.</li>
+<li><strong>Hosting</strong> — deployed on AAU's in-house server and infrastructure; BSPL handles deployment, containerisation and configuration.</li>
+</ul>
+<hr>
+<h2>8. Modules developed after go-live (next phase)</h2>
+<p>Independent modules delivered as one or more waves <strong>after</strong> the Roadmap 3 go-live — none block it. Estimated build effort (person-days, indicative, pre-BRD):</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: right;">Est. person-days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESS Portal (self-service: profile, payslip, leave, claims)</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Attendance</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>Leave</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>GPF — full ledger</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Loans &amp; Advances — full lifecycle</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Pension &amp; Retirement</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td>Asset &amp; Estate</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>Store &amp; Purchase</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td>Deep Analytics / Warehouse</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>AI assists (optional starter bundle — see <code>AI_Assist_Enhancement.md</code>)</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td><strong>Module subtotal</strong></td>
+<td style="text-align: right;"><strong>259</strong></td>
+</tr>
+<tr>
+<td><strong>Programme-level (~20%: PM, testing, deployment, training)</strong></td>
+<td style="text-align: right;"><strong>51</strong></td>
+</tr>
+<tr>
+<td><strong>Next-phase total</strong></td>
+<td style="text-align: right;"><strong>~310</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>
+- <strong>GPF / Loans</strong> figures are the <strong>delta</strong> over the deduction-line already built in Roadmap 3.
+- <strong>Pension</strong> reuses the native HRMS service history (efficient, as in Roadmap 2).
+- With <strong>Finance live</strong>, Store &amp; Purchase and Asset &amp; Estate integrate especially cleanly — AP postings and license-fee deductions already supported.
+- <strong>AI assists</strong> is optional / à-la-carte; the 38 pd is the no-GPU classic-ML starter bundle. Full menu (~87 pd) + deployment options in <code>AI_Assist_Enhancement.md</code>.
+- Sequence into smaller waves by priority; effort is scale-dependent.</p>
+<hr>
+<h2>9. Risks, assumptions, exclusions</h2>
+<ul>
+<li><strong>Risk:</strong> <strong>fund-source tracing</strong> is the stated study gap — FOC effort can swing on the real flow; confirming it early is essential.</li>
+<li><strong>Risk:</strong> legacy handover (payroll + HRMS) and finance-rule clarity — combined #1 schedule risk.</li>
+<li><strong>Risk:</strong> treasury/PFMS integration depth is variable until confirmed.</li>
+<li><strong>Risk:</strong> effort assumes a mid-size establishment — scale figures (above) may adjust it.</li>
+<li><strong>Assumption (onboarding effort):</strong> BSPL builds the reconciliation <strong>tools</strong> (match-review screen, prefilled registration + maker-checker onboarding); the <strong>manual data-matching and cleanup labour</strong> — resolving low-confidence mismatches, filling missing PANs, verifying records — is <strong>AAU-side effort</strong>, not in the build figures above.</li>
+<li><strong>Assumption:</strong> hosting on AAU's in-house server/infra; finance policy and fund rules documented; AAU provides a real funding-to-disbursal trail; PAN unique per employee.</li>
+<li><strong>Excludes:</strong> hardware, network, third-party licences; next-phase modules above.</li>
+</ul>
+<hr>
+<p><em>Indicative, pre-BRD. Subject to BRD confirmation, legacy-code access and fund-flow clarification. Not a price or commitment.</em></p>
+</div>
+</body>
+</html>

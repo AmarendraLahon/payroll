@@ -1,0 +1,86 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'15px','primaryColor':'#e8f0fe','primaryBorderColor':'#1a73e8','lineColor':'#5f6368','clusterBkg':'#f8f9fa','clusterBorder':'#bdc1c6'}}}%%
+flowchart TB
+
+  subgraph USERS["👥 Users & Roles (RBAC)"]
+    direction LR
+    U1["Employee<br/>(ESS)"]
+    U2["HR /<br/>Establishment"]
+    U3["DDO"]
+    U4["Accounts"]
+    U5["Budget"]
+    U6["Cashier"]
+    U7["Pension Cell"]
+    U8["Admin"]
+  end
+
+  subgraph ACCESS["🔐 Access & Presentation Layer"]
+    direction LR
+    A1["Web Portal /<br/>Employee Self-Service"]
+    A2["Auth + RBAC<br/>(PAN / email identity)"]
+  end
+
+  subgraph APP["⚙️ Application Layer — Functional Modules"]
+    direction TB
+    subgraph CORE["Core Payroll"]
+      P1["Salary Calculation<br/>Engine"]
+      P2["Formula Engine<br/>(versioned)"]
+      P3["Deductions<br/>(GPF/NPS/GIS/LIC/Tax)"]
+      P4["Payslip +<br/>Annual Report"]
+    end
+    subgraph HR["HRMS"]
+      H1["Employee Master<br/>+ Service Book"]
+      H2["Leave +<br/>Attendance"]
+      H3["Transfer /<br/>Promotion / Increment"]
+    end
+    subgraph FIN["Finance & Funds"]
+      F1["Fund & Budget /<br/>FOC (ceiling)"]
+      F2["Bill Generation<br/>+ PDF"]
+      F3["Treasury<br/>Interface"]
+      F4["Loans &<br/>Advances"]
+    end
+    subgraph LIFE["Lifecycle & Compliance"]
+      L1["Pension &<br/>Retirement"]
+      L2["Statutory / Tax<br/>(TDS, 24Q, 16)"]
+      L3["Claims<br/>(scope TBD)"]
+    end
+  end
+
+  subgraph WF["🔁 Cross-Cutting Services"]
+    direction LR
+    W1["EFMS / Workflow<br/>+ Approvals"]
+    W2["Notifications<br/>(reporting officer)"]
+    W3["Audit Log /<br/>Full Lifecycle Trail"]
+    W4["Reporting &<br/>Analytics"]
+  end
+
+  subgraph MASTER["🗂️ Master / Config Data (dynamic)"]
+    direction LR
+    M1["DDO · Designation ·<br/>Grade · Discipline"]
+    M2["Fund Type · Budget Head ·<br/>Fund→Head map"]
+    M3["Payscale · Formulas ·<br/>Deduction breakup"]
+  end
+
+  subgraph DATA["🗄️ Data Layer"]
+    direction LR
+    D1[("Employee &<br/>Service DB")]
+    D2[("Payroll &<br/>Pay-history DB")]
+    D3[("Fund / Budget<br/>Ledger")]
+    D4[("JSON Profiles<br/>qual/research/employment")]
+  end
+
+  subgraph EXT["🌐 External Systems (PAN as key)"]
+    direction LR
+    E1["Treasury"]
+    E2["Bank"]
+    E3["NPS / CRA"]
+    E4["Income-Tax<br/>Portal"]
+  end
+
+  USERS --> ACCESS --> APP
+  APP <--> WF
+  APP --> MASTER
+  APP --> DATA
+  MASTER --> DATA
+  FIN --> EXT
+  L2 --> EXT
+  L1 --> EXT
